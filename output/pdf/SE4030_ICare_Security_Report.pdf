@@ -423,7 +423,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 5266
+/Length 5325
 >>
 stream
 0.5670000000000001 w
@@ -536,83 +536,84 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 375.5907874015747439 Td
-(Fix: Limit to one 5 MB JPEG, PNG or WebP upload and reject missing files.) Tj
+(Fix: Limit to one 5 MB JPEG, PNG or WebP upload. Check MIME type and file signature; handle oversized uploads) Tj
+T* (as 413.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 353.1970866141731449 Td
-(Evidence: Baseline: backend/routes/uploadRoutes.js:7. Modified: multer limits and MIME allowlist.) Tj
+56.6929133858267775 339.3073228346455608 Td
+(Evidence: Baseline: backend/routes/uploadRoutes.js:7. Regression: a spoofed PNG MIME type is rejected.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 325.1340944881889072 Td
+56.6929133858267775 311.2443307086613231 Td
 (V11  Ticket response IDOR) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 305.2915748031495013 Td
+56.6929133858267775 291.4018110236219172 Td
 (Original: POST /api/tickets/:id/responses allowed any authenticated user to reply to any ticket.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 282.8978740157479024 Td
+56.6929133858267775 269.0081102362203183 Td
 (Risk: Private support conversations could be modified by other customers.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 260.5041732283463034 Td
+56.6929133858267775 246.6144094488187193 Td
 (Fix: Allow ticket owner or current administrator only.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 238.1104724409447044 Td
+56.6929133858267775 224.2207086614171203 Td
 (Evidence: Baseline: backend/routes/ticketRoutes.js:122-136. Regression: other customer 404.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 210.0474803149604668 Td
+56.6929133858267775 196.1577165354328827 Td
 (V12  Internal error disclosure) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 190.2049606299210609 Td
+56.6929133858267775 176.3151968503934768 Td
 (Original: Global error handler returned err.message as a 500 response.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 167.8112598425194619 Td
+56.6929133858267775 153.9214960629918778 Td
 (Risk: Database and implementation details could be disclosed.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 145.417559055117863 Td
+56.6929133858267775 131.5277952755902788 Td
 (Fix: Return generic 500 messages and structured 400 validation errors; log server-side.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 123.023858267716264 Td
+56.6929133858267775 109.1340944881886799 Td
 (Evidence: Baseline: backend/server.js:66. Modified: generic error handler.) Tj
 ET
 0.82 0.85 0.87 RG
@@ -645,7 +646,7 @@ endobj
 endobj
 10 0 obj
 <<
-/Length 5437
+/Length 5467
 >>
 stream
 0.5670000000000001 w
@@ -748,23 +749,24 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 294.8033858267715459 Td
-(Backend: npm test - 6 tests passed \(catalog price tampering, stock/duplicate rejection, ID-token verification, stale) Tj
-T* (administrator claim, HTTP owner/admin boundaries, simulated Google authorization-code flow\). Frontend: npm run) Tj
-T* (build completed with existing ESLint warnings. Node syntax checks passed for changed backend files. The checks) Tj
-T* (do not replace full integration tests against MongoDB or a live Google provider test.) Tj
+(Backend: npm test - 7 tests passed \(catalog price tampering, stock/duplicate rejection, upload MIME spoofing,) Tj
+T* (ID-token verification, stale administrator claim, HTTP owner/admin boundaries, simulated Google) Tj
+T* (authorization-code flow\). Frontend: npm run build completed with existing ESLint warnings. Node syntax checks) Tj
+T* (passed for changed backend files. The checks do not replace full integration tests against MongoDB or a live) Tj
+T* (Google provider test.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 230.7403937007873083 Td
+56.6929133858267775 216.8506299212597241 Td
 (Unresolved and operational risks) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 210.8978740157480161 Td
+56.6929133858267775 197.0081102362204319 Td
 (1. Original Git history contains backend .env. The modified working tree removes it from tracking, but old commits) Tj
 T* (still contain it. Rotate MongoDB, JWT and Cloudinary credentials and consider history rewrite before publication. 2.) Tj
 T* (Historical card records remain in any deployed MongoDB and backups; purge them securely under an approved) Tj
@@ -1065,7 +1067,7 @@ endobj
 27 0 obj
 <<
 /Producer (jsPDF 2.5.2)
-/CreationDate (D:20260925172750+05'30')
+/CreationDate (D:20260925172945+05'30')
 >>
 endobj
 28 0 obj
@@ -1079,41 +1081,41 @@ endobj
 xref
 0 29
 0000000000 65535 f 
-0000024950 00000 n 
-0000026797 00000 n 
+0000025039 00000 n 
+0000026886 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
 0000005733 00000 n 
 0000005870 00000 n 
 0000011303 00000 n 
 0000011440 00000 n 
-0000016758 00000 n 
-0000016896 00000 n 
-0000022386 00000 n 
-0000022525 00000 n 
-0000025032 00000 n 
-0000025158 00000 n 
-0000025289 00000 n 
-0000025423 00000 n 
-0000025561 00000 n 
-0000025685 00000 n 
-0000025814 00000 n 
-0000025946 00000 n 
-0000026082 00000 n 
-0000026210 00000 n 
-0000026337 00000 n 
-0000026466 00000 n 
-0000026599 00000 n 
-0000026701 00000 n 
-0000027050 00000 n 
-0000027136 00000 n 
+0000016817 00000 n 
+0000016955 00000 n 
+0000022475 00000 n 
+0000022614 00000 n 
+0000025121 00000 n 
+0000025247 00000 n 
+0000025378 00000 n 
+0000025512 00000 n 
+0000025650 00000 n 
+0000025774 00000 n 
+0000025903 00000 n 
+0000026035 00000 n 
+0000026171 00000 n 
+0000026299 00000 n 
+0000026426 00000 n 
+0000026555 00000 n 
+0000026688 00000 n 
+0000026790 00000 n 
+0000027139 00000 n 
+0000027225 00000 n 
 trailer
 <<
 /Size 29
 /Root 28 0 R
 /Info 27 0 R
-/ID [ <A5956C4B8661E96688E7DBAABA9AE4E8> <A5956C4B8661E96688E7DBAABA9AE4E8> ]
+/ID [ <C48CCF340A4DEE3F837C15F4B857E057> <C48CCF340A4DEE3F837C15F4B857E057> ]
 >>
 startxref
-27240
+27329
 %%EOF

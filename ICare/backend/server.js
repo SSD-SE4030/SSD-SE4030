@@ -54,6 +54,8 @@ app.use('/api/prescriptions', prescriptionRouter);
 app.use('/api/digital-library', digitalLibraryRouter);
 app.use('/api/appointments', appointmentRouter); // <-- Appointment Route Added
 
+app.use('/api', (_req, res) => res.status(404).send({ message: 'API route not found' }));
+
 // Serve static files from the frontend
 const frontendBuild = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../frontend/build');
 app.use(express.static(frontendBuild));
@@ -63,6 +65,9 @@ app.get('*', (req, res) =>
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  if (err.name === 'MulterError') {
+    return res.status(err.code === 'LIMIT_FILE_SIZE' ? 413 : 400).send({ message: 'Invalid upload' });
+  }
   if (err.name === 'ValidationError' || err.name === 'CastError') {
     return res.status(400).send({ message: 'Invalid request' });
   }

@@ -14,6 +14,7 @@ import Order from './models/orderModel.js';
 import Prescription from './models/prescriptionModel.js';
 import Ticket from './models/ticketModel.js';
 import googleOidcRouter from './googleOidc.js';
+import { isAllowedImage } from './routes/uploadRoutes.js';
 
 test('order price comes from catalog even when a client submits a lower price', () => {
   const product = { _id: 'p1', slug: 'frames', name: 'Frames', image: '/frames.jpg', price: 200, countInStock: 5 };
@@ -27,6 +28,11 @@ test('order rejects duplicate products and excess stock', () => {
   const product = { _id: 'p1', price: 10, countInStock: 1 };
   assert.throws(() => priceOrder([{ _id: 'p1', quantity: 2 }], [product]));
   assert.throws(() => priceOrder([{ _id: 'p1', quantity: 1 }, { _id: 'p1', quantity: 1 }], [product]));
+});
+
+test('image uploads reject MIME spoofing', () => {
+  assert.equal(isAllowedImage({ mimetype: 'image/png', buffer: Buffer.from('not actually a PNG') }), false);
+  assert.equal(isAllowedImage({ mimetype: 'image/jpeg', buffer: Buffer.from([0xff, 0xd8, 0xff, 0x00]) }), true);
 });
 
 test('Google ID token validates signature, audience, nonce and expiry', () => {

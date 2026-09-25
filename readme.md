@@ -39,7 +39,7 @@ The old `/api/seed` endpoint is removed. The old card input and card API are rem
 | V07 | JWT administrator claim remained authoritative after demotion or deletion. | Authentication loads the current user and role from the database for each request. |
 | V08 | User list/detail and admin update responses exposed password hashes and reset tokens. | Explicitly excludes sensitive fields and returns a safe update DTO. |
 | V09 | Password reset tokens were logged, long lived, reusable, and existence was disclosed. | Random hashed 15-minute token, single use, generic response, no token logging. |
-| V10 | Upload accepted unlimited arbitrary files into memory. | 5 MB cap, one file, image MIME allowlist. |
+| V10 | Upload accepted unlimited arbitrary files into memory. | 5 MB cap, one file, image MIME and file signature checks. |
 | V11 | Ticket responses could be posted to another user's ticket. | Restricts response to owner or administrator. |
 | V12 | Raw server error messages were returned to clients. | Generic 500 response; validation errors return 400. |
 

@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import streamifier from 'streamifier';
+import expressAsyncHandler from 'express-async-handler';
 import { isAdmin, isAuth } from '../utils.js';
 
 const upload = multer({
@@ -11,6 +12,15 @@ const upload = multer({
   },
 });
 
+export const isAllowedImage = (file) => {
+  const bytes = file?.buffer;
+  if (!bytes) return false;
+  if (file.mimetype === 'image/jpeg') return bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+  if (file.mimetype === 'image/png') return bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  if (file.mimetype === 'image/webp') return bytes.length >= 12 && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP';
+  return false;
+};
+
 const uploadRouter = express.Router();
 
 uploadRouter.post(
@@ -18,8 +28,8 @@ uploadRouter.post(
   isAuth,
   isAdmin,
   upload.single('file'),
-  async (req, res) => {
-    if (!req.file) return res.status(400).send({ message: 'A JPEG, PNG or WebP image is required' });
+  expressAsyncHandler(async (req, res) => {
+    if (!isAllowedImage(req.file)) return res.status(400).send({ message: 'A JPEG, PNG or WebP image is required' });
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
@@ -39,6 +49,6 @@ uploadRouter.post(
     };
     const result = await streamUpload(req);
     res.send(result);
-  }
+  })
 );
 export default uploadRouter;
