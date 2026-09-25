@@ -4,12 +4,14 @@ const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    nic: { type: String, required: true },
-    address: { type: String, required: true },
-    phone: { type: String, required: true },
+    nic: { type: String },
+    address: { type: String },
+    phone: { type: String },
     
-    password: { type: String, required: true },
+    password: { type: String },
+    googleSub: { type: String, unique: true, sparse: true },
     resetToken: { type: String },
+    resetTokenExpiresAt: { type: Date },
     isAdmin: { type: Boolean, default: false, required: true },
   },
   {

@@ -25,33 +25,33 @@ export const generateToken = (user) => {
 
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
-  if (authorization) {
-    const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
-    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
-      if (err) {
-        res.status(401).send({ message: 'Invalid Token' });
-      } else {
-        req.user = decode;
-        next();
-      }
-    });
-  } else {
-    res.status(401).send({ message: 'No Token' });
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    return res.status(401).send({ message: 'Authentication required' });
   }
+  jwt.verify(authorization.slice(7), process.env.JWT_SECRET, async (err, decoded) => {
+    if (err || !decoded?._id) return res.status(401).send({ message: 'Invalid token' });
+    try {
+      const { default: User } = await import('./models/userModel.js');
+      const user = await User.findById(decoded._id).select('_id name email isAdmin');
+      if (!user) return res.status(401).send({ message: 'Invalid token' });
+      req.user = user;
+      next();
+    } catch (error) { next(error); }
+  });
 };
 
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
   } else {
-    res.status(401).send({ message: 'Invalid Admin Token' });
+    res.status(403).send({ message: 'Administrator access required' });
   }
 };
 
 export const mailgun = () =>
   mg({
     apiKey: process.env.MAILGUN_API_KEY,
-    domain: process.env.MAILGUN_DOMIAN,
+    domain: process.env.MAILGUN_DOMAIN,
   });
 
 export const payOrderEmailTemplate = (order) => {

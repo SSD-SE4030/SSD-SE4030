@@ -84,13 +84,13 @@ export default function PaymentListScreen() {
     try {
       await axios.put(
         `/api/orders/${order._id}/pay`,
-        { isPaid: !order.isPaid },
+        {},
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
       toast.success('Order payment status updated');
-      dispatch({ type: 'FETCH_SUCCESS', payload: orders.map((o) => (o._id === order._id ? { ...o, isPaid: !o.isPaid } : o)) });
+      dispatch({ type: 'FETCH_SUCCESS', payload: orders.map((o) => (o._id === order._id ? { ...o, isPaid: true } : o)) });
     } catch (err) {
       toast.error(getError(err));
     }
@@ -200,7 +200,8 @@ export default function PaymentListScreen() {
                     {userInfo.isAdmin && (
                       <Button
                         variant={order.isPaid ? 'success' : 'danger'}
-                        onClick={() => togglePaidStatusHandler(order)}
+                        onClick={() => !order.isPaid && togglePaidStatusHandler(order)}
+                        disabled={order.isPaid}
                       >
                         {order.isPaid ? 'Paid' : 'Not Paid'}
                       </Button>

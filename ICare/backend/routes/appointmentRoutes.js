@@ -50,6 +50,12 @@ appointmentRouter.get(
   })
 );
 
+// User-specific appointments must precede /:id.
+appointmentRouter.get('/mine', isAuth, expressAsyncHandler(async (req, res) => {
+  const appointments = await Appointment.find({ user: req.user._id }).populate('optometrist', 'name');
+  res.send(appointments);
+}));
+
 // READ single Appointment by ID
 appointmentRouter.get(
   '/:id',
@@ -112,20 +118,6 @@ appointmentRouter.delete(
       res.send({ message: 'Appointment Deleted' });
     } else {
       res.status(404).send({ message: 'Appointment Not Found' });
-    }
-  })
-);
-
-// User-specific appointments
-appointmentRouter.get(
-  '/mine',
-  isAuth,
-  expressAsyncHandler(async (req, res) => {
-    const appointments = await Appointment.find({ user: req.user._id }).populate('optometrist', 'name');
-    if (appointments) {
-      res.send(appointments);
-    } else {
-      res.status(404).send({ message: 'No Appointments Found' });
     }
   })
 );

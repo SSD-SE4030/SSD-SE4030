@@ -38,13 +38,6 @@ const orderSchema = new mongoose.Schema(
       update_time: String,
       email_address: String,
     },
-    // Add card details for users who pay via card
-    cardDetails: {
-      cardNumber: { type: String },
-      expirationDate: { type: String },
-      cvv: { type: String },
-      cardHolderName: { type: String },
-    },
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
     taxPrice: { type: Number, required: true },

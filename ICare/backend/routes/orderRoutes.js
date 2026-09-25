@@ -4,6 +4,7 @@ import Order from '../models/orderModel.js';
 import User from '../models/userModel.js';
 import Product from '../models/productModel.js';
 import { isAuth, isAdmin } from '../utils.js';
+import { priceOrder } from '../orderPricing.js';
 
 const orderRouter = express.Router();
 
@@ -23,25 +24,18 @@ orderRouter.post(
   '/',
   isAuth,
   expressAsyncHandler(async (req, res) => {
+    if (req.body.paymentMethod !== 'Cash On Delivery' || !Array.isArray(req.body.orderItems) || req.body.orderItems.length === 0) {
+      return res.status(400).send({ message: 'Invalid order or payment method' });
+    }
+    const products = await Product.find({ _id: { $in: req.body.orderItems.map((item) => item._id) } });
+    let priced;
+    try { priced = priceOrder(req.body.orderItems, products); }
+    catch { return res.status(400).send({ message: 'Invalid order items' }); }
     const newOrder = new Order({
-      orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
+      ...priced,
       shippingAddress: req.body.shippingAddress,
-      paymentMethod: req.body.paymentMethod,
-      itemsPrice: req.body.itemsPrice,
-      shippingPrice: req.body.shippingPrice,
-      taxPrice: req.body.taxPrice,
-      totalPrice: req.body.totalPrice,
+      paymentMethod: 'Cash On Delivery',
       user: req.user._id,
-      // Save card details for card payments only
-      cardDetails:
-        req.body.paymentMethod === 'Card'
-          ? {
-              cardNumber: req.body.cardDetails.cardNumber,
-              expirationDate: req.body.cardDetails.expirationDate,
-              cvv: req.body.cardDetails.cvv,
-              cardHolderName: req.body.cardDetails.cardHolderName,
-            }
-          : null,
     });
 
     const order = await newOrder.save();
@@ -110,7 +104,7 @@ orderRouter.get(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
-    if (order) {
+    if (order && (req.user.isAdmin || order.user.toString() === req.user._id.toString())) {
       res.send(order);
     } else {
       res.status(404).send({ message: 'Order Not Found' });
@@ -122,6 +116,7 @@ orderRouter.get(
 orderRouter.put(
   '/:id/deliver',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
@@ -138,22 +133,16 @@ orderRouter.put(
 orderRouter.put(
   '/:id/pay',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
-      // For Cash on Delivery (COD), mark as pending payment
-      if (order.paymentMethod === 'Cash On Delivery') {
-        order.isPaid = false; // COD initially marked as not paid
-        order.paymentResult = { status: 'Pending' };
-      } else {
-        // For card payment, mark as paid
-        order.isPaid = true;
-        order.paidAt = Date.now();
-        order.paymentResult = {
-          id: `Card-${order._id}`,
-          status: 'Paid',
-        };
+      if (order.paymentMethod !== 'Cash On Delivery' || order.isPaid) {
+        return res.status(400).send({ message: 'Order cannot be marked paid' });
       }
+      order.isPaid = true;
+      order.paidAt = Date.now();
+      order.paymentResult = { status: 'Paid' };
 
       const updatedOrder = await order.save();
       res.send({ message: 'Order Paid Status Updated', order: updatedOrder });

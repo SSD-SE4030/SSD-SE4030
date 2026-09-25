@@ -4,7 +4,12 @@ import { v2 as cloudinary } from 'cloudinary';
 import streamifier from 'streamifier';
 import { isAdmin, isAuth } from '../utils.js';
 
-const upload = multer();
+const upload = multer({
+  limits: { fileSize: 5 * 1024 * 1024, files: 1 },
+  fileFilter: (_req, file, callback) => {
+    callback(null, ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype));
+  },
+});
 
 const uploadRouter = express.Router();
 
@@ -14,6 +19,7 @@ uploadRouter.post(
   isAdmin,
   upload.single('file'),
   async (req, res) => {
+    if (!req.file) return res.status(400).send({ message: 'A JPEG, PNG or WebP image is required' });
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,

@@ -70,6 +70,9 @@ export default function SigninScreen() {
           <Button type="submit">Sign In</Button>
         </div>
         <div className="mb-3">
+          <a className="btn btn-outline-primary" href="/api/auth/google/start">Sign in with Google</a>
+        </div>
+        <div className="mb-3">
           New customer?{' '}
           <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
         </div>

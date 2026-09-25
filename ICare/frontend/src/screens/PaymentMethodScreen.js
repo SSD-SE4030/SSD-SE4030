@@ -10,11 +10,11 @@ export default function PaymentMethodScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
-    cart: { shippingAddress, paymentMethod },
+    cart: { shippingAddress },
   } = state;
 
   const [paymentMethodName, setPaymentMethod] = useState(
-    paymentMethod || 'Cash On Delivery'
+    'Cash On Delivery'
   );
 
   useEffect(() => {
@@ -28,11 +28,7 @@ export default function PaymentMethodScreen() {
     ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
     localStorage.setItem('paymentMethod', paymentMethodName);
 
-    if (paymentMethodName === 'Card') {
-      navigate('/carddetails'); // Navigate to card details screen for card payment
-    } else {
-      navigate('/placeorder'); // Navigate directly to place order screen for cash on delivery
-    }
+    navigate('/placeorder');
   };
 
   return (
@@ -51,16 +47,6 @@ export default function PaymentMethodScreen() {
               label="Cash On Delivery"
               value="Cash On Delivery"
               checked={paymentMethodName === 'Cash On Delivery'}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <Form.Check
-              type="radio"
-              id="Card"
-              label="Card"
-              value="Card"
-              checked={paymentMethodName === 'Card'}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </div>

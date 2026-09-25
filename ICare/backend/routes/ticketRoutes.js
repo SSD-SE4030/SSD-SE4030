@@ -121,7 +121,7 @@ ticketRouter.delete(
 // Add response to a ticket
 ticketRouter.post('/:id/responses', isAuth, async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
-  if (ticket) {
+  if (ticket && (ticket.user.toString() === req.user._id.toString() || req.user.isAdmin)) {
     const response = {
       responder: req.user.name, // Assuming you have the user's name available
       message: req.body.message,

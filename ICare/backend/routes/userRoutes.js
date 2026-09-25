@@ -1,7 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
-import jwt from 'jsonwebtoken';
+import crypto from 'node:crypto';
 import User from '../models/userModel.js';
 import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
@@ -12,7 +12,7 @@ userRouter.get(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const users = await User.find({});
+    const users = await User.find({}).select('-password -resetToken -resetTokenExpiresAt -googleSub');
     res.send(users);
   })
 );
@@ -22,7 +22,7 @@ userRouter.get(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).select('-password -resetToken -resetTokenExpiresAt -googleSub');
     if (user) {
       res.send(user);
     } else {
@@ -43,8 +43,10 @@ userRouter.put(
       user.address= req.body.address || user.address;
       user.phone= req.body.phone || user.phone;
       
-      if (req.body.password) {
+      if (req.body.password && req.body.password.length >= 12) {
         user.password = bcrypt.hashSync(req.body.password, 8);
+      } else if (req.body.password) {
+        return res.status(400).send({ message: 'Password must be at least 12 characters' });
       }
 
       const updatedUser = await user.save();
@@ -69,61 +71,36 @@ userRouter.post(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
-    if (user) {
-      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: '3h',
-      });
-      user.resetToken = token;
+    if (user && user.password && process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN) {
+      const token = crypto.randomBytes(32).toString('hex');
+      user.resetToken = crypto.createHash('sha256').update(token).digest('hex');
+      user.resetTokenExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
       await user.save();
-
-      //reset link
-      console.log(`${baseUrl()}/reset-password/${token}`);
-
-      mailgun()
-        .messages()
-        .send(
-          {
-            from: 'Amazona <me@mg.yourdomain.com>',
-            to: `${user.name} <${user.email}>`,
-            subject: `Reset Password`,
-            html: ` 
-             <p>Please Click the following link to reset your password:</p> 
-             <a href="${baseUrl()}/reset-password/${token}"}>Reset Password</a>
-             `,
-          },
-          (error, body) => {
-            console.log(error);
-            console.log(body);
-          }
-        );
-      res.send({ message: 'We sent reset password link to your email.' });
-    } else {
-      res.status(404).send({ message: 'User not found' });
+      await new Promise((resolve, reject) => mailgun().messages().send({
+        from: process.env.MAILGUN_FROM,
+        to: user.email,
+        subject: 'Reset Password',
+        text: `Reset your password: ${baseUrl()}/reset-password/${token}`,
+      }, (error) => error ? reject(error) : resolve()));
     }
+    res.send({ message: 'If the account exists, a reset link has been sent.' });
   })
 );
 
 userRouter.post(
   '/reset-password',
   expressAsyncHandler(async (req, res) => {
-    jwt.verify(req.body.token, process.env.JWT_SECRET, async (err, decode) => {
-      if (err) {
-        res.status(401).send({ message: 'Invalid Token' });
-      } else {
-        const user = await User.findOne({ resetToken: req.body.token });
-        if (user) {
-          if (req.body.password) {
-            user.password = bcrypt.hashSync(req.body.password, 8);
-            await user.save();
-            res.send({
-              message: 'Password reseted successfully',
-            });
-          }
-        } else {
-          res.status(404).send({ message: 'User not found' });
-        }
-      }
-    });
+    if (!/^[a-f0-9]{64}$/.test(req.body.token || '') || typeof req.body.password !== 'string' || req.body.password.length < 12) {
+      return res.status(400).send({ message: 'Invalid reset request' });
+    }
+    const tokenHash = crypto.createHash('sha256').update(req.body.token).digest('hex');
+    const user = await User.findOne({ resetToken: tokenHash, resetTokenExpiresAt: { $gt: new Date() } });
+    if (!user) return res.status(400).send({ message: 'Invalid or expired reset link' });
+    user.password = bcrypt.hashSync(req.body.password, 12);
+    user.resetToken = undefined;
+    user.resetTokenExpiresAt = undefined;
+    await user.save();
+    res.send({ message: 'Password reset successfully' });
   })
 );
 
@@ -142,7 +119,7 @@ userRouter.put(
       
       user.isAdmin = Boolean(req.body.isAdmin);
       const updatedUser = await user.save();
-      res.send({ message: 'User Updated', user: updatedUser });
+      res.send({ message: 'User Updated', user: { _id: updatedUser._id, name: updatedUser.name, email: updatedUser.email, isAdmin: updatedUser.isAdmin } });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
@@ -171,7 +148,7 @@ userRouter.post(
   '/signin',
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-    if (user) {
+    if (user && user.password && typeof req.body.password === 'string') {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         res.send({
           _id: user._id,
@@ -192,6 +169,8 @@ userRouter.post(
 userRouter.post(
   '/signup',
   expressAsyncHandler(async (req, res) => {
+    if (typeof req.body.password !== 'string' || req.body.password.length < 12) return res.status(400).send({ message: 'Password must be at least 12 characters' });
+    if (!req.body.name || !req.body.email || !req.body.nic || !req.body.address || !req.body.phone) return res.status(400).send({ message: 'All fields are required' });
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
@@ -199,7 +178,7 @@ userRouter.post(
       address: req.body.address,
       phone: req.body.phone,
       
-      password: bcrypt.hashSync(req.body.password),
+      password: bcrypt.hashSync(req.body.password, 12),
     });
     const user = await newUser.save();
     res.send({

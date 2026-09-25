@@ -10,6 +10,7 @@ const prescriptionRouter = express.Router();
 prescriptionRouter.post(
   '/',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const { patientName, optometrist, prescriptionDetails, dateIssued } = req.body;
     const optometristExists = await Optometrist.findById(optometrist);
@@ -31,6 +32,7 @@ prescriptionRouter.post(
 prescriptionRouter.get(
   '/',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const prescriptions = await Prescription.find().populate('optometrist', 'name');
     res.send(prescriptions);
@@ -41,6 +43,7 @@ prescriptionRouter.get(
 prescriptionRouter.get(
   '/:id',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const prescription = await Prescription.findById(req.params.id).populate('optometrist', 'name');
     if (prescription) {
@@ -55,6 +58,7 @@ prescriptionRouter.get(
 prescriptionRouter.put(
   '/:id',
   isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const prescription = await Prescription.findById(req.params.id);
     if (prescription) {

@@ -45,16 +45,12 @@ export default function PlaceOrderScreen() {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
 
-      // Safeguard: Check if cardDetails exist in cart if payment method is 'Card'
-      const cardDetails = cart.paymentMethod === 'Card' ? cart.cardDetails || {} : null;
-
       const { data } = await axios.post(
         '/api/orders',
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
           paymentMethod: cart.paymentMethod,
-          cardDetails, // Include card details if payment method is 'Card'
           itemsPrice: cart.itemsPrice,
           shippingPrice: cart.shippingPrice,
           taxPrice: cart.taxPrice,

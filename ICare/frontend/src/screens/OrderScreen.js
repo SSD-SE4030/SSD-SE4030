@@ -5,13 +5,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
 import { Store } from '../Store';
 import { Link } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
 const reducer = (state, action) => {
@@ -37,7 +35,7 @@ const reducer = (state, action) => {
 
 export default function OrderScreen() {
   const { state } = useContext(Store);
-  const { userInfo, cart } = state;
+  const { userInfo } = state;
   const params = useParams();
   const { id: orderId } = params;
   const navigate = useNavigate();
@@ -74,55 +72,6 @@ export default function OrderScreen() {
       }
     }
   }, [order, userInfo, orderId, navigate, successPay]);
-
-  const completeOrderHandler = async () => {
-    try {
-      dispatch({ type: 'PAY_REQUEST' });
-      const { data } = await axios.put(
-        `/api/orders/${order._id}/pay`,
-        { paymentResult: { status: 'Pending', id: order._id } }, // Mark as pending (not paid)
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: 'PAY_SUCCESS', payload: data });
-      toast.success('Order placed successfully');
-    } catch (err) {
-      dispatch({ type: 'PAY_FAIL' });
-      toast.error(getError(err));
-    }
-  };
-
-  const payWithCardHandler = async () => {
-    const cardDetails = cart.cardDetails || JSON.parse(localStorage.getItem('cardDetails')); // Fetch card details from state or localStorage
-
-    if (!cardDetails || !cardDetails.cardNumber) {
-      toast.error('Card details are missing.');
-      return;
-    }
-
-    try {
-      dispatch({ type: 'PAY_REQUEST' });
-      const { data } = await axios.put(
-        `/api/orders/${order._id}/pay`,
-        {
-          paymentResult: {
-            status: 'Paid',
-            id: `Card-${order._id}`,
-            cardDetails,
-          },
-        },
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: 'PAY_SUCCESS', payload: data });
-      toast.success('Payment successful');
-    } catch (err) {
-      dispatch({ type: 'PAY_FAIL' });
-      toast.error(getError(err));
-    }
-  };
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -225,23 +174,7 @@ export default function OrderScreen() {
 
                 {!order.isPaid && (
                   <ListGroup.Item>
-                    {order.paymentMethod === 'Card' ? (
-                      <div className="d-grid">
-                        <Button
-                          type="button"
-                          onClick={payWithCardHandler}
-                          disabled={loadingPay}
-                        >
-                          Pay Now
-                        </Button>
-                      </div>
-                    ) : (
-                      <div className="d-grid">
-                        <Button type="button" onClick={completeOrderHandler}>
-                          Complete Order (Cash on Delivery)
-                        </Button>
-                      </div>
-                    )}
+                    <MessageBox>Payment will be collected on delivery.</MessageBox>
                     {loadingPay && <LoadingBox></LoadingBox>}
                   </ListGroup.Item>
                 )}

@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
+import GoogleCallbackScreen from './screens/GoogleCallbackScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
@@ -59,7 +60,6 @@ import DigitalLibraryDetailScreen from './screens/DigitalLibraryDetailScreen';
 
 import TicketEditScreen from './screens/TicketEditScreen';
 import PaymentListScreen from './screens/PaymentListScreen';
-import CardDetailsScreen from './screens/CardDetailsScreen';
 
 import UserTicketListScreen from './screens/UserTicketListScreen ';
 import UserAppointmentScreen from './screens/UserAppointmentScreen';
@@ -275,6 +275,7 @@ function App() {
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/oauth/google/callback" element={<GoogleCallbackScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/forget-password" element={<ForgetPasswordScreen />} />
               <Route path="/reset-password/:token" element={<ResetPasswordScreen />} />
@@ -321,7 +322,6 @@ function App() {
                 }
               />
               <Route path="/shipping" element={<ShippingAddressScreen />} />
-              <Route path="/carddetails" element={<CardDetailsScreen />} />
 
               <Route path="/payment" element={<PaymentMethodScreen />} />
               {/* Optometrist Management Routes */}
