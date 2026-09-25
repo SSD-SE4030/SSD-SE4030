@@ -6,14 +6,16 @@ This repository hardens the existing ICare optical store application and adds Go
 
 | Item | Value |
 | --- | --- |
-| Member 1 - name / index / contribution | TODO |
-| Member 2 - name / index / contribution | TODO |
-| Member 3 - name / index / contribution | TODO |
-| Member 4 - name / index / contribution | TODO |
+| Member 1 - name / index / contribution | Kojithan P.Y / IT22264220 / assigned V01, V02, V07 and backend access-control review |
+| Member 2 - name / index / contribution | Baskaran V / IT22172600 / assigned V03, V04, V05 and checkout/payment regression review |
+| Member 3 - name / index / contribution | Nishara T / IT22223876 / assigned V06, V08, V09 and account/reset-flow review |
+| Member 4 - name / index / contribution | Olivea K T / IT22267740 / assigned V10, V11, V12 and Google OIDC demo/report review |
 | Original GitHub repository | https://github.com/kojithan-y/Optical-Store-Management-System/tree/5b5b25869d92a662b1e5180eb1b4f22bcf3a7830 |
 | Modified GitHub repository | TODO - publish this hardened version to a separate repository |
 | YouTube demonstration (20 minutes maximum) | TODO - record and upload |
 | Semester start date | TODO - verify original last commit eligibility |
+
+The member responsibilities above are a proposed review and viva allocation. Confirm each person's actual implementation, testing, and documentation work before describing these as completed individual contributions in the final submission.
 
 The original repository already contains the baseline commit history. The local working repository has detailed security and report commits, but a separate modified GitHub repository has not yet been supplied or published. Do not push this branch to the original remote: its original commit date is needed as assignment evidence. Do not claim a video, deployment, or external scan until completed.
 

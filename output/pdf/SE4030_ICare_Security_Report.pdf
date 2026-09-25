@@ -10,7 +10,7 @@
 endobj
 4 0 obj
 <<
-/Length 5572
+/Length 5652
 >>
 stream
 0.5670000000000001 w
@@ -41,15 +41,17 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 697.6065354330708033 Td
-(Team: TODO - four member names, index numbers, and individual contributions. Modified GitHub repository:) Tj
-T* (TODO. YouTube demonstration \(maximum 20 minutes\): TODO. Semester start date: TODO. These details were) Tj
-T* (not supplied and must be completed before submission.) Tj
+(Team: Kojithan P.Y \(IT22264220\); Baskaran V \(IT22172600\); Nishara T \(IT22223876\); Olivea K T \(IT22267740\).) Tj
+T* (Proposed review/viva allocation: Kojithan - V01, V02, V07 and backend access control; Baskaran - V03, V04, V05) Tj
+T* (and checkout/payment; Nishara - V06, V08, V09 and account/reset; Olivea - V10, V11, V12 and Google OIDC) Tj
+T* (demo/report. Confirm actual individual work before claiming these as completed contributions. Modified GitHub) Tj
+T* (repository: TODO. YouTube demonstration \(maximum 20 minutes\): TODO. Semester start date: TODO.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 647.4333070866141497 Td
+56.6929133858267775 619.6537795275589815 Td
 (Original project baseline: https://github.com/kojithan-y/Optical-Store-Management-System/tree/5b5b25869d92a662) Tj
 T* (b1e5180eb1b4f22bcf3a7830 . This local commit is dated 11 February 2025. The original remote latest commit and) Tj
 T* (semester start date still require verification for eligibility. ICare is an optical store application with React, Express,) Tj
@@ -59,14 +61,14 @@ BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 583.3703149606299121 Td
+56.6929133858267775 555.5907874015747439 Td
 (Method and scope) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 563.5277952755905062 Td
+56.6929133858267775 535.748267716535338 Td
 (White-box review of the checked-in baseline source, targeted regression tests of the hardened code, and a live) Tj
 T* (Google sign-in through the dedicated demo OAuth client. Findings below are supported by identifiable original) Tj
 T* (routes and data flow. No external scanner result, live database exploit, penetration test, or dependency audit is) Tj
@@ -77,14 +79,14 @@ BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 485.5750393700787413 Td
+56.6929133858267775 457.795511811023573 Td
 (Executive summary) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 465.7325196850393354 Td
+56.6929133858267775 437.952992125984224 Td
 (Twelve distinct weaknesses were identified across destructive setup endpoints, authorization, payment integrity,) Tj
 T* (privacy, reset tokens, file upload, and error handling. The highest impact issues allowed public deletion of) Tj
 T* (users/products, cross-user order access, arbitrary paid status, and storage of payment card data. Code fixes are) Tj
@@ -94,7 +96,7 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 401.6695275590550978 Td
+56.6929133858267775 373.8899999999999295 Td
 (Qualitative priority: critical - V01, V03, V05; high - V02, V04, V06, V07, V09; medium - V08, V10, V11, V12. These) Tj
 T* (are review priorities based on reachable data and impact, not formal CVSS scores.) Tj
 ET
@@ -102,21 +104,21 @@ BT
 /F2 18 Tf
 20.6999999999999993 TL
 0.094 0.192 0.31 rg
-56.6929133858267775 365.3860629921259147 Td
+56.6929133858267775 337.6065354330708033 Td
 (Findings and remediation) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 331.3703149606298552 Td
+56.6929133858267775 303.5907874015747439 Td
 (V01  Public database reset) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 311.5277952755905062 Td
+56.6929133858267775 283.748267716535338 Td
 (Original: GET /api/seed in seedRoutes.js deletes all Product and User documents and repopulates default) Tj
 T* (accounts without authentication.) Tj
 ET
@@ -124,57 +126,50 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 275.2443307086613231 Td
+56.6929133858267775 247.4648031496061549 Td
 (Risk: Unauthenticated database destruction and known demo credentials.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 252.8506299212597241 Td
+56.6929133858267775 225.0711023622045559 Td
 (Fix: Removed /api/seed from server.js and deleted the demo seed source.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 230.4569291338581252 Td
+56.6929133858267775 202.6774015748029569 Td
 (Evidence: Baseline: backend/server.js:46 and routes/seedRoutes.js:9-12. Modified: backend/server.js.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 202.3939370078738875 Td
+56.6929133858267775 174.6144094488187193 Td
 (V02  Order IDOR) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 182.5514173228344816 Td
+56.6929133858267775 154.7718897637793134 Td
 (Original: GET /api/orders/:id checked only for a valid bearer token and returned any order by its ID.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 160.1577165354328827 Td
+56.6929133858267775 132.3781889763777144 Td
 (Risk: A customer could obtain another customer's address, items, and payment state.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 137.7640157480312837 Td
+56.6929133858267775 109.9844881889761155 Td
 (Fix: Require matching order.user or a current administrator before returning an order.) Tj
-ET
-BT
-/F1 9.5 Tf
-10.9249999999999989 TL
-0.137 0.165 0.2 rg
-56.6929133858267775 115.3703149606297984 Td
-(Evidence: Baseline: backend/routes/orderRoutes.js:109-116. Regression: owner 200, other user 404.) Tj
 ET
 0.82 0.85 0.87 RG
 56.6929133858267775 45.3545669291337532 m
@@ -206,23 +201,30 @@ endobj
 endobj
 6 0 obj
 <<
-/Length 5381
+/Length 5582
 >>
 stream
 0.5670000000000001 w
 0 G
 BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 773.8585039370078675 Td
+(Evidence: Baseline: backend/routes/orderRoutes.js:109-116. Regression: owner 200, other user 404.) Tj
+ET
+BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 773.8585039370078675 Td
+56.6929133858267775 745.7955118110236299 Td
 (V03  Unauthorized payment and delivery changes) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 754.0159842519684616 Td
+56.6929133858267775 725.952992125984224 Td
 (Original: PUT /api/orders/:id/deliver and /pay required only sign-in. The card branch marked an order paid without) Tj
 T* (processor confirmation.) Tj
 ET
@@ -230,14 +232,14 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 717.7325196850393922 Td
+56.6929133858267775 689.6695275590550409 Td
 (Risk: Any user could alter fulfilment or forge a paid order.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 695.3388188976377933 Td
+56.6929133858267775 667.2758267716535556 Td
 (Fix: Both routes now require administrator. The pay route records only collected Cash on Delivery payment and) Tj
 T* (rejects repeated/non-COD updates. The customer Pay Now control was removed.) Tj
 ET
@@ -245,35 +247,35 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 659.0553543307086102 Td
+56.6929133858267775 630.9923622047243725 Td
 (Evidence: Baseline: backend/routes/orderRoutes.js:123-163. Regression: customer 403, administrator 200.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 630.9923622047243725 Td
+56.6929133858267775 602.9293700787400212 Td
 (V04  Client-controlled order totals) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 611.1498425196849666 Td
+56.6929133858267775 583.086850393700729 Td
 (Original: POST /api/orders copied client order item prices and totals into MongoDB.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 588.7561417322833677 Td
+56.6929133858267775 560.69314960629913 Td
 (Risk: A customer could submit a lower item price or total.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 566.3624409448818824 Td
+56.6929133858267775 538.2994488188975311 Td
 (Fix: Lookup catalog products by ID, validate quantity and stock, copy server-side prices and recalculate shipping,) Tj
 T* (tax and total.) Tj
 ET
@@ -281,21 +283,21 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 530.0789763779525856 Td
+56.6929133858267775 502.0159842519684048 Td
 (Evidence: Baseline: backend/routes/orderRoutes.js:26-34. Regression: client price 0.01 yields catalog price 200.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 502.0159842519684048 Td
+56.6929133858267775 473.9529921259841672 Td
 (V05  Stored card data and CVV) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 482.1734645669289989 Td
+56.6929133858267775 454.1104724409448181 Td
 (Original: CardDetailsScreen saved PAN and CVV in localStorage; cardRoutes.js and orderModel.js stored them in) Tj
 T* (MongoDB.) Tj
 ET
@@ -303,7 +305,7 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 445.8899999999998727 Td
+56.6929133858267775 417.827007874015635 Td
 (Risk: Sensitive payment credentials could be exposed through XSS, browser access, database breach, or API) Tj
 T* (response.) Tj
 ET
@@ -311,7 +313,7 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 409.6065354330707464 Td
+56.6929133858267775 381.5435433070864519 Td
 (Fix: Removed card form, saved-card API, card schema/model and order card fields. Checkout now supports Cash) Tj
 T* (on Delivery only.) Tj
 ET
@@ -319,7 +321,7 @@ BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 373.3230708661415633 Td
+56.6929133858267775 345.2600787401572688 Td
 (Evidence: Baseline: frontend/CardDetailsScreen.js:59-62; backend/routes/cardRoutes.js:13-22 and) Tj
 T* (orderRoutes.js:36-42.) Tj
 ET
@@ -327,70 +329,70 @@ BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 331.3703149606296847 Td
+56.6929133858267775 303.3073228346454471 Td
 (V06  Prescription access control) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 311.5277952755903925 Td
+56.6929133858267775 283.4648031496060412 Td
 (Original: Prescription list, detail, create and update routes accepted any authenticated user.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 289.1340944881887935 Td
+56.6929133858267775 261.0711023622044422 Td
 (Risk: Medical prescription data could be read or modified by unrelated customers.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 266.7403937007871946 Td
+56.6929133858267775 238.6774015748028432 Td
 (Fix: Applied administrator checks to prescription management routes.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 244.3466929133855956 Td
+56.6929133858267775 216.2837007874012443 Td
 (Evidence: Baseline: backend/routes/prescriptionRoutes.js:33,43,57. Regression: customer 403, administrator 200.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 216.2837007874012443 Td
+56.6929133858267775 188.2207086614170066 Td
 (V07  Stale role in JWT) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 196.4411811023619521 Td
+56.6929133858267775 168.3781889763776007 Td
 (Original: isAuth trusted isAdmin from a 30-day token even after a user was demoted or deleted.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 174.0474803149603531 Td
+56.6929133858267775 145.9844881889760018 Td
 (Risk: Former administrators retained privileges until their token expired.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 151.6537795275587541 Td
+56.6929133858267775 123.5907874015744028 Td
 (Fix: isAuth now loads the current account and role from MongoDB on every request.) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 129.2600787401571552 Td
+56.6929133858267775 101.1970866141729175 Td
 (Evidence: Baseline: backend/utils.js:17,21,30-47. Regression: stale admin claim yields 403 after demotion.) Tj
 ET
 0.82 0.85 0.87 RG
@@ -1072,7 +1074,7 @@ endobj
 27 0 obj
 <<
 /Producer (jsPDF 2.5.2)
-/CreationDate (D:20260925181200+05'30')
+/CreationDate (D:20260925182220+05'30')
 >>
 endobj
 28 0 obj
@@ -1086,41 +1088,41 @@ endobj
 xref
 0 29
 0000000000 65535 f 
-0000025797 00000 n 
-0000027644 00000 n 
+0000026078 00000 n 
+0000027925 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
-0000005776 00000 n 
-0000005913 00000 n 
-0000011346 00000 n 
-0000011483 00000 n 
-0000016860 00000 n 
-0000016998 00000 n 
-0000022318 00000 n 
-0000022457 00000 n 
-0000025879 00000 n 
-0000026005 00000 n 
-0000026136 00000 n 
-0000026270 00000 n 
-0000026408 00000 n 
-0000026532 00000 n 
-0000026661 00000 n 
-0000026793 00000 n 
-0000026929 00000 n 
-0000027057 00000 n 
-0000027184 00000 n 
-0000027313 00000 n 
-0000027446 00000 n 
-0000027548 00000 n 
-0000027897 00000 n 
-0000027983 00000 n 
+0000005856 00000 n 
+0000005993 00000 n 
+0000011627 00000 n 
+0000011764 00000 n 
+0000017141 00000 n 
+0000017279 00000 n 
+0000022599 00000 n 
+0000022738 00000 n 
+0000026160 00000 n 
+0000026286 00000 n 
+0000026417 00000 n 
+0000026551 00000 n 
+0000026689 00000 n 
+0000026813 00000 n 
+0000026942 00000 n 
+0000027074 00000 n 
+0000027210 00000 n 
+0000027338 00000 n 
+0000027465 00000 n 
+0000027594 00000 n 
+0000027727 00000 n 
+0000027829 00000 n 
+0000028178 00000 n 
+0000028264 00000 n 
 trailer
 <<
 /Size 29
 /Root 28 0 R
 /Info 27 0 R
-/ID [ <8D499A0DC4681BB30524F6F542D81B28> <8D499A0DC4681BB30524F6F542D81B28> ]
+/ID [ <1BE4D918BE3D1B0C5A43694AD10A73AB> <1BE4D918BE3D1B0C5A43694AD10A73AB> ]
 >>
 startxref
-28087
+28368
 %%EOF
