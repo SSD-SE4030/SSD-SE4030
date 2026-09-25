@@ -76,12 +76,19 @@ userRouter.post(
       user.resetToken = crypto.createHash('sha256').update(token).digest('hex');
       user.resetTokenExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
       await user.save();
-      await new Promise((resolve, reject) => mailgun().messages().send({
-        from: process.env.MAILGUN_FROM,
-        to: user.email,
-        subject: 'Reset Password',
-        text: `Reset your password: ${baseUrl()}/reset-password/${token}`,
-      }, (error) => error ? reject(error) : resolve()));
+      try {
+        await new Promise((resolve, reject) => mailgun().messages().send({
+          from: process.env.MAILGUN_FROM,
+          to: user.email,
+          subject: 'Reset Password',
+          text: `Reset your password: ${baseUrl()}/reset-password/${token}`,
+        }, (error) => error ? reject(error) : resolve()));
+      } catch (error) {
+        user.resetToken = undefined;
+        user.resetTokenExpiresAt = undefined;
+        await user.save();
+        console.error('Password reset email failed', error);
+      }
     }
     res.send({ message: 'If the account exists, a reset link has been sent.' });
   })
@@ -94,12 +101,11 @@ userRouter.post(
       return res.status(400).send({ message: 'Invalid reset request' });
     }
     const tokenHash = crypto.createHash('sha256').update(req.body.token).digest('hex');
-    const user = await User.findOne({ resetToken: tokenHash, resetTokenExpiresAt: { $gt: new Date() } });
+    const user = await User.findOneAndUpdate(
+      { resetToken: tokenHash, resetTokenExpiresAt: { $gt: new Date() } },
+      { $set: { password: bcrypt.hashSync(req.body.password, 12) }, $unset: { resetToken: '', resetTokenExpiresAt: '' } }
+    );
     if (!user) return res.status(400).send({ message: 'Invalid or expired reset link' });
-    user.password = bcrypt.hashSync(req.body.password, 12);
-    user.resetToken = undefined;
-    user.resetTokenExpiresAt = undefined;
-    await user.save();
     res.send({ message: 'Password reset successfully' });
   })
 );
