@@ -1,0 +1,1036 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 5428
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.094 0.192 0.31 rg
+56.6929133858267775 773.8585039370078675 Td
+(ICare Security Assessment) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 739.8427559055118081 Td
+(SE4030 - Secure Software Development | Group assignment | Prepared 25 September 2026) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 717.4490551181102092 Td
+(Submission metadata) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 697.6065354330708033 Td
+(Team: TODO - four member names, index numbers, and individual contributions. Modified GitHub repository:) Tj
+T* (TODO. YouTube demonstration \(maximum 20 minutes\): TODO. Semester start date: TODO. These details were) Tj
+T* (not supplied and must be completed before submission.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 647.4333070866141497 Td
+(Original project: https://github.com/kojithan-y/Optical-Store-Management-System . Baseline commit:) Tj
+T* (5b5b25869d92a662b1e5180eb1b4f22bcf3a7830, dated 11 February 2025. Confirm that this predates the semester) Tj
+T* (start. ICare is an optical store application with React, Express, MongoDB, appointments, prescriptions, tickets,) Tj
+T* (inventory, orders, and administrator workflows.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 583.3703149606299121 Td
+(Method and scope) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 563.5277952755905062 Td
+(White-box review of the checked-in baseline source and targeted regression tests of the hardened code. Findings) Tj
+T* (below are supported by identifiable original routes and data flow. No external scanner result, live database exploit,) Tj
+T* (penetration test, live Google sign-in, or dependency audit is claimed. Use an isolated copy of the baseline and test) Tj
+T* (data for demonstrations.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 499.4648031496063254 Td
+(Executive summary) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 479.6222834645669195 Td
+(Twelve distinct weaknesses were identified across destructive setup endpoints, authorization, payment integrity,) Tj
+T* (privacy, reset tokens, file upload, and error handling. The highest impact issues allowed public deletion of) Tj
+T* (users/products, cross-user order access, arbitrary paid status, and storage of payment card data. Code fixes are) Tj
+T* (implemented. Operational work remains for historical secrets and card records.) Tj
+ET
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.094 0.192 0.31 rg
+56.6929133858267775 415.5592913385826819 Td
+(Findings and remediation) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 381.5435433070866225 Td
+(V01  Public database reset) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 361.7010236220472734 Td
+(Original: GET /api/seed in seedRoutes.js deletes all Product and User documents and repopulates default) Tj
+T* (accounts without authentication.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 325.4175590551180903 Td
+(Risk: Unauthenticated database destruction and known demo credentials.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 303.0238582677164914 Td
+(Fix: Removed /api/seed from server.js. Seed data is no longer reachable through HTTP.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 280.6301574803148924 Td
+(Evidence: Baseline: ICare/backend/routes/seedRoutes.js and server.js; modified: server.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 252.5671653543306547 Td
+(V02  Order IDOR) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 232.7246456692912489 Td
+(Original: GET /api/orders/:id checked only for a valid bearer token and returned any order by its ID.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 210.3309448818896499 Td
+(Risk: A customer could obtain another customer's address, items, and payment state.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 187.9372440944880509 Td
+(Fix: Require matching order.user or a current administrator before returning an order.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 165.5435433070864519 Td
+(Evidence: Baseline and modified: ICare/backend/routes/orderRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 137.4805511811022143 Td
+(V03  Unauthorized payment and delivery changes) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 117.6380314960628084 Td
+(Original: PUT /api/orders/:id/deliver and /pay required only sign-in. The card branch marked an order paid without) Tj
+T* (processor confirmation.) Tj
+ET
+0.82 0.85 0.87 RG
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+56.6929133858267775 28.3466929133857093 Td
+(SE4030 | ICare security assessment) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+523.0626771653543301 28.3466929133857093 Td
+(1 / 4) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 5180
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 773.8585039370078675 Td
+(Risk: Any user could alter fulfilment or forge a paid order.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 751.4648031496062686 Td
+(Fix: Both routes now require administrator. The pay route records only collected Cash on Delivery payment and) Tj
+T* (rejects repeated/non-COD updates. The customer Pay Now control was removed.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 715.1813385826770855 Td
+(Evidence: Baseline and modified: orderRoutes.js; frontend OrderScreen.js and PaymentListScreen.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 687.1183464566928478 Td
+(V04  Client-controlled order totals) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 667.2758267716535556 Td
+(Original: POST /api/orders copied client order item prices and totals into MongoDB.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 644.8821259842519567 Td
+(Risk: A customer could submit a lower item price or total.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 622.4884251968503577 Td
+(Fix: Lookup catalog products by ID, validate quantity and stock, copy server-side prices and recalculate shipping,) Tj
+T* (tax and total.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 586.2049606299211746 Td
+(Evidence: Modified: orderPricing.js and security.test.js. Test submits price 0.01 and confirms catalog price 200.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 558.1419685039369369 Td
+(V05  Stored card data and CVV) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 538.2994488188976447 Td
+(Original: CardDetailsScreen saved PAN and CVV in localStorage; cardRoutes.js and orderModel.js stored them in) Tj
+T* (MongoDB.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 502.0159842519684616 Td
+(Risk: Sensitive payment credentials could be exposed through XSS, browser access, database breach, or API) Tj
+T* (response.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 465.7325196850392786 Td
+(Fix: Removed card form, saved-card API, card schema/model and order card fields. Checkout now supports Cash) Tj
+T* (on Delivery only.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 429.4490551181100955 Td
+(Evidence: Baseline: CardDetailsScreen.js, cardRoutes.js, cardModel.js, orderModel.js. Modified:) Tj
+T* (PaymentMethodScreen.js and orderRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 387.4962992125982737 Td
+(V06  Prescription access control) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 367.6537795275588678 Td
+(Original: Prescription list, detail, create and update routes accepted any authenticated user.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 345.2600787401572688 Td
+(Risk: Medical prescription data could be read or modified by unrelated customers.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 322.8663779527556699 Td
+(Fix: Applied administrator checks to prescription management routes.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 300.4726771653540709 Td
+(Evidence: Baseline and modified: ICare/backend/routes/prescriptionRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 272.4096850393698332 Td
+(V07  Stale role in JWT) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 252.5671653543304274 Td
+(Original: isAuth trusted isAdmin from a 30-day token even after a user was demoted or deleted.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 230.1734645669288284 Td
+(Risk: Former administrators retained privileges until their token expired.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 207.7797637795272294 Td
+(Fix: isAuth now loads the current account and role from MongoDB on every request.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 185.3860629921256304 Td
+(Evidence: Baseline and modified: ICare/backend/utils.js.) Tj
+ET
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.094 0.192 0.31 rg
+56.6929133858267775 157.3230708661413928 Td
+(Further findings) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 123.3073228346453334 Td
+(V08  Sensitive user fields in API responses) Tj
+ET
+0.82 0.85 0.87 RG
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+56.6929133858267775 28.3466929133857093 Td
+(SE4030 | ICare security assessment) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+523.0626771653543301 28.3466929133857093 Td
+(2 / 4) Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 5070
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 773.8585039370078675 Td
+(Original: Admin user list/detail returned full Mongoose documents, including password hashes and resetToken.) Tj
+T* (Update returned the full saved user.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 737.5750393700786844 Td
+(Risk: Extra credential material could leak through a compromised admin browser or logs.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 715.1813385826771992 Td
+(Fix: Exclude sensitive fields in list/detail queries; use a small update response object.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 692.7876377952756002 Td
+(Evidence: Baseline and modified: ICare/backend/routes/userRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 664.7246456692913625 Td
+(V09  Unsafe password reset) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 644.8821259842519567 Td
+(Original: Reset JWT appeared in server logs, lasted three hours, was not cleared after use, and unknown emails) Tj
+T* (returned 404.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 608.5986614173227736 Td
+(Risk: Reset links could be reused or exposed; account enumeration was possible.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 586.2049606299211746 Td
+(Fix: Generate random token, store only SHA-256 hash for 15 minutes, clear after reset, avoid logging it and return) Tj
+T* (generic request response.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 549.9214960629921052 Td
+(Evidence: Baseline and modified: userRoutes.js and userModel.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 521.8585039370077538 Td
+(V10  Unbounded file upload) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 502.0159842519684616 Td
+(Original: multer\(\) used memory storage without a size or type limit.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 479.6222834645668627 Td
+(Risk: An administrator upload could consume excessive memory or send unwanted file types to Cloudinary.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 457.2285826771652637 Td
+(Fix: Limit to one 5 MB JPEG, PNG or WebP upload and reject missing files.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 434.8348818897636647 Td
+(Evidence: Baseline and modified: ICare/backend/routes/uploadRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 406.7718897637793702 Td
+(V11  Ticket response IDOR) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 386.9293700787400212 Td
+(Original: POST /api/tickets/:id/responses allowed any authenticated user to reply to any ticket.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 364.5356692913384222 Td
+(Risk: Private support conversations could be modified by other customers.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 342.1419685039368233 Td
+(Fix: Allow ticket owner or current administrator only.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 319.7482677165352243 Td
+(Evidence: Baseline and modified: ICare/backend/routes/ticketRoutes.js.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 291.6852755905509866 Td
+(V12  Internal error disclosure) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 271.8427559055115807 Td
+(Original: Global error handler returned err.message as a 500 response.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 249.4490551181099818 Td
+(Risk: Database and implementation details could be disclosed.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 227.0553543307083828 Td
+(Fix: Return generic 500 messages and structured 400 validation errors; log server-side.) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 204.6616535433067838 Td
+(Evidence: Baseline and modified: ICare/backend/server.js.) Tj
+ET
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.094 0.192 0.31 rg
+56.6929133858267775 176.5986614173225462 Td
+(Google OpenID Connect feature) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 142.5829133858264868 Td
+(User journey) Tj
+ET
+0.82 0.85 0.87 RG
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+56.6929133858267775 28.3466929133857093 Td
+(SE4030 | ICare security assessment) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+523.0626771653543301 28.3466929133857093 Td
+(3 / 4) Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 10 0 R
+>>
+endobj
+10 0 obj
+<<
+/Length 5706
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 773.8585039370078675 Td
+(Sign In now offers Sign in with Google. A successful first sign-in creates a non-admin ICare account bound to the) Tj
+T* (Google subject \(sub\); later sign-ins resolve the account by sub. An existing password account with the same email) Tj
+T* (is not auto-linked, preventing email-based account takeover. The app then issues its existing ICare bearer token.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 723.6852755905511003 Td
+(Protocol and trust boundaries) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 703.8427559055118081 Td
+(The backend starts an authorization-code flow with openid email profile scopes. It sets short-lived HttpOnly) Tj
+T* (SameSite=Lax state, nonce and PKCE verifier cookies. The callback compares state, exchanges the code with) Tj
+T* (Google over HTTPS using the configured client secret and verifier, retrieves Google public keys, validates the) Tj
+T* (RS256 ID-token signature and issuer, audience, expiry, nonce, subject and verified email, then clears flow cookies.) Tj
+T* (The ICare token is delivered to the React callback via URL fragment and removed from browser history) Tj
+T* (immediately.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 612.0002362204724022 Td
+(Configuration and verification) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 592.1577165354329964 Td
+(Create a Google Cloud Web application OAuth client. Register http://localhost:3000/api/auth/google/callback for the) Tj
+T* (React dev server, or the equivalent HTTPS production URI. Populate GOOGLE_CLIENT_ID,) Tj
+T* (GOOGLE_CLIENT_SECRET and GOOGLE_REDIRECT_URI in an untracked backend .env. Automated tests) Tj
+T* (cover accepted identity and rejected signature, audience, nonce and expiration. A live Google end-to-end test) Tj
+T* (requires real credentials and has not yet been performed.) Tj
+ET
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.094 0.192 0.31 rg
+56.6929133858267775 514.2049606299211746 Td
+(Verification and remaining work) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 480.1892125984251152 Td
+(Completed checks) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 460.3466929133857093 Td
+(Backend: npm test - 4 tests passed \(catalog price tampering, stock/duplicate rejection, ID-token verification, stale) Tj
+T* (administrator claim\). Frontend: npm run build completed with existing ESLint warnings. Node syntax checks) Tj
+T* (passed for changed backend files. The checks do not replace authorization integration tests against MongoDB or a) Tj
+T* (live provider test.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 396.2837007874014716 Td
+(Unresolved and operational risks) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 376.4411811023621226 Td
+(1. Original Git history contains backend .env. The modified working tree removes it from tracking, but old commits) Tj
+T* (still contain it. Rotate MongoDB, JWT and Cloudinary credentials and consider history rewrite before publication. 2.) Tj
+T* (Historical card records remain in any deployed MongoDB and backups; purge them securely under an approved) Tj
+T* (retention procedure. 3. Card payments remain unavailable until a real PCI-compliant hosted gateway with) Tj
+T* (server-side verification is integrated. 4. Existing bearer tokens live in localStorage and may be stolen by future) Tj
+T* (XSS; migrate to a short-lived secure HttpOnly session architecture after a full frontend review. 5. A full dependency) Tj
+T* (update, external scan, rate limiting and integration test suite remain future work.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 270.7088976377950758 Td
+(Process improvements) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 250.8663779527557836 Td
+(Add threat modelling for customer/staff data, an authorization matrix for every route, code review for payment and) Tj
+T* (reset flows, secret scanning and .env ignore rules, regression tests for role/owner boundaries, dependency) Tj
+T* (scanning, and a deployment checklist for data migrations and credential rotation.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.078 0.333 0.463 rg
+56.6929133858267775 200.6931496062990163 Td
+(References) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 180.8506299212596105 Td
+(OWASP Top 10: https://owasp.org/www-project-top-ten/) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 158.4569291338580115 Td
+(Google OpenID Connect: https://developers.google.com/identity/openid-connect/openid-connect) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 136.0632283464564125 Td
+(Google OAuth 2.0 web server flow: https://developers.google.com/identity/protocols/oauth2/web-server) Tj
+ET
+BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 113.6695275590549272 Td
+(Google ID-token verification: https://developers.google.com/identity/gsi/web/guides/verify-google-id-token) Tj
+ET
+0.82 0.85 0.87 RG
+56.6929133858267775 45.3545669291337532 m
+538.5826771653544256 45.3545669291337532 l
+S
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+56.6929133858267775 28.3466929133857093 Td
+(SE4030 | ICare security assessment) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.353 0.4 0.447 rg
+523.0626771653543301 28.3466929133857093 Td
+(4 / 4) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R 9 0 R ]
+/Count 4
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+21 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+22 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+23 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+24 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 11 0 R
+/F2 12 0 R
+/F3 13 0 R
+/F4 14 0 R
+/F5 15 0 R
+/F6 16 0 R
+/F7 17 0 R
+/F8 18 0 R
+/F9 19 0 R
+/F10 20 0 R
+/F11 21 0 R
+/F12 22 0 R
+/F13 23 0 R
+/F14 24 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+25 0 obj
+<<
+/Producer (jsPDF 2.5.2)
+/CreationDate (D:20260925171236+05'30')
+>>
+endobj
+26 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 27
+0000000000 65535 f 
+0000022157 00000 n 
+0000023997 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000005632 00000 n 
+0000005769 00000 n 
+0000011001 00000 n 
+0000011138 00000 n 
+0000016260 00000 n 
+0000016398 00000 n 
+0000022232 00000 n 
+0000022358 00000 n 
+0000022489 00000 n 
+0000022623 00000 n 
+0000022761 00000 n 
+0000022885 00000 n 
+0000023014 00000 n 
+0000023146 00000 n 
+0000023282 00000 n 
+0000023410 00000 n 
+0000023537 00000 n 
+0000023666 00000 n 
+0000023799 00000 n 
+0000023901 00000 n 
+0000024250 00000 n 
+0000024336 00000 n 
+trailer
+<<
+/Size 27
+/Root 26 0 R
+/Info 25 0 R
+/ID [ <A24666A61B3AC694E00E38A882F469C2> <A24666A61B3AC694E00E38A882F469C2> ]
+>>
+startxref
+24440
+%%EOF

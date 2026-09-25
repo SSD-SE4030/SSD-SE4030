@@ -1,51 +1,58 @@
-# Optical Store Management System
+# SE4030 Secure Software Development - ICare
 
-## Project Overview
-The Optical Store Management System simplifies the management of optical stores by providing a user-friendly interface for handling various store operations. It is built using modern web technologies.
+This repository hardens the existing ICare optical store application and adds Google OpenID Connect sign-in. The original project is [Optical-Store-Management-System](https://github.com/kojithan-y/Optical-Store-Management-System), last committed on **11 February 2025** (`5b5b25869d92a662b1e5180eb1b4f22bcf3a7830`). Confirm that this date is earlier than your semester start before submitting.
 
-## Features
-* Inventory management
-* Sales tracking
-* Customer management
-* Report generation
-* Payment processing using PayPal integration
-* Google Maps integration for store locations
+## Submission details to complete
 
-## Technologies Used
-* **JavaScript**: Main programming language
-* **React**: Frontend library
-* **Bootstrap**: For responsive design
-* **Axios**: For HTTP requests
-* **PayPal SDK**: For the payment processing
-* **Google Maps API**: For map integration
-* **JSPDF**: For generating PDF reports
+| Item | Value |
+| --- | --- |
+| Member 1 - name / index / contribution | TODO |
+| Member 2 - name / index / contribution | TODO |
+| Member 3 - name / index / contribution | TODO |
+| Member 4 - name / index / contribution | TODO |
+| Original GitHub repository | https://github.com/kojithan-y/Optical-Store-Management-System |
+| Modified GitHub repository | TODO - publish this hardened version to a separate repository |
+| YouTube demonstration (20 minutes maximum) | TODO - record and upload |
+| Semester start date | TODO - verify original last commit eligibility |
 
-## Installation
-1. Clone the repository:
-```sh
-git clone https://github.com/kojithan-y/Optical-Store-Management-System.git
-```
+The original repository already contains the baseline commit history. Preserve it and add detailed commits for the security work in the modified repository. Do not claim a video, deployment, external scan, or live Google sign-in test until completed.
 
-2. Navigate to the project directory:
-```sh
-cd Optical-Store-Management-System/ICare/frontend
-```
+## Run locally
 
-3. Install the dependencies:
-```sh
-npm install
-```
+1. Use Node.js 20 or later and MongoDB. Copy `ICare/backend/.env.example` to `ICare/backend/.env` and fill in private values. Never commit `.env`.
+2. In `ICare/backend`, run `npm install`, then `npm test`, then `npm start`.
+3. In `ICare/frontend`, run `npm install`, then `npm start`. The React dev server uses the backend proxy at `localhost:4000`.
+4. For Google sign-in, create a Google Cloud **Web application** OAuth client and register `http://localhost:3000/api/auth/google/callback` as an authorized redirect URI. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URI` in the backend environment. Use HTTPS and the actual origin in production. The callback uses authorization code, PKCE S256, state, nonce, and a verified ID-token signature.
 
-## Usage
-To start the development server, run:
-```sh
-npm start
-```
-Open http://localhost:3000 to view it in your browser.
+The old `/api/seed` endpoint is removed. The old card input and card API are removed: checkout supports Cash on Delivery only until a real payment gateway is integrated. Staff can mark a Cash on Delivery order paid after collecting payment. Existing database `orders.cardDetails` and `cards` records, if any, must be securely purged by the operator; removing the code does not erase historical data.
 
-## Scripts
-* `npm start`: Runs the app in development mode
-* `npm test`: Launches the test runner in interactive watch mode
-* `npm run build`: Builds the app for production
-* `npm run eject`: Ejects the app, providing full control over the configuration
+## Findings and fixes
 
+| ID | Original issue | Fix |
+| --- | --- | --- |
+| V01 | Public GET `/api/seed` deleted all products and users and recreated predictable accounts. | Removed route from the server. |
+| V02 | Any signed-in user could read another customer's order by ID. | Order detail checks owner or current administrator. |
+| V03 | Any signed-in user could mark orders delivered or paid; card payments were marked paid from an unverified request. | Delivery and payment updates require current administrator; no client-supplied payment proof is accepted. |
+| V04 | Order price and totals came from client JSON and could be reduced. | Server looks up products, checks quantity and stock, and recalculates totals. |
+| V05 | Card number and CVV were stored in browser local storage and MongoDB. | Removed card form, card API, and order card fields; Cash on Delivery only. |
+| V06 | Any signed-in user could read, create, or edit prescriptions. | Prescription management now requires current administrator. |
+| V07 | JWT administrator claim remained authoritative after demotion or deletion. | Authentication loads the current user and role from the database for each request. |
+| V08 | User list/detail and admin update responses exposed password hashes and reset tokens. | Explicitly excludes sensitive fields and returns a safe update DTO. |
+| V09 | Password reset tokens were logged, long lived, reusable, and existence was disclosed. | Random hashed 15-minute token, single use, generic response, no token logging. |
+| V10 | Upload accepted unlimited arbitrary files into memory. | 5 MB cap, one file, image MIME allowlist. |
+| V11 | Ticket responses could be posted to another user's ticket. | Restricts response to owner or administrator. |
+| V12 | Raw server error messages were returned to clients. | Generic 500 response; validation errors return 400. |
+
+The report in `output/pdf/` documents the original evidence, impact, remediation, tests, OAuth design, and remaining limitations. Security tests use Node's built-in test runner. No live Google or MongoDB integration test is claimed in this repository.
+
+## Security operations before a public demo
+
+The original Git history included `ICare/backend/.env`. The file is now removed from Git tracking and ignored, but it **still exists in old commits**. Rotate the MongoDB password, JWT secret, and Cloudinary credentials before using a public modified repository. Replace any exposed demo credentials. Purge old card data, verify backups, and use an actual payment provider before enabling card payments. Document the rotation and purge as team evidence without publishing secrets.
+
+## Suggested 20-minute demo
+
+1. App scope, original commit date, and team contributions (2 min).
+2. Reproduce original flaws using the baseline commit in an isolated test database (5 min).
+3. Show ownership, role, pricing, reset, and card-flow fixes with test results (6 min).
+4. Demonstrate Google sign-in with a configured test OAuth client, including rejected state/nonce (4 min).
+5. Explain residual risks, credential rotation, and individual contributions (3 min).
