@@ -83,11 +83,11 @@ userRouter.post(
           subject: 'Reset Password',
           text: `Reset your password: ${baseUrl()}/reset-password/${token}`,
         }, (error) => error ? reject(error) : resolve()));
-      } catch (error) {
+      } catch {
         user.resetToken = undefined;
         user.resetTokenExpiresAt = undefined;
         await user.save();
-        console.error('Password reset email failed', error);
+        console.error('Password reset email failed');
       }
     }
     res.send({ message: 'If the account exists, a reset link has been sent.' });
