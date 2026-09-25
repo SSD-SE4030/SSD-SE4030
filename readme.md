@@ -24,6 +24,8 @@ The original repository already contains the baseline commit history. The local 
 3. In `ICare/frontend`, run `npm install`, then `npm start`. The React dev server uses the backend proxy at `localhost:4000`.
 4. For Google sign-in, create a Google Cloud **Web application** OAuth client and register `http://localhost:3000/api/auth/google/callback` as an authorized redirect URI. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URI` in the backend environment. Use HTTPS and the actual origin in production. The callback uses authorization code, PKCE S256, state, nonce, and a verified ID-token signature.
 
+See [GOOGLE_OIDC_LIVE_DEMO.md](GOOGLE_OIDC_LIVE_DEMO.md) for the Google Cloud screens, local preflight command, browser demo, and troubleshooting.
+
 The old `/api/seed` endpoint is removed. The old card input and card API are removed: checkout supports Cash on Delivery only until a real payment gateway is integrated. Staff can mark a Cash on Delivery order paid after collecting payment. Existing database `orders.cardDetails` and `cards` records, if any, must be securely purged by the operator; removing the code does not erase historical data.
 
 ## Findings and fixes
