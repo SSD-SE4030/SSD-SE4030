@@ -799,7 +799,7 @@ endobj
 endobj
 12 0 obj
 <<
-/Length 3287
+/Length 3539
 >>
 stream
 0.5670000000000001 w
@@ -845,43 +845,45 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 578.2679527559054122 Td
-(Member 1: TODO - name, index number, implemented items, commit references and demo role. Member 2: TODO) Tj
-T* (- same fields. Member 3: TODO - same fields. Member 4: TODO - same fields. Assign work based on actual) Tj
-T* (contributions and retain commit/test evidence for the viva.) Tj
+(Proposed review and viva ownership: Kojithan P.Y \(IT22264220\) - V01, V02, V07 and backend access control;) Tj
+T* (Baskaran V \(IT22172600\) - V03, V04, V05 and checkout/payment; Nishara T \(IT22223876\) - V06, V08, V09 and) Tj
+T* (account/reset; Olivea K T \(IT22267740\) - V10, V11, V12 and Google OIDC demo/report. This allocation is not) Tj
+T* (evidence that each member authored the existing commits. The team must confirm actual work and retain) Tj
+T* (individual commit, test or presentation evidence before final submission.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 528.094724409448645 Td
+56.6929133858267775 500.3151968503935905 Td
 (References) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 508.2522047244093528 Td
+56.6929133858267775 480.4726771653542414 Td
 (OWASP Top 10: https://owasp.org/www-project-top-ten/) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 485.8585039370077538 Td
+56.6929133858267775 458.0789763779526993 Td
 (Google OpenID Connect: https://developers.google.com/identity/openid-connect/openid-connect) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 463.4648031496061549 Td
+56.6929133858267775 435.6852755905511003 Td
 (Google OAuth 2.0 web server flow: https://developers.google.com/identity/protocols/oauth2/web-server) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 441.0711023622045559 Td
+56.6929133858267775 413.2915748031495013 Td
 (Google ID-token verification: https://developers.google.com/identity/gsi/web/guides/verify-google-id-token) Tj
 ET
 0.82 0.85 0.87 RG
@@ -1074,7 +1076,7 @@ endobj
 27 0 obj
 <<
 /Producer (jsPDF 2.5.2)
-/CreationDate (D:20260925182220+05'30')
+/CreationDate (D:20260925182620+05'30')
 >>
 endobj
 28 0 obj
@@ -1088,8 +1090,8 @@ endobj
 xref
 0 29
 0000000000 65535 f 
-0000026078 00000 n 
-0000027925 00000 n 
+0000026330 00000 n 
+0000028177 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
 0000005856 00000 n 
@@ -1100,29 +1102,29 @@ xref
 0000017279 00000 n 
 0000022599 00000 n 
 0000022738 00000 n 
-0000026160 00000 n 
-0000026286 00000 n 
-0000026417 00000 n 
-0000026551 00000 n 
-0000026689 00000 n 
-0000026813 00000 n 
-0000026942 00000 n 
-0000027074 00000 n 
-0000027210 00000 n 
-0000027338 00000 n 
-0000027465 00000 n 
-0000027594 00000 n 
-0000027727 00000 n 
-0000027829 00000 n 
-0000028178 00000 n 
-0000028264 00000 n 
+0000026412 00000 n 
+0000026538 00000 n 
+0000026669 00000 n 
+0000026803 00000 n 
+0000026941 00000 n 
+0000027065 00000 n 
+0000027194 00000 n 
+0000027326 00000 n 
+0000027462 00000 n 
+0000027590 00000 n 
+0000027717 00000 n 
+0000027846 00000 n 
+0000027979 00000 n 
+0000028081 00000 n 
+0000028430 00000 n 
+0000028516 00000 n 
 trailer
 <<
 /Size 29
 /Root 28 0 R
 /Info 27 0 R
-/ID [ <1BE4D918BE3D1B0C5A43694AD10A73AB> <1BE4D918BE3D1B0C5A43694AD10A73AB> ]
+/ID [ <B10181EE6CCFE81D7AFA7870404A2799> <B10181EE6CCFE81D7AFA7870404A2799> ]
 >>
 startxref
-28368
+28620
 %%EOF

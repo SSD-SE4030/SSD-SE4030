@@ -77,7 +77,7 @@ para('1. Original Git history contains backend .env. The modified working tree r
 heading('Process improvements');
 para('Add threat modelling for customer/staff data, an authorization matrix for every route, code review for payment and reset flows, secret scanning and .env ignore rules, regression tests for role/owner boundaries, dependency scanning, and a deployment checklist for data migrations and credential rotation.');
 heading('Individual contribution record');
-para('Member 1: TODO - name, index number, implemented items, commit references and demo role. Member 2: TODO - same fields. Member 3: TODO - same fields. Member 4: TODO - same fields. Assign work based on actual contributions and retain commit/test evidence for the viva.');
+para('Proposed review and viva ownership: Kojithan P.Y (IT22264220) - V01, V02, V07 and backend access control; Baskaran V (IT22172600) - V03, V04, V05 and checkout/payment; Nishara T (IT22223876) - V06, V08, V09 and account/reset; Olivea K T (IT22267740) - V10, V11, V12 and Google OIDC demo/report. This allocation is not evidence that each member authored the existing commits. The team must confirm actual work and retain individual commit, test or presentation evidence before final submission.');
 heading('References');
 para('OWASP Top 10: https://owasp.org/www-project-top-ten/');
 para('Google OpenID Connect: https://developers.google.com/identity/openid-connect/openid-connect');
