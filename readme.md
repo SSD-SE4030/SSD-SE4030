@@ -1,6 +1,6 @@
 # SE4030 Secure Software Development - ICare
 
-This repository hardens the existing ICare optical store application and adds Google OpenID Connect sign-in. The original project is [Optical-Store-Management-System](https://github.com/kojithan-y/Optical-Store-Management-System), last committed on **11 February 2025** (`5b5b25869d92a662b1e5180eb1b4f22bcf3a7830`). Confirm that this date is earlier than your semester start before submitting.
+This repository hardens the existing ICare optical store application and adds Google OpenID Connect sign-in. The local [original baseline commit](https://github.com/kojithan-y/Optical-Store-Management-System/tree/5b5b25869d92a662b1e5180eb1b4f22bcf3a7830) is dated **11 February 2025**. The original remote's current last commit and the semester start date must both be verified before submission.
 
 ## Submission details to complete
 
@@ -10,12 +10,12 @@ This repository hardens the existing ICare optical store application and adds Go
 | Member 2 - name / index / contribution | TODO |
 | Member 3 - name / index / contribution | TODO |
 | Member 4 - name / index / contribution | TODO |
-| Original GitHub repository | https://github.com/kojithan-y/Optical-Store-Management-System |
+| Original GitHub repository | https://github.com/kojithan-y/Optical-Store-Management-System/tree/5b5b25869d92a662b1e5180eb1b4f22bcf3a7830 |
 | Modified GitHub repository | TODO - publish this hardened version to a separate repository |
 | YouTube demonstration (20 minutes maximum) | TODO - record and upload |
 | Semester start date | TODO - verify original last commit eligibility |
 
-The original repository already contains the baseline commit history. Preserve it and add detailed commits for the security work in the modified repository. Do not claim a video, deployment, external scan, or live Google sign-in test until completed.
+The original repository already contains the baseline commit history. The local working repository has detailed security and report commits, but a separate modified GitHub repository has not yet been supplied or published. Do not push this branch to the original remote: its original commit date is needed as assignment evidence. Do not claim a video, deployment, external scan, or live Google sign-in test until completed.
 
 ## Run locally
 
