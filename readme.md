@@ -15,14 +15,14 @@ This repository hardens the existing ICare optical store application and adds Go
 | YouTube demonstration (20 minutes maximum) | TODO - record and upload |
 | Semester start date | TODO - verify original last commit eligibility |
 
-The original repository already contains the baseline commit history. The local working repository has detailed security and report commits, but a separate modified GitHub repository has not yet been supplied or published. Do not push this branch to the original remote: its original commit date is needed as assignment evidence. Do not claim a video, deployment, external scan, or live Google sign-in test until completed.
+The original repository already contains the baseline commit history. The local working repository has detailed security and report commits, but a separate modified GitHub repository has not yet been supplied or published. Do not push this branch to the original remote: its original commit date is needed as assignment evidence. Do not claim a video, deployment, or external scan until completed.
 
 ## Run locally
 
 1. Use Node.js 20 or later and MongoDB. Copy `ICare/backend/.env.example` to `ICare/backend/.env` and fill in private values. Never commit `.env`.
 2. In `ICare/backend`, run `npm install`, then `npm test`, then `npm start`.
 3. In `ICare/frontend`, run `npm install`, then `npm start`. The React dev server uses the backend proxy at `localhost:4000`.
-4. For Google sign-in, create a Google Cloud **Web application** OAuth client and register `http://localhost:3000/api/auth/google/callback` as an authorized redirect URI. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REDIRECT_URI` in the backend environment. Use HTTPS and the actual origin in production. The callback uses authorization code, PKCE S256, state, nonce, and a verified ID-token signature.
+4. For Google sign-in, use the **ICare SE4030 OAuth Demo** Google Cloud project and its **ICare Local Web Client**. Its authorized redirect URI is `http://localhost:4000/api/auth/google/callback`; set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI`, and `FRONTEND_ORIGIN` in the backend environment. The client credentials are present only in the local ignored `.env`. Use HTTPS and the actual origins in production. The callback uses authorization code, PKCE S256, state, nonce, and a verified ID-token signature.
 
 See [GOOGLE_OIDC_LIVE_DEMO.md](GOOGLE_OIDC_LIVE_DEMO.md) for the Google Cloud screens, local preflight command, browser demo, and troubleshooting.
 
@@ -45,7 +45,7 @@ The old `/api/seed` endpoint is removed. The old card input and card API are rem
 | V11 | Ticket responses could be posted to another user's ticket. | Restricts response to owner or administrator. |
 | V12 | Raw server error messages were returned to clients. | Generic 500 response; validation errors return 400. |
 
-The report in `output/pdf/` documents the original evidence, impact, remediation, tests, OAuth design, and remaining limitations. Security tests use Node's built-in test runner. No live Google or MongoDB integration test is claimed in this repository.
+The report in `output/pdf/` documents the original evidence, impact, remediation, tests, OAuth design, and remaining limitations. Security tests use Node's built-in test runner. A local live Google sign-in succeeded on **25 September 2026**: the account owner completed consent, the browser returned to ICare, and the Google account appeared signed in without an administrator menu. A full repeat sign-in and database integration suite are still outstanding.
 
 ## Security operations before a public demo
 

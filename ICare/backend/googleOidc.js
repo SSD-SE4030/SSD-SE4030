@@ -29,8 +29,8 @@ export function verifyGoogleIdToken(token, keys, clientId, nonce) {
 }
 
 router.get('/start', (req, res) => {
-  const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI } = process.env;
-  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI) return res.status(503).send({ message: 'Google sign-in is not configured' });
+  const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI, FRONTEND_ORIGIN } = process.env;
+  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_REDIRECT_URI || !FRONTEND_ORIGIN) return res.status(503).send({ message: 'Google sign-in is not configured' });
   const state = random();
   const nonce = random();
   const verifier = random();
@@ -62,7 +62,9 @@ router.get('/callback', expressAsyncHandler(async (req, res) => {
     user = await User.create({ name: identity.name || identity.email, email: identity.email, googleSub: identity.sub, isAdmin: false });
   }
   const profile = { _id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin, token: generateToken(user) };
-  res.redirect(`/oauth/google/callback#user=${encodeURIComponent(JSON.stringify(profile))}`);
+  const frontendCallback = new URL('/oauth/google/callback', process.env.FRONTEND_ORIGIN);
+  frontendCallback.hash = `user=${encodeURIComponent(JSON.stringify(profile))}`;
+  res.redirect(frontendCallback.toString());
 }));
 
 export default router;

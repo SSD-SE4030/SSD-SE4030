@@ -70,7 +70,7 @@ export default function SigninScreen() {
           <Button type="submit">Sign In</Button>
         </div>
         <div className="mb-3">
-          <a className="btn btn-outline-primary" href="/api/auth/google/start">Sign in with Google</a>
+          <a className="btn btn-outline-primary" href={process.env.REACT_APP_GOOGLE_AUTH_START_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api/auth/google/start' : '/api/auth/google/start')}>Sign in with Google</a>
         </div>
         <div className="mb-3">
           New customer?{' '}

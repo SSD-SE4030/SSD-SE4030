@@ -122,13 +122,14 @@ test('HTTP routes enforce owner and administrator boundaries', async () => {
 });
 
 test('Google authorization code flow checks state, PKCE and signed identity', async () => {
-  const envNames = ['JWT_SECRET', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REDIRECT_URI'];
+  const envNames = ['JWT_SECRET', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REDIRECT_URI', 'FRONTEND_ORIGIN'];
   const previousEnv = Object.fromEntries(envNames.map((name) => [name, process.env[name]]));
   Object.assign(process.env, {
     JWT_SECRET: 'test-only-secret',
     GOOGLE_CLIENT_ID: 'test-client',
     GOOGLE_CLIENT_SECRET: 'test-client-secret',
     GOOGLE_REDIRECT_URI: 'http://localhost/api/auth/google/callback',
+    FRONTEND_ORIGIN: 'http://localhost:3000',
   });
   const originals = { fetch: globalThis.fetch, findOne: User.findOne, exists: User.exists, create: User.create };
   const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
@@ -175,6 +176,8 @@ test('Google authorization code flow checks state, PKCE and signed identity', as
     const accepted = await originals.fetch(`${base}/api/auth/google/callback?code=fake&state=${cookies.oidc_state}`, { headers: { cookie: cookieHeader }, redirect: 'manual' });
     assert.equal(accepted.status, 302);
     const redirect = new URL(accepted.headers.get('location'), base);
+    assert.equal(redirect.origin, 'http://localhost:3000');
+    assert.equal(redirect.pathname, '/oauth/google/callback');
     const user = JSON.parse(new URLSearchParams(redirect.hash.slice(1)).get('user'));
     assert.equal(user.email, 'google@example.com');
     assert.equal(user.isAdmin, false);

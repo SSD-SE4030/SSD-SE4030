@@ -1,17 +1,17 @@
 import 'dotenv/config';
 
-const required = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REDIRECT_URI', 'JWT_SECRET', 'MONGODB_URI'];
+const required = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'GOOGLE_REDIRECT_URI', 'FRONTEND_ORIGIN', 'JWT_SECRET', 'MONGODB_URI'];
 const missing = required.filter((name) => !process.env[name] || process.env[name].startsWith('replace-'));
 if (missing.length) {
   console.error(`Missing backend .env values: ${missing.join(', ')}`);
   process.exitCode = 1;
 } else {
   const redirect = new URL(process.env.GOOGLE_REDIRECT_URI);
-  if (redirect.pathname !== '/api/auth/google/callback') {
-    console.error('GOOGLE_REDIRECT_URI must end in /api/auth/google/callback');
+  const backend = `http://localhost:${process.env.PORT || 4000}`;
+  if (redirect.origin !== backend || redirect.pathname !== '/api/auth/google/callback') {
+    console.error(`GOOGLE_REDIRECT_URI must be ${backend}/api/auth/google/callback for this local demo`);
     process.exitCode = 1;
   } else {
-    const backend = `http://localhost:${process.env.PORT || 4000}`;
     try {
       const response = await fetch(`${backend}/api/auth/google/start`, { redirect: 'manual' });
       const location = response.headers.get('location');

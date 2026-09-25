@@ -10,7 +10,7 @@
 endobj
 4 0 obj
 <<
-/Length 5529
+/Length 5572
 >>
 stream
 0.5670000000000001 w
@@ -67,11 +67,11 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 563.5277952755905062 Td
-(White-box review of the checked-in baseline source and targeted regression tests of the hardened code. Findings) Tj
-T* (below are supported by identifiable original routes and data flow. No external scanner result, live database exploit,) Tj
-T* (penetration test, live Google sign-in, or dependency audit is claimed. Use an isolated copy of the baseline and test) Tj
-T* (data for demonstrations. Baseline line references refer to commit 5b5b2586; source paths below are relative to) Tj
-T* (ICare/.) Tj
+(White-box review of the checked-in baseline source, targeted regression tests of the hardened code, and a live) Tj
+T* (Google sign-in through the dedicated demo OAuth client. Findings below are supported by identifiable original) Tj
+T* (routes and data flow. No external scanner result, live database exploit, penetration test, or dependency audit is) Tj
+T* (claimed. Use an isolated copy of the baseline and test data for demonstrations. Baseline line references refer to) Tj
+T* (commit 5b5b2586; source paths below are relative to ICare/.) Tj
 ET
 BT
 /F2 12 Tf
@@ -646,7 +646,7 @@ endobj
 endobj
 10 0 obj
 <<
-/Length 5467
+/Length 5267
 >>
 stream
 0.5670000000000001 w
@@ -724,56 +724,48 @@ BT
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
 56.6929133858267775 426.614409448818833 Td
-(Create a Google Cloud Web application OAuth client. Register http://localhost:3000/api/auth/google/callback for the) Tj
-T* (React dev server, or the equivalent HTTPS production URI. Populate GOOGLE_CLIENT_ID,) Tj
-T* (GOOGLE_CLIENT_SECRET and GOOGLE_REDIRECT_URI in an untracked backend .env. Automated tests) Tj
-T* (cover accepted identity and rejected signature, audience, nonce and expiration. A live Google end-to-end test) Tj
-T* (requires real credentials and has not yet been performed.) Tj
+(A dedicated Google Cloud project, ICare SE4030 OAuth Demo, uses an External consent screen in Testing mode.) Tj
+T* (Its Web application client, ICare Local Web Client, registers http://localhost:3000 as the browser origin and) Tj
+T* (http://localhost:4000/api/auth/google/callback as the backend redirect URI. The owner account is an allowed test) Tj
+T* (user. GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI and FRONTEND_ORIGIN) Tj
+T* (are set only in the ignored backend .env. The frontend opens the backend authorization endpoint directly; after) Tj
+T* (token verification, the backend returns to the frontend callback. Automated tests cover accepted identity and) Tj
+T* (rejected signature, audience, nonce and expiration. On 25 September 2026, a live browser test reached Google) Tj
+T* (consent, returned to ICare, and displayed the Google account as signed in without an administrator menu. The) Tj
+T* (account owner clicked consent personally. No secret or bearer token is included in this report.) Tj
 ET
 BT
 /F2 18 Tf
 20.6999999999999993 TL
 0.094 0.192 0.31 rg
-56.6929133858267775 348.6616535433070112 Td
+56.6929133858267775 293.1025984251967884 Td
 (Verification and remaining work) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 314.6459055118109518 Td
+56.6929133858267775 259.086850393700729 Td
 (Completed checks) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 294.8033858267715459 Td
+56.6929133858267775 239.2443307086613231 Td
 (Backend: npm test - 7 tests passed \(catalog price tampering, stock/duplicate rejection, upload MIME spoofing,) Tj
 T* (ID-token verification, stale administrator claim, HTTP owner/admin boundaries, simulated Google) Tj
-T* (authorization-code flow\). Frontend: npm run build completed with existing ESLint warnings. Node syntax checks) Tj
-T* (passed for changed backend files. The checks do not replace full integration tests against MongoDB or a live) Tj
-T* (Google provider test.) Tj
+T* (authorization-code flow\). Frontend: npm run build completed with existing toolchain warnings. The Google preflight) Tj
+T* (confirmed the backend issues a redirect to Google with state, nonce, PKCE and the configured callback. A live) Tj
+T* (browser test completed Google consent and returned to an ICare session displaying the Google account. These) Tj
+T* (checks do not replace a repeatable full integration suite against a test MongoDB database.) Tj
 ET
 BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 216.8506299212597241 Td
+56.6929133858267775 147.4018110236219172 Td
 (Unresolved and operational risks) Tj
-ET
-BT
-/F1 9.5 Tf
-10.9249999999999989 TL
-0.137 0.165 0.2 rg
-56.6929133858267775 197.0081102362204319 Td
-(1. Original Git history contains backend .env. The modified working tree removes it from tracking, but old commits) Tj
-T* (still contain it. Rotate MongoDB, JWT and Cloudinary credentials and consider history rewrite before publication. 2.) Tj
-T* (Historical card records remain in any deployed MongoDB and backups; purge them securely under an approved) Tj
-T* (retention procedure. 3. Card payments remain unavailable until a real PCI-compliant hosted gateway with) Tj
-T* (server-side verification is integrated. 4. Existing bearer tokens live in localStorage and may be stolen by future) Tj
-T* (XSS; migrate to a short-lived secure HttpOnly session architecture after a full frontend review. 5. A full dependency) Tj
-T* (update, external scan, rate limiting and integration test suite remain future work.) Tj
 ET
 0.82 0.85 0.87 RG
 56.6929133858267775 45.3545669291337532 m
@@ -805,23 +797,36 @@ endobj
 endobj
 12 0 obj
 <<
-/Length 2372
+/Length 3287
 >>
 stream
 0.5670000000000001 w
 0 G
 BT
+/F1 9.5 Tf
+10.9249999999999989 TL
+0.137 0.165 0.2 rg
+56.6929133858267775 773.8585039370078675 Td
+(1. Original Git history contains backend .env. The modified working tree removes it from tracking, but old commits) Tj
+T* (still contain it. Rotate MongoDB, JWT and Cloudinary credentials and consider history rewrite before publication. 2.) Tj
+T* (Historical card records remain in any deployed MongoDB and backups; purge them securely under an approved) Tj
+T* (retention procedure. 3. Card payments remain unavailable until a real PCI-compliant hosted gateway with) Tj
+T* (server-side verification is integrated. 4. Existing bearer tokens live in localStorage and may be stolen by future) Tj
+T* (XSS; migrate to a short-lived secure HttpOnly session architecture after a full frontend review. 5. A full dependency) Tj
+T* (update, external scan, rate limiting and integration test suite remain future work.) Tj
+ET
+BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 773.8585039370078675 Td
+56.6929133858267775 668.1262204724408775 Td
 (Process improvements) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 754.0159842519684616 Td
+56.6929133858267775 648.2837007874014716 Td
 (Add threat modelling for customer/staff data, an authorization matrix for every route, code review for payment and) Tj
 T* (reset flows, secret scanning and .env ignore rules, regression tests for role/owner boundaries, dependency) Tj
 T* (scanning, and a deployment checklist for data migrations and credential rotation.) Tj
@@ -830,14 +835,14 @@ BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 703.8427559055118081 Td
+56.6929133858267775 598.1104724409448181 Td
 (Individual contribution record) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 684.0002362204724022 Td
+56.6929133858267775 578.2679527559054122 Td
 (Member 1: TODO - name, index number, implemented items, commit references and demo role. Member 2: TODO) Tj
 T* (- same fields. Member 3: TODO - same fields. Member 4: TODO - same fields. Assign work based on actual) Tj
 T* (contributions and retain commit/test evidence for the viva.) Tj
@@ -846,35 +851,35 @@ BT
 /F2 12 Tf
 13.7999999999999989 TL
 0.078 0.333 0.463 rg
-56.6929133858267775 633.827007874015635 Td
+56.6929133858267775 528.094724409448645 Td
 (References) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 613.9844881889763428 Td
+56.6929133858267775 508.2522047244093528 Td
 (OWASP Top 10: https://owasp.org/www-project-top-ten/) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 591.5907874015747439 Td
+56.6929133858267775 485.8585039370077538 Td
 (Google OpenID Connect: https://developers.google.com/identity/openid-connect/openid-connect) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 569.1970866141731449 Td
+56.6929133858267775 463.4648031496061549 Td
 (Google OAuth 2.0 web server flow: https://developers.google.com/identity/protocols/oauth2/web-server) Tj
 ET
 BT
 /F1 9.5 Tf
 10.9249999999999989 TL
 0.137 0.165 0.2 rg
-56.6929133858267775 546.8033858267715459 Td
+56.6929133858267775 441.0711023622045559 Td
 (Google ID-token verification: https://developers.google.com/identity/gsi/web/guides/verify-google-id-token) Tj
 ET
 0.82 0.85 0.87 RG
@@ -1067,7 +1072,7 @@ endobj
 27 0 obj
 <<
 /Producer (jsPDF 2.5.2)
-/CreationDate (D:20260925172945+05'30')
+/CreationDate (D:20260925181200+05'30')
 >>
 endobj
 28 0 obj
@@ -1081,41 +1086,41 @@ endobj
 xref
 0 29
 0000000000 65535 f 
-0000025039 00000 n 
-0000026886 00000 n 
+0000025797 00000 n 
+0000027644 00000 n 
 0000000015 00000 n 
 0000000152 00000 n 
-0000005733 00000 n 
-0000005870 00000 n 
-0000011303 00000 n 
-0000011440 00000 n 
-0000016817 00000 n 
-0000016955 00000 n 
-0000022475 00000 n 
-0000022614 00000 n 
-0000025121 00000 n 
-0000025247 00000 n 
-0000025378 00000 n 
-0000025512 00000 n 
-0000025650 00000 n 
-0000025774 00000 n 
-0000025903 00000 n 
-0000026035 00000 n 
-0000026171 00000 n 
-0000026299 00000 n 
-0000026426 00000 n 
-0000026555 00000 n 
-0000026688 00000 n 
-0000026790 00000 n 
-0000027139 00000 n 
-0000027225 00000 n 
+0000005776 00000 n 
+0000005913 00000 n 
+0000011346 00000 n 
+0000011483 00000 n 
+0000016860 00000 n 
+0000016998 00000 n 
+0000022318 00000 n 
+0000022457 00000 n 
+0000025879 00000 n 
+0000026005 00000 n 
+0000026136 00000 n 
+0000026270 00000 n 
+0000026408 00000 n 
+0000026532 00000 n 
+0000026661 00000 n 
+0000026793 00000 n 
+0000026929 00000 n 
+0000027057 00000 n 
+0000027184 00000 n 
+0000027313 00000 n 
+0000027446 00000 n 
+0000027548 00000 n 
+0000027897 00000 n 
+0000027983 00000 n 
 trailer
 <<
 /Size 29
 /Root 28 0 R
 /Info 27 0 R
-/ID [ <C48CCF340A4DEE3F837C15F4B857E057> <C48CCF340A4DEE3F837C15F4B857E057> ]
+/ID [ <8D499A0DC4681BB30524F6F542D81B28> <8D499A0DC4681BB30524F6F542D81B28> ]
 >>
 startxref
-27329
+28087
 %%EOF
