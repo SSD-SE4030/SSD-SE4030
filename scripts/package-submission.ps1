@@ -14,7 +14,7 @@ try {
     $paths = & git -c core.quotepath=false ls-files
     if ($LASTEXITCODE -ne 0) { throw 'git ls-files failed' }
     foreach ($relativePath in $paths) {
-      if ($relativePath -match '(^|/)(\.env|node_modules|build)(/|$)' -or $relativePath -match '(^|/)\.env(\.|$)') { continue }
+      if ($relativePath -match '(^|/)(\.env|node_modules|build)(/|$)' -or ($relativePath -match '(^|/)\.env\.' -and $relativePath -notmatch '\.env\.example$')) { continue }
       $absolutePath = Join-Path $workspace $relativePath
       if (-not (Test-Path -LiteralPath $absolutePath -PathType Leaf)) { continue }
       $entryName = $relativePath.Replace('\', '/')
