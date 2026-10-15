@@ -47,16 +47,7 @@ The old `/api/seed` endpoint is removed. The old card input and card API are rem
 | V11 | Ticket responses could be posted to another user's ticket. | Restricts response to owner or administrator. |
 | V12 | Raw server error messages were returned to clients. | Generic 500 response; validation errors return 400. |
 
-The report in `output/pdf/` documents the original evidence, impact, remediation, tests, OAuth design, and remaining limitations. Security tests use Node's built-in test runner. A local live Google sign-in succeeded on **25 September 2026**: the account owner completed consent, the browser returned to ICare, and the Google account appeared signed in without an administrator menu. A full repeat sign-in and database integration suite are still outstanding.
 
-## Security operations before a public demo
 
-The original Git history included `ICare/backend/.env`. The file is now removed from Git tracking and ignored, but it **still exists in old commits**. Rotate the MongoDB password, JWT secret, and Cloudinary credentials before using a public modified repository. Replace any exposed demo credentials. Purge old card data, verify backups, and use an actual payment provider before enabling card payments. Document the rotation and purge as team evidence without publishing secrets.
 
-## Suggested 20-minute demo
 
-1. App scope, original commit date, and team contributions (2 min).
-2. Reproduce original flaws using the baseline commit in an isolated test database (5 min).
-3. Show ownership, role, pricing, reset, and card-flow fixes with test results (6 min).
-4. Demonstrate Google sign-in with a configured test OAuth client, including rejected state/nonce (4 min).
-5. Explain residual risks, credential rotation, and individual contributions (3 min).
