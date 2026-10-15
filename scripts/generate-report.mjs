@@ -13,14 +13,14 @@ let page = 1;
 
 function newPage() { doc.addPage(); page += 1; y = 24; }
 function ensure(height) { if (y + height > 271) newPage(); }
-function title(value) { ensure(18); doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(24, 49, 79); doc.text(value, left, y); y += 12; }
-function heading(value) { ensure(15); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(20, 85, 118); doc.text(value, left, y); y += 7; }
+function title(value) { ensure(18); doc.setFont('times', 'bold'); doc.setFontSize(16); doc.setTextColor(0, 0, 0); doc.text(value, left, y); y += 12; }
+function heading(value) { ensure(15); doc.setFont('times', 'bold'); doc.setFontSize(12); doc.setTextColor(0, 0, 0); doc.text(value, left, y); y += 7; }
 function para(value) {
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(35, 42, 51);
+  doc.setFont('times', 'normal'); doc.setFontSize(10); doc.setTextColor(0, 0, 0);
   const lines = doc.splitTextToSize(value, width);
-  ensure(lines.length * 4.9 + 3);
+  ensure(lines.length * 5.1 + 3);
   doc.text(lines, left, y);
-  y += lines.length * 4.9 + 3;
+  y += lines.length * 5.1 + 3;
 }
 function issue(id, name, original, impact, fix, evidence) {
   heading(`${id}  ${name}`);
@@ -30,30 +30,89 @@ function issue(id, name, original, impact, fix, evidence) {
   para(`Evidence: ${evidence}`);
   y += 2;
 }
+function contributionRow(index, name, studentId, vulnerabilities, scope) {
+  const rowHeight = 36;
+  ensure(rowHeight);
+  doc.setDrawColor(0, 0, 0);
+  doc.setLineWidth(0.2);
+  doc.rect(left, y - 5, width, rowHeight, 'S');
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('times', 'bold');
+  doc.setFontSize(10);
+  doc.text(studentId, left + 5, y + 2);
+  doc.text(name, left + 38, y + 2);
+  doc.setFont('times', 'normal');
+  doc.setFontSize(10);
+  doc.text(doc.splitTextToSize(`${vulnerabilities}: ${scope}`, width - 44), left + 38, y + 10);
+  y += rowHeight;
+}
 
-title('ICare Security Assessment');
-para('SE4030 - Secure Software Development | Group assignment | Prepared 25 September 2026');
+doc.setTextColor(0, 0, 0);
+doc.setFont('times', 'bold');
+doc.setFontSize(14);
+doc.text('SE4030 - Secure Software Development', 105, 75, { align: 'center' });
+doc.setFontSize(18);
+doc.text('ICare Security Assessment', 105, 93, { align: 'center' });
+doc.setDrawColor(0, 0, 0);
+doc.setLineWidth(0.4);
+doc.line(45, 101, 165, 101);
+y = 125;
+heading('Group security assessment report');
+para('ICare Optical Store Management System');
+para('React frontend | Express API | MongoDB | Google OpenID Connect');
+para('Prepared 25 September 2026');
+newPage();
+title('Contribution Table');
+para('Member details and assigned vulnerability areas are taken from the project README. Each member has three distinct findings for the review and viva.');
+doc.setDrawColor(0, 0, 0);
+doc.setLineWidth(0.4);
+doc.rect(left, y - 5, width, 12, 'S');
+doc.setTextColor(0, 0, 0);
+doc.setFont('times', 'bold');
+doc.setFontSize(10);
+doc.text('Student ID', left + 5, y + 2);
+doc.text('Student name / assigned vulnerabilities', left + 38, y + 2);
+y += 13;
+contributionRow(0, 'Kojithan P.Y', 'IT22264220', 'V01, V02, V07', 'Public seed route, order ownership and current administrator role; backend access-control review.');
+contributionRow(1, 'Baskaran V', 'IT22172600', 'V03, V04, V05', 'Order payment/delivery permissions, server-side pricing and card-data removal; checkout regression review.');
+contributionRow(2, 'Nishara T', 'IT22223876', 'V06, V08, V09', 'Prescription permissions, safe user responses and password reset; account/reset-flow review.');
+contributionRow(3, 'Olivea K T', 'IT22267740', 'V10, V11, V12', 'Upload validation, ticket ownership and error disclosure; Google OIDC demo/report review.');
+heading('Attribution note');
+para('The README describes these as assigned responsibilities. The repository does not establish separate code authorship for all four members. Each member should verify their actual work and retain individual evidence before submission.');
+newPage();
+title('Executive Summary');
 heading('Submission metadata');
-para('Team: Kojithan P.Y (IT22264220); Baskaran V (IT22172600); Nishara T (IT22223876); Olivea K T (IT22267740). Proposed review/viva allocation: Kojithan - V01, V02, V07 and backend access control; Baskaran - V03, V04, V05 and checkout/payment; Nishara - V06, V08, V09 and account/reset; Olivea - V10, V11, V12 and Google OIDC demo/report. Confirm actual individual work before claiming these as completed contributions. Modified GitHub repository: TODO. YouTube demonstration (maximum 20 minutes): TODO. Semester start date: TODO.');
+para('Modified GitHub repository: TODO. YouTube demonstration (maximum 20 minutes): TODO. Semester start date: TODO. These submission details must be completed before upload.');
 para('Original project baseline: https://github.com/kojithan-y/Optical-Store-Management-System/tree/5b5b25869d92a662b1e5180eb1b4f22bcf3a7830 . This local commit is dated 11 February 2025. The original remote latest commit and semester start date still require verification for eligibility. ICare is an optical store application with React, Express, MongoDB, appointments, prescriptions, tickets, inventory, orders, and administrator workflows.');
 heading('Method and scope');
 para('White-box review of the checked-in baseline source, targeted regression tests of the hardened code, and a live Google sign-in through the dedicated demo OAuth client. Findings below are supported by identifiable original routes and data flow. No external scanner result, live database exploit, penetration test, or dependency audit is claimed. Use an isolated copy of the baseline and test data for demonstrations. Baseline line references refer to commit 5b5b2586; source paths below are relative to ICare/.');
-heading('Executive summary');
 para('Twelve distinct weaknesses were identified across destructive setup endpoints, authorization, payment integrity, privacy, reset tokens, file upload, and error handling. The highest impact issues allowed public deletion of users/products, cross-user order access, arbitrary paid status, and storage of payment card data. Code fixes are implemented. Operational work remains for historical secrets and card records.');
 para('Qualitative priority: critical - V01, V03, V05; high - V02, V04, V06, V07, V09; medium - V08, V10, V11, V12. These are review priorities based on reachable data and impact, not formal CVSS scores.');
 
-title('Findings and remediation');
+newPage();
+title('Kojithan P.Y  |  IT22264220');
+para('Assigned findings: V01, V02 and V07. Review focus: backend access control.');
 issue('V01', 'Public database reset', 'GET /api/seed in seedRoutes.js deletes all Product and User documents and repopulates default accounts without authentication.', 'Unauthenticated database destruction and known demo credentials.', 'Removed /api/seed from server.js and deleted the demo seed source.', 'Baseline: backend/server.js:46 and routes/seedRoutes.js:9-12. Modified: backend/server.js.');
 issue('V02', 'Order IDOR', 'GET /api/orders/:id checked only for a valid bearer token and returned any order by its ID.', 'A customer could obtain another customer\'s address, items, and payment state.', 'Require matching order.user or a current administrator before returning an order.', 'Baseline: backend/routes/orderRoutes.js:109-116. Regression: owner 200, other user 404.');
+issue('V07', 'Stale role in JWT', 'isAuth trusted isAdmin from a 30-day token even after a user was demoted or deleted.', 'Former administrators retained privileges until their token expired.', 'isAuth now loads the current account and role from MongoDB on every request.', 'Baseline: backend/utils.js:17,21,30-47. Regression: stale admin claim yields 403 after demotion.');
+
+newPage();
+title('Baskaran V  |  IT22172600');
+para('Assigned findings: V03, V04 and V05. Review focus: checkout and payment regression.');
 issue('V03', 'Unauthorized payment and delivery changes', 'PUT /api/orders/:id/deliver and /pay required only sign-in. The card branch marked an order paid without processor confirmation.', 'Any user could alter fulfilment or forge a paid order.', 'Both routes now require administrator. The pay route records only collected Cash on Delivery payment and rejects repeated/non-COD updates. The customer Pay Now control was removed.', 'Baseline: backend/routes/orderRoutes.js:123-163. Regression: customer 403, administrator 200.');
 issue('V04', 'Client-controlled order totals', 'POST /api/orders copied client order item prices and totals into MongoDB.', 'A customer could submit a lower item price or total.', 'Lookup catalog products by ID, validate quantity and stock, copy server-side prices and recalculate shipping, tax and total.', 'Baseline: backend/routes/orderRoutes.js:26-34. Regression: client price 0.01 yields catalog price 200.');
 issue('V05', 'Stored card data and CVV', 'CardDetailsScreen saved PAN and CVV in localStorage; cardRoutes.js and orderModel.js stored them in MongoDB.', 'Sensitive payment credentials could be exposed through XSS, browser access, database breach, or API response.', 'Removed card form, saved-card API, card schema/model and order card fields. Checkout now supports Cash on Delivery only.', 'Baseline: frontend/CardDetailsScreen.js:59-62; backend/routes/cardRoutes.js:13-22 and orderRoutes.js:36-42.');
-issue('V06', 'Prescription access control', 'Prescription list, detail, create and update routes accepted any authenticated user.', 'Medical prescription data could be read or modified by unrelated customers.', 'Applied administrator checks to prescription management routes.', 'Baseline: backend/routes/prescriptionRoutes.js:33,43,57. Regression: customer 403, administrator 200.');
-issue('V07', 'Stale role in JWT', 'isAuth trusted isAdmin from a 30-day token even after a user was demoted or deleted.', 'Former administrators retained privileges until their token expired.', 'isAuth now loads the current account and role from MongoDB on every request.', 'Baseline: backend/utils.js:17,21,30-47. Regression: stale admin claim yields 403 after demotion.');
 
-title('Further findings');
+newPage();
+title('Nishara T  |  IT22223876');
+para('Assigned findings: V06, V08 and V09. Review focus: account and reset flows.');
+issue('V06', 'Prescription access control', 'Prescription list, detail, create and update routes accepted any authenticated user.', 'Medical prescription data could be read or modified by unrelated customers.', 'Applied administrator checks to prescription management routes.', 'Baseline: backend/routes/prescriptionRoutes.js:33,43,57. Regression: customer 403, administrator 200.');
 issue('V08', 'Sensitive user fields in API responses', 'Admin user list/detail returned full Mongoose documents, including password hashes and resetToken. Update returned the full saved user.', 'Extra credential material could leak through a compromised admin browser or logs.', 'Exclude sensitive fields in list/detail queries; use a small update response object.', 'Baseline: backend/routes/userRoutes.js:16,25-27,145. Modified: .select exclusions and safe update object.');
 issue('V09', 'Unsafe password reset', 'Reset JWT appeared in server logs, lasted three hours, was not cleared after use, and unknown emails returned 404.', 'Reset links could be reused or exposed; account enumeration was possible.', 'Generate random token, store only SHA-256 hash for 15 minutes, consume atomically, avoid logging it and return generic request response.', 'Baseline: backend/routes/userRoutes.js:74-80,109-125. Modified: resetTokenExpiresAt and findOneAndUpdate.');
+
+newPage();
+title('Olivea K T  |  IT22267740');
+para('Assigned findings: V10, V11 and V12. Review focus: Google OIDC demo and report evidence.');
 issue('V10', 'Unbounded file upload', 'multer() used memory storage without a size or type limit.', 'An administrator upload could consume excessive memory or send unwanted file types to Cloudinary.', 'Limit to one 5 MB JPEG, PNG or WebP upload. Check MIME type and file signature; handle oversized uploads as 413.', 'Baseline: backend/routes/uploadRoutes.js:7. Regression: a spoofed PNG MIME type is rejected.');
 issue('V11', 'Ticket response IDOR', 'POST /api/tickets/:id/responses allowed any authenticated user to reply to any ticket.', 'Private support conversations could be modified by other customers.', 'Allow ticket owner or current administrator only.', 'Baseline: backend/routes/ticketRoutes.js:122-136. Regression: other customer 404.');
 issue('V12', 'Internal error disclosure', 'Global error handler returned err.message as a 500 response.', 'Database and implementation details could be disclosed.', 'Return generic 500 messages and structured 400 validation errors; log server-side.', 'Baseline: backend/server.js:66. Modified: generic error handler.');
@@ -61,6 +120,7 @@ issue('V12', 'Internal error disclosure', 'Global error handler returned err.mes
 heading('Repeatable security checks');
 para('Use only an isolated test database. With owner and other-customer bearer tokens, GET /api/orders/{ownerOrderId} returns 200 for owner and 404 for the other customer. PUT /api/orders/{id}/pay and /deliver return 403 for a customer. GET /api/prescriptions returns 403 for a customer and 200 for an administrator. POST /api/tickets/{otherTicketId}/responses returns 404. These hardened outcomes are covered by an HTTP route test with mocked database models; the original outcomes follow directly from the baseline route conditions above and were not exercised against a live database.');
 
+newPage();
 title('Google OpenID Connect feature');
 heading('User journey');
 para('Sign In now offers Sign in with Google. A successful first sign-in creates a non-admin ICare account bound to the Google subject (sub); later sign-ins resolve the account by sub. An existing password account with the same email is not auto-linked, preventing email-based account takeover. The app then issues its existing ICare bearer token.');
@@ -69,15 +129,14 @@ para('The backend starts an authorization-code flow with openid email profile sc
 heading('Configuration and verification');
 para('A dedicated Google Cloud project, ICare SE4030 OAuth Demo, uses an External consent screen in Testing mode. Its Web application client, ICare Local Web Client, registers http://localhost:3000 as the browser origin and http://localhost:4000/api/auth/google/callback as the backend redirect URI. The owner account is an allowed test user. GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI and FRONTEND_ORIGIN are set only in the ignored backend .env. The frontend opens the backend authorization endpoint directly; after token verification, the backend returns to the frontend callback. Automated tests cover accepted identity and rejected signature, audience, nonce and expiration. On 25 September 2026, a live browser test reached Google consent, returned to ICare, and displayed the Google account as signed in without an administrator menu. The account owner clicked consent personally. No secret or bearer token is included in this report.');
 
+newPage();
 title('Verification and remaining work');
 heading('Completed checks');
 para('Backend: npm test - 7 tests passed (catalog price tampering, stock/duplicate rejection, upload MIME spoofing, ID-token verification, stale administrator claim, HTTP owner/admin boundaries, simulated Google authorization-code flow). Frontend: npm run build completed with existing toolchain warnings. The Google preflight confirmed the backend issues a redirect to Google with state, nonce, PKCE and the configured callback. A live browser test completed Google consent and returned to an ICare session displaying the Google account. These checks do not replace a repeatable full integration suite against a test MongoDB database.');
-heading('Unresolved and operational risks');
+heading('Unfixed vulnerabilities and operational risks');
 para('1. Original Git history contains backend .env. The modified working tree removes it from tracking, but old commits still contain it. Rotate MongoDB, JWT and Cloudinary credentials and consider history rewrite before publication. 2. Historical card records remain in any deployed MongoDB and backups; purge them securely under an approved retention procedure. 3. Card payments remain unavailable until a real PCI-compliant hosted gateway with server-side verification is integrated. 4. Existing bearer tokens live in localStorage and may be stolen by future XSS; migrate to a short-lived secure HttpOnly session architecture after a full frontend review. 5. A full dependency update, external scan, rate limiting and integration test suite remain future work.');
-heading('Process improvements');
+heading('Software engineering best practices');
 para('Add threat modelling for customer/staff data, an authorization matrix for every route, code review for payment and reset flows, secret scanning and .env ignore rules, regression tests for role/owner boundaries, dependency scanning, and a deployment checklist for data migrations and credential rotation.');
-heading('Individual contribution record');
-para('Proposed review and viva ownership: Kojithan P.Y (IT22264220) - V01, V02, V07 and backend access control; Baskaran V (IT22172600) - V03, V04, V05 and checkout/payment; Nishara T (IT22223876) - V06, V08, V09 and account/reset; Olivea K T (IT22267740) - V10, V11, V12 and Google OIDC demo/report. This allocation is not evidence that each member authored the existing commits. The team must confirm actual work and retain individual commit, test or presentation evidence before final submission.');
 heading('References');
 para('OWASP Top 10: https://owasp.org/www-project-top-ten/');
 para('Google OpenID Connect: https://developers.google.com/identity/openid-connect/openid-connect');
@@ -86,9 +145,9 @@ para('Google ID-token verification: https://developers.google.com/identity/gsi/w
 
 for (let index = 1; index <= doc.getNumberOfPages(); index += 1) {
   doc.setPage(index);
-  doc.setDrawColor(209, 216, 222);
+  doc.setDrawColor(0, 0, 0);
   doc.line(left, 281, right, 281);
-  doc.setFontSize(8); doc.setTextColor(90, 102, 114);
+  doc.setFont('times', 'normal'); doc.setFontSize(8); doc.setTextColor(0, 0, 0);
   doc.text('SE4030 | ICare security assessment', left, 287);
   doc.text(`${index} / ${doc.getNumberOfPages()}`, right, 287, { align: 'right' });
 }
