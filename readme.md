@@ -28,7 +28,15 @@ The original repository already contains the baseline commit history. The local 
 
 See [GOOGLE_OIDC_LIVE_DEMO.md](GOOGLE_OIDC_LIVE_DEMO.md) for the Google Cloud screens, local preflight command, browser demo, and troubleshooting.
 
-The old `/api/seed` endpoint is removed. The old card input and card API are removed: checkout supports Cash on Delivery only until a real payment gateway is integrated. Staff can mark a Cash on Delivery order paid after collecting payment. Existing database `orders.cardDetails` and `cards` records, if any, must be securely purged by the operator; removing the code does not erase historical data.
+The old `/api/seed` endpoint is removed. The old card input and card API are removed: checkout supports Cash on Delivery only until a real payment gateway is integrated. Staff can mark a Cash on Delivery order paid after collecting payment.
+
+### ZAP remediation and existing installations
+
+The Express server sets CSP, anti-clickjacking, MIME-sniffing, and referrer headers before all routes and static files. Production responses also set HSTS, and API responses disable caching. CSP permits the existing Font Awesome, Google Maps, and Google Charts origins; inline styles remain allowed for React and Bootstrap. The pinned Font Awesome stylesheet has a SHA-384 integrity hash and anonymous CORS. Serve the production build through Express (`npm run build` in the frontend, then start the backend); the React development server does not use Express's HTML headers. Verify configured Google integrations in the browser after deployment.
+
+Access tokens now require HS256, issuer, audience, access purpose, expiry, and the current user's token version. Tokens issued before this update are rejected, so users must sign in again. Password changes and resets revoke previous access tokens. Reset tokens remain hashed, expire after 15 minutes, and are consumed atomically.
+
+To remove historical card data from the database configured by `MONGODB_URI`, run `npm run security:purge-cards` from `ICare/backend` to inspect counts only. Run `npm run security:purge-cards -- --apply` to delete legacy `cards` records and unset `orders.cardDetails`. The cleanup is repeatable and never prints card values. The upgraded frontend removes the old `cardDetails` local storage key when opened. Removing source code does not erase stored data; backup copies require separate handling under your retention policy. Repeat the authenticated ZAP assessment against the deployed build to confirm remediation in that environment.
 
 ## Findings and fixes
 

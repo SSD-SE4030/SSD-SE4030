@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'node:url';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { securityHeaders, errorHandler } from './security.js';
 import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import googleOidcRouter from './googleOidc.js';
@@ -31,6 +32,7 @@ const app = express();
 
 // Middleware to parse JSON and URL-encoded data
 app.disable('x-powered-by');
+app.use(securityHeaders);
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -64,16 +66,7 @@ app.get('*', (req, res) =>
 );
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  if (err.name === 'MulterError') {
-    return res.status(err.code === 'LIMIT_FILE_SIZE' ? 413 : 400).send({ message: 'Invalid upload' });
-  }
-  if (err.name === 'ValidationError' || err.name === 'CastError') {
-    return res.status(400).send({ message: 'Invalid request' });
-  }
-  console.error(err);
-  res.status(500).send({ message: 'Internal server error' });
-});
+app.use(errorHandler);
 
 // Server port setup
 const port = process.env.PORT || 4000;

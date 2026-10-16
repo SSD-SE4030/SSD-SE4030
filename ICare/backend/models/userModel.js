@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
     googleSub: { type: String, unique: true, sparse: true },
     resetToken: { type: String },
     resetTokenExpiresAt: { type: Date },
+    tokenVersion: { type: Number, default: 0 },
     isAdmin: { type: Boolean, default: false, required: true },
   },
   {

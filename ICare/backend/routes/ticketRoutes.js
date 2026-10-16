@@ -119,7 +119,7 @@ ticketRouter.delete(
 );
 
 // Add response to a ticket
-ticketRouter.post('/:id/responses', isAuth, async (req, res) => {
+ticketRouter.post('/:id/responses', isAuth, expressAsyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
   if (ticket && (ticket.user.toString() === req.user._id.toString() || req.user.isAdmin)) {
     const response = {
@@ -132,6 +132,6 @@ ticketRouter.post('/:id/responses', isAuth, async (req, res) => {
   } else {
     res.status(404).send({ message: 'Ticket Not Found' });
   }
-});
+}));
 
 export default ticketRouter;

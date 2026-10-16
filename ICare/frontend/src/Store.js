@@ -2,6 +2,9 @@ import { createContext, useReducer } from 'react';
 
 export const Store = createContext();
 
+// Clear card data left by older installations when the upgraded app is opened.
+localStorage.removeItem('cardDetails');
+
 const initialState = {
   fullBox: false,
   userInfo: localStorage.getItem('userInfo')

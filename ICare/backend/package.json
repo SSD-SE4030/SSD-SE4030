@@ -7,6 +7,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "node --test",
+    "security:purge-cards": "node purgeLegacyCards.js",
     "check:google": "node checkGoogleDemo.js"
   },
   "author": "",

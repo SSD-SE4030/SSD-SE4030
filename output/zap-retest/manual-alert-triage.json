@@ -1,0 +1,232 @@
+{
+  "note": "Native ZAP alerts are retained unchanged. These assessments follow manual inspection of every timestamp alert source context.",
+  "timestampFalsePositives": 28,
+  "items": [
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1604231423",
+      "context": "IOLET:2318131967,BROWN:2771004159,BURLYWOOD:3736635391,CADETBLUE:1604231423,CHARTREUSE:2147418367,CHOCOLATE:3530104575,CORAL:4286533887,CORNFLOWERBLUE",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1687547391",
+      "context": ":2147418367,CHOCOLATE:3530104575,CORAL:4286533887,CORNFLOWERBLUE:1687547391,CORNSILK:4294499583,CRIMSON:3692313855,CYAN:16777215,DARKBLUE:35839,DARKCY",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1768516095",
+      "context": "OLET:2483082239,DEEPPINK:4279538687,DEEPSKYBLUE:12582911,DIMGRAY:1768516095,DIMGREY:1768516095,DODGERBLUE:512819199,FIREBRICK:2988581631,FLORALWHITE:4",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "2096890111",
+      "context": "041641215,LAVENDER:3873897215,LAVENDERBLUSH:4293981695,LAWNGREEN:2096890111,LEMONCHIFFON:4294626815,LIGHTBLUE:2916673279,LIGHTCORAL:4034953471,LIGHTCY",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "2005441023",
+      "context": "7,LIGHTSEAGREEN:548580095,LIGHTSKYBLUE:2278488831,LIGHTSLATEGRAY:2005441023,LIGHTSLATEGREY:2005441023,LIGHTSTEELBLUE:2965692159,LIGHTYELLOW:4294959359",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1724754687",
+      "context": "4210091775,MAGENTA:4278255615,MAROON:2147483903,MEDIUMAQUAMARINE:1724754687,MEDIUMBLUE:52735,MEDIUMORCHID:3126187007,MEDIUMPURPLE:2473647103,MEDIUMSEA",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "2070474495",
+      "context": "EDIUMPURPLE:2473647103,MEDIUMSEAGREEN:1018393087,MEDIUMSLATEBLUE:2070474495,MEDIUMSPRINGGREEN:16423679,MEDIUMTURQUOISE:1221709055,MEDIUMVIOLETRED:3340",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1804477439",
+      "context": "2783615,NAVY:33023,OLDLACE:4260751103,OLIVE:2155872511,OLIVEDRAB:1804477439,ORANGE:4289003775,ORANGERED:4282712319,ORCHID:3664828159,PALEGOLDENROD:400",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1714657791",
+      "context": "3718307327,POWDERBLUE:2967529215,PURPLE:2147516671,REBECCAPURPLE:1714657791,RED:4278190335,ROSYBROWN:3163525119,ROYALBLUE:1097458175,SADDLEBROWN:23365",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1784335871",
+      "context": "SIENNA:2689740287,SILVER:3233857791,SKYBLUE:2278484991,SLATEBLUE:1784335871,SLATEGRAY:1887473919,SLATEGREY:1887473919,SNOW:4294638335,SPRINGGREEN:1674",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/239.fcaddd2b.chunk.js",
+      "evidence": "1887473919",
+      "context": "VER:3233857791,SKYBLUE:2278484991,SLATEBLUE:1784335871,SLATEGRAY:1887473919,SLATEGREY:1887473919,SNOW:4294638335,SPRINGGREEN:16744447,STEELBLUE:118297",
+      "classification": "False positive (manual source review)",
+      "reason": "RGBA color lookup constant, not a timestamp",
+      "sourceSHA256": "3f12b6eefc63502db5cc896749a270b49665d060bfa9f439fd160989ad4a4ba5"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1770035416",
+      "context": "-1473231341),r=he(r,o,i,n,t[7],22,-45705983),n=he(n,r,o,i,t[8],7,1770035416),i=he(i,n,r,o,t[9],12,-1958414417),o=he(o,i,n,r,t[10],17,-42063),r=he(r,o,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1958414417",
+      "context": "-45705983),n=he(n,r,o,i,t[8],7,1770035416),i=he(i,n,r,o,t[9],12,-1958414417),o=he(o,i,n,r,t[10],17,-42063),r=he(r,o,i,n,t[11],22,-1990404162),n=he(n,r",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1990404162",
+      "context": "1958414417),o=he(o,i,n,r,t[10],17,-42063),r=he(r,o,i,n,t[11],22,-1990404162),n=he(n,r,o,i,t[12],7,1804603682),i=he(i,n,r,o,t[13],12,-40341101),o=he(o,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1804603682",
+      "context": ",-42063),r=he(r,o,i,n,t[11],22,-1990404162),n=he(n,r,o,i,t[12],7,1804603682),i=he(i,n,r,o,t[13],12,-40341101),o=he(o,i,n,r,t[14],17,-1502002290),n=fe(",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1502002290",
+      "context": "4603682),i=he(i,n,r,o,t[13],12,-40341101),o=he(o,i,n,r,t[14],17,-1502002290),n=fe(n,r=he(r,o,i,n,t[15],22,1236535329),o,i,t[1],5,-165796510),i=fe(i,n,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1735328473",
+      "context": "-1444681467),i=fe(i,n,r,o,t[2],9,-51403784),o=fe(o,i,n,r,t[7],14,1735328473),n=pe(n,r=fe(r,o,i,n,t[12],20,-1926607734),o,i,t[5],4,-378558),i=pe(i,n,r,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1926607734",
+      "context": "),o=fe(o,i,n,r,t[7],14,1735328473),n=pe(n,r=fe(r,o,i,n,t[12],20,-1926607734),o,i,t[5],4,-378558),i=pe(i,n,r,o,t[8],11,-2022574463),o=pe(o,i,n,r,t[11],",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "2022574463",
+      "context": ",t[12],20,-1926607734),o,i,t[5],4,-378558),i=pe(i,n,r,o,t[8],11,-2022574463),o=pe(o,i,n,r,t[11],16,1839030562),r=pe(r,o,i,n,t[14],23,-35309556),n=pe(n",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1839030562",
+      "context": "-378558),i=pe(i,n,r,o,t[8],11,-2022574463),o=pe(o,i,n,r,t[11],16,1839030562),r=pe(r,o,i,n,t[14],23,-35309556),n=pe(n,r,o,i,t[1],4,-1530992060),i=pe(i,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1530992060",
+      "context": "839030562),r=pe(r,o,i,n,t[14],23,-35309556),n=pe(n,r,o,i,t[1],4,-1530992060),i=pe(i,n,r,o,t[4],11,1272893353),o=pe(o,i,n,r,t[7],16,-155497632),r=pe(r,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1700485571",
+      "context": "1416354905),r=me(r,o,i,n,t[5],21,-57434055),n=me(n,r,o,i,t[12],6,1700485571),i=me(i,n,r,o,t[3],10,-1894986606),o=me(o,i,n,r,t[10],15,-1051523),r=me(r,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1894986606",
+      "context": "57434055),n=me(n,r,o,i,t[12],6,1700485571),i=me(i,n,r,o,t[3],10,-1894986606),o=me(o,i,n,r,t[10],15,-1051523),r=me(r,o,i,n,t[1],21,-2054922799),n=me(n,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "2054922799",
+      "context": "894986606),o=me(o,i,n,r,t[10],15,-1051523),r=me(r,o,i,n,t[1],21,-2054922799),n=me(n,r,o,i,t[8],6,1873313359),i=me(i,n,r,o,t[15],10,-30611744),o=me(o,i",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1873313359",
+      "context": ",-1051523),r=me(r,o,i,n,t[1],21,-2054922799),n=me(n,r,o,i,t[8],6,1873313359),i=me(i,n,r,o,t[15],10,-30611744),o=me(o,i,n,r,t[6],15,-1560198380),r=me(r",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1560198380",
+      "context": "73313359),i=me(i,n,r,o,t[15],10,-30611744),o=me(o,i,n,r,t[6],15,-1560198380),r=me(r,o,i,n,t[13],21,1309151649),n=me(n,r,o,i,t[4],6,-145523070),i=me(i,",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1732584193",
+      "context": "return de(n^(t|~r),e,t,o,i,a)}function ge(e){var t,n=e.length,r=[1732584193,-271733879,-1732584194,271733878];for(t=64;t<=e.length;t+=64)ue(r,ve(e.sub",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    },
+    {
+      "url": "http://127.0.0.1:60354/static/js/main.8543b343.js",
+      "evidence": "1732584194",
+      "context": "o,i,a)}function ge(e){var t,n=e.length,r=[1732584193,-271733879,-1732584194,271733878];for(t=64;t<=e.length;t+=64)ue(r,ve(e.substring(t-64,t)));e=e.su",
+      "classification": "False positive (manual source review)",
+      "reason": "MD5 algorithm constant in bundled library, not a timestamp",
+      "sourceSHA256": "d918c677824940fbec1d5dc1ef98c0ce10fdb309a2a22d063343c6bc46efdd19"
+    }
+  ],
+  "target": "http://127.0.0.1:60354",
+  "assessmentDate": "Friday, 16 October 2026 at 16:31:41 GMT+5:30"
+}

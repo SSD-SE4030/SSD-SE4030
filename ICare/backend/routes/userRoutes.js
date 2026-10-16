@@ -45,6 +45,7 @@ userRouter.put(
       
       if (req.body.password && req.body.password.length >= 12) {
         user.password = bcrypt.hashSync(req.body.password, 8);
+        user.tokenVersion = (user.tokenVersion ?? 0) + 1;
       } else if (req.body.password) {
         return res.status(400).send({ message: 'Password must be at least 12 characters' });
       }
@@ -103,7 +104,7 @@ userRouter.post(
     const tokenHash = crypto.createHash('sha256').update(req.body.token).digest('hex');
     const user = await User.findOneAndUpdate(
       { resetToken: tokenHash, resetTokenExpiresAt: { $gt: new Date() } },
-      { $set: { password: bcrypt.hashSync(req.body.password, 12) }, $unset: { resetToken: '', resetTokenExpiresAt: '' } }
+      { $set: { password: bcrypt.hashSync(req.body.password, 12) }, $unset: { resetToken: '', resetTokenExpiresAt: '' }, $inc: { tokenVersion: 1 } }
     );
     if (!user) return res.status(400).send({ message: 'Invalid or expired reset link' });
     res.send({ message: 'Password reset successfully' });

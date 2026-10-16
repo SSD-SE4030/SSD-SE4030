@@ -5,7 +5,11 @@ import { priceOrder } from './orderPricing.js';
 import { verifyGoogleIdToken } from './googleOidc.js';
 import jwt from 'jsonwebtoken';
 import User from './models/userModel.js';
-import { isAuth, isAdmin } from './utils.js';
+import { isAuth, isAdmin, generateToken } from './utils.js';
+import { securityHeaders, errorHandler } from './security.js';
+import userRouter from './routes/userRoutes.js';
+import bcrypt from 'bcryptjs';
+import { purgeLegacyCards } from './purgeLegacyCards.js';
 import express from 'express';
 import orderRouter from './routes/orderRoutes.js';
 import prescriptionRouter from './routes/prescriptionRoutes.js';
@@ -15,6 +19,142 @@ import Prescription from './models/prescriptionModel.js';
 import Ticket from './models/ticketModel.js';
 import googleOidcRouter from './googleOidc.js';
 import { isAllowedImage } from './routes/uploadRoutes.js';
+
+async function withServer(app, run) {
+  const server = await new Promise((resolve) => {
+    const listener = app.listen(0, '127.0.0.1', () => resolve(listener));
+  });
+  try { await run(`http://127.0.0.1:${server.address().port}`); }
+  finally { await new Promise((resolve) => server.close(resolve)); }
+}
+
+test('security headers cover HTML, API errors, and malformed JSON', async () => {
+  const previousEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+  const app = express();
+  app.disable('x-powered-by');
+  app.use(securityHeaders);
+  app.use(express.json());
+  app.get('/', (_req, res) => res.send('<html>ICare</html>'));
+  app.get('/api/orders/invalid', () => { throw Object.assign(new Error('private database details'), { name: 'CastError' }); });
+  app.post('/api/example', (_req, res) => res.sendStatus(204));
+  app.use((_req, res) => res.status(404).send({ message: 'Not found' }));
+  app.use(errorHandler);
+  try {
+    await withServer(app, async (base) => {
+      for (const path of ['/', '/signin', '/api/orders/invalid']) {
+        const response = await fetch(`${base}${path}`);
+        assert.equal(response.headers.get('x-powered-by'), null);
+        assert.equal(response.headers.get('x-frame-options'), 'DENY');
+        assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
+        assert.equal(response.headers.get('strict-transport-security'), 'max-age=31536000');
+        const csp = response.headers.get('content-security-policy');
+        assert.ok(csp.includes("frame-ancestors 'none'"));
+        assert.ok(csp.includes("object-src 'none'"));
+        assert.ok(!csp.includes("script-src 'self' 'unsafe-inline'"));
+      }
+      const invalid = await fetch(`${base}/api/orders/invalid`);
+      assert.equal(invalid.status, 400);
+      assert.equal(invalid.headers.get('cache-control'), 'no-store');
+      assert.deepEqual(await invalid.json(), { message: 'Invalid request' });
+      const malformed = await fetch(`${base}/api/example`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{' });
+      assert.equal(malformed.status, 400);
+      assert.deepEqual(await malformed.json(), { message: 'Invalid request' });
+    });
+  } finally {
+    if (previousEnv === undefined) delete process.env.NODE_ENV;
+    else process.env.NODE_ENV = previousEnv;
+  }
+});
+
+test('authentication rejects legacy reset JWTs, invalid claims, and revoked sessions', async () => {
+  const previousSecret = process.env.JWT_SECRET;
+  const originalFindById = User.findById;
+  process.env.JWT_SECRET = 'test-only-secret';
+  User.findById = () => ({ select: async () => ({ _id: 'user-1', tokenVersion: 1, isAdmin: false }) });
+  const app = express();
+  app.get('/private', isAuth, (_req, res) => res.sendStatus(204));
+  try {
+    await withServer(app, async (base) => {
+      const claims = { _id: 'user-1', purpose: 'access', tokenVersion: 1 };
+      const options = { issuer: 'icare-api', audience: 'icare-web', expiresIn: '1h' };
+      const invalidTokens = [
+        jwt.sign({ _id: 'user-1' }, process.env.JWT_SECRET),
+        jwt.sign({ ...claims, purpose: 'reset' }, process.env.JWT_SECRET, options),
+        jwt.sign(claims, process.env.JWT_SECRET, { ...options, issuer: 'other' }),
+        jwt.sign(claims, process.env.JWT_SECRET, { ...options, audience: 'other' }),
+        jwt.sign(claims, process.env.JWT_SECRET, { ...options, expiresIn: -1 }),
+        jwt.sign(claims, process.env.JWT_SECRET, { issuer: 'icare-api', audience: 'icare-web' }),
+        jwt.sign(claims, process.env.JWT_SECRET, { ...options, algorithm: 'HS384' }),
+        generateToken({ _id: 'user-1', tokenVersion: 0 }),
+      ];
+      for (const token of invalidTokens) {
+        assert.equal((await fetch(`${base}/private`, { headers: { authorization: `Bearer ${token}` } })).status, 401);
+      }
+      const valid = generateToken({ _id: 'user-1', tokenVersion: 1 });
+      assert.equal((await fetch(`${base}/private`, { headers: { authorization: `Bearer ${valid}` } })).status, 204);
+    });
+  } finally {
+    User.findById = originalFindById;
+    if (previousSecret === undefined) delete process.env.JWT_SECRET;
+    else process.env.JWT_SECRET = previousSecret;
+  }
+});
+
+test('password reset consumes its hash once and revokes existing access tokens', async () => {
+  const originalUpdate = User.findOneAndUpdate;
+  const token = 'a'.repeat(64);
+  const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
+  let consumed = false;
+  User.findOneAndUpdate = async (filter, update) => {
+    assert.equal(filter.resetToken, tokenHash);
+    assert.ok(filter.resetTokenExpiresAt.$gt instanceof Date);
+    assert.equal(bcrypt.compareSync('new-password-123', update.$set.password), true);
+    assert.deepEqual(update.$unset, { resetToken: '', resetTokenExpiresAt: '' });
+    assert.deepEqual(update.$inc, { tokenVersion: 1 });
+    if (consumed) return null;
+    consumed = true;
+    return { _id: 'user-1' };
+  };
+  const app = express();
+  app.use(express.json());
+  app.use('/api/users', userRouter);
+  app.use(errorHandler);
+  try {
+    await withServer(app, async (base) => {
+      const reset = () => fetch(`${base}/api/users/reset-password`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ token, password: 'new-password-123' }),
+      });
+      assert.equal((await reset()).status, 200);
+      assert.equal((await reset()).status, 400);
+      const weak = await fetch(`${base}/api/users/signup`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ password: 'a' }),
+      });
+      assert.equal(weak.status, 400);
+    });
+  } finally { User.findOneAndUpdate = originalUpdate; }
+});
+
+test('legacy card cleanup supports dry runs and only removes card data', async () => {
+  const writes = [];
+  const db = { collection(name) {
+    assert.ok(['cards', 'orders'].includes(name));
+    return {
+      async countDocuments() { return 2; },
+      async deleteMany(filter) { writes.push({ name, filter }); return { deletedCount: 2 }; },
+      async updateMany(filter, update) { writes.push({ name, filter, update }); return { modifiedCount: 2 }; },
+    };
+  } };
+  assert.deepEqual(await purgeLegacyCards(db), { cards: 2, ordersWithCardDetails: 2 });
+  assert.equal(writes.length, 0);
+  assert.deepEqual(await purgeLegacyCards(db, true), { cards: 2, ordersWithCardDetails: 2, deletedCards: 2, cleanedOrders: 2 });
+  assert.deepEqual(writes, [
+    { name: 'cards', filter: {} },
+    { name: 'orders', filter: { cardDetails: { $exists: true } }, update: { $unset: { cardDetails: '' } } },
+  ]);
+});
 
 test('order price comes from catalog even when a client submits a lower price', () => {
   const product = { _id: 'p1', slug: 'frames', name: 'Frames', image: '/frames.jpg', price: 200, countInStock: 5 };
@@ -56,7 +196,7 @@ test('administrator rights are loaded from the current user record', async () =>
   process.env.JWT_SECRET = 'test-only-secret';
   User.findById = () => ({ select: async () => ({ _id: 'user-1', isAdmin: false }) });
   try {
-    const token = jwt.sign({ _id: 'user-1', isAdmin: true }, process.env.JWT_SECRET);
+    const token = generateToken({ _id: 'user-1', isAdmin: true });
     const request = { headers: { authorization: `Bearer ${token}` } };
     let status;
     const response = { status(code) { status = code; return this; }, send() {} };
@@ -90,13 +230,14 @@ test('HTTP routes enforce owner and administrator boundaries', async () => {
   app.use('/api/orders', orderRouter);
   app.use('/api/prescriptions', prescriptionRouter);
   app.use('/api/tickets', ticketRouter);
+  app.use(errorHandler);
   const server = await new Promise((resolve) => {
     const listener = app.listen(0, '127.0.0.1', () => resolve(listener));
   });
   const base = `http://127.0.0.1:${server.address().port}`;
   const request = (method, path, id, body) => fetch(`${base}${path}`, {
     method,
-    headers: { authorization: `Bearer ${jwt.sign({ _id: id, isAdmin: true }, process.env.JWT_SECRET)}`, 'content-type': 'application/json' },
+    headers: { authorization: `Bearer ${generateToken({ _id: id, isAdmin: true })}`, 'content-type': 'application/json' },
     body: body ? JSON.stringify(body) : undefined,
   });
   try {
@@ -110,6 +251,16 @@ test('HTTP routes enforce owner and administrator boundaries', async () => {
     assert.equal((await request('POST', '/api/tickets/ticket-1/responses', 'other', { message: 'tamper' })).status, 404);
     assert.equal((await request('PUT', '/api/orders/order-1/pay', 'admin')).status, 200);
     assert.equal(order.isPaid, true);
+    order.paymentMethod = 'PayPal';
+    order.isPaid = false;
+    assert.equal((await request('PUT', '/api/orders/order-1/pay', 'admin')).status, 400);
+    assert.equal(order.isPaid, false);
+    assert.equal((await request('GET', '/api/prescriptions/prescription-1', 'owner')).status, 403);
+    assert.equal((await request('PUT', '/api/prescriptions/prescription-1', 'owner', { prescriptionDetails: 'tamper' })).status, 403);
+    Ticket.findById = async () => { throw Object.assign(new Error('private ObjectId details'), { name: 'CastError' }); };
+    const invalidTicket = await request('POST', '/api/tickets/invalid/responses', 'owner', { message: 'test' });
+    assert.equal(invalidTicket.status, 400);
+    assert.deepEqual(await invalidTicket.json(), { message: 'Invalid request' });
   } finally {
     await new Promise((resolve) => server.close(resolve));
     User.findById = originals.user;

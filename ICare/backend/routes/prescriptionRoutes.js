@@ -67,12 +67,8 @@ prescriptionRouter.put(
       prescription.prescriptionDetails = req.body.prescriptionDetails || prescription.prescriptionDetails;
       prescription.dateIssued = req.body.dateIssued || prescription.dateIssued;
       
-      try {
-        const updatedPrescription = await prescription.save();
-        res.send({ message: 'Prescription Updated', prescription: updatedPrescription });
-      } catch (error) {
-        res.status(500).send({ message: 'Error updating prescription', error: error.message });
-      }
+      const updatedPrescription = await prescription.save();
+      res.send({ message: 'Prescription Updated', prescription: updatedPrescription });
     } else {
       res.status(404).send({ message: 'Prescription Not Found' });
     }

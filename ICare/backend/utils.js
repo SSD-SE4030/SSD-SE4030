@@ -15,10 +15,15 @@ export const generateToken = (user) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      purpose: 'access',
+      tokenVersion: user.tokenVersion ?? 0,
     },
     process.env.JWT_SECRET,
     {
       expiresIn: '30d',
+      algorithm: 'HS256',
+      issuer: 'icare-api',
+      audience: 'icare-web',
     }
   );
 };
@@ -28,12 +33,17 @@ export const isAuth = (req, res, next) => {
   if (!authorization || !authorization.startsWith('Bearer ')) {
     return res.status(401).send({ message: 'Authentication required' });
   }
-  jwt.verify(authorization.slice(7), process.env.JWT_SECRET, async (err, decoded) => {
-    if (err || !decoded?._id) return res.status(401).send({ message: 'Invalid token' });
+  jwt.verify(authorization.slice(7), process.env.JWT_SECRET, {
+    algorithms: ['HS256'], issuer: 'icare-api', audience: 'icare-web',
+  }, async (err, decoded) => {
+    if (err || typeof decoded?._id !== 'string' || decoded.purpose !== 'access' ||
+        !Number.isInteger(decoded.tokenVersion) || !Number.isFinite(decoded.exp)) {
+      return res.status(401).send({ message: 'Invalid token' });
+    }
     try {
       const { default: User } = await import('./models/userModel.js');
-      const user = await User.findById(decoded._id).select('_id name email isAdmin');
-      if (!user) return res.status(401).send({ message: 'Invalid token' });
+      const user = await User.findById(decoded._id).select('_id name email isAdmin tokenVersion');
+      if (!user || decoded.tokenVersion !== (user.tokenVersion ?? 0)) return res.status(401).send({ message: 'Invalid token' });
       req.user = user;
       next();
     } catch (error) { next(error); }
