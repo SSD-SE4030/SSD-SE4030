@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { Button, Table, Form } from 'react-bootstrap';
 import { Store } from '../Store';
 import { getError } from '../utils';
@@ -18,6 +17,15 @@ const reducer = (state, action) => {
       return { ...state, orders: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+    case 'PAY_SUCCESS':
+      return {
+        ...state,
+        orders: state.orders.map((order) =>
+          order._id === action.payload._id
+            ? action.payload
+            : order
+        ),
+      };
     case 'DELETE_REQUEST':
       return { ...state, loadingDelete: true };
     case 'DELETE_SUCCESS':
@@ -32,7 +40,6 @@ const reducer = (state, action) => {
 };
 
 export default function PaymentListScreen() {
-  const navigate = useNavigate();
   const { state } = useContext(Store);
   const { userInfo } = state;
 
@@ -43,6 +50,7 @@ export default function PaymentListScreen() {
   });
 
   const [searchQuery, setSearchQuery] = useState(''); // For search functionality
+  const [payingOrderId, setPayingOrderId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,19 +88,24 @@ export default function PaymentListScreen() {
     }
   };
 
-  const togglePaidStatusHandler = async (order) => {
+  const confirmCodPaymentHandler = async (order) => {
+    if (!userInfo.isAdmin || order.isPaid || order.paymentMethod !== 'Cash On Delivery' || payingOrderId) return;
+    if (!window.confirm(`Have you actually collected Rs. ${order.totalPrice.toFixed(2)} in cash for order ${order._id}? Confirm this COD payment?`)) return;
+    setPayingOrderId(order._id);
     try {
-      await axios.put(
+      const { data } = await axios.put(
         `/api/orders/${order._id}/pay`,
         {},
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
-      toast.success('Order payment status updated');
-      dispatch({ type: 'FETCH_SUCCESS', payload: orders.map((o) => (o._id === order._id ? { ...o, isPaid: true } : o)) });
+      dispatch({ type: 'PAY_SUCCESS', payload: data.order });
+      toast.success('COD payment confirmed');
     } catch (err) {
       toast.error(getError(err));
+    } finally {
+      setPayingOrderId(null);
     }
   };
 
@@ -200,11 +213,14 @@ export default function PaymentListScreen() {
                     {userInfo.isAdmin && (
                       <Button
                         variant={order.isPaid ? 'success' : 'danger'}
-                        onClick={() => !order.isPaid && togglePaidStatusHandler(order)}
-                        disabled={order.isPaid}
+                        onClick={() => confirmCodPaymentHandler(order)}
+                        disabled={order.isPaid || order.paymentMethod !== 'Cash On Delivery' || payingOrderId !== null}
                       >
-                        {order.isPaid ? 'Paid' : 'Not Paid'}
+                        {order.isPaid ? 'Paid' : payingOrderId === order._id ? 'Confirming...' : 'Confirm COD Payment'}
                       </Button>
+                    )}
+                    {!order.isPaid && order.paymentMethod !== 'Cash On Delivery' && (
+                      <div>Not Paid — payment method is not eligible for COD confirmation.</div>
                     )}
                   </td>
                   <td>

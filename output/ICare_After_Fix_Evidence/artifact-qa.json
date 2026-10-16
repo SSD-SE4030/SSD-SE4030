@@ -1,0 +1,18 @@
+{
+  "ICare_After_Fix_Security_Assessment.pdf": {
+    "pages": 14,
+    "readableTextCharacters": 32352,
+    "outOfPageText": [],
+    "jwtStrings": 0,
+    "externalDatabaseURIs": 0
+  },
+  "ICare_ZAP_After_Fix_Report.pdf": {
+    "pages": 9,
+    "readableTextCharacters": 13353,
+    "outOfPageText": [],
+    "jwtStrings": 0,
+    "externalDatabaseURIs": 0,
+    "onlyTargetSite": true
+  },
+  "secretPatternMatches": {}
+}

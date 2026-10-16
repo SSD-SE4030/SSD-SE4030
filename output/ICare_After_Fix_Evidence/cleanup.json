@@ -1,0 +1,10 @@
+﻿{
+    "timestampUTC":  "2026-10-16T11:11:50.3006771Z",
+    "containersRemoved":  [
+                              "icare-afterfix-zap-20261016",
+                              "icare-afterfix-mongo-20261016"
+                          ],
+    "anonymousVolumesRemoved":  true,
+    "sharedAppsOrDatabasesTouched":  false,
+    "note":  "Only assessment-owned labelled containers removed. Downloaded images retained."
+}

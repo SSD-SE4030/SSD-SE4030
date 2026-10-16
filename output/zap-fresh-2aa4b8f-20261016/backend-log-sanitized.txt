@@ -1,0 +1,2 @@
+Server is running at http://localhost:4021
+Connected to the database

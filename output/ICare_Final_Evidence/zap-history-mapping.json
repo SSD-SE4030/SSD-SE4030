@@ -1,0 +1,320 @@
+[
+  {
+    "zapHistoryId": "1",
+    "evidenceId": "final12-1",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d853 HTTP/1.1",
+    "statusLine": "HTTP/1.1 404 Not Found"
+  },
+  {
+    "zapHistoryId": "3",
+    "evidenceId": "final12-2",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d853 HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "8",
+    "evidenceId": "final12-3",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d853 HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "9",
+    "evidenceId": "final12-4",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d853 HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "10",
+    "evidenceId": "final12-5",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d855/deliver HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "12",
+    "evidenceId": "final12-6",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d855/deliver HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "13",
+    "evidenceId": "final12-7",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d855/deliver HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "14",
+    "evidenceId": "final12-8",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d855/deliver HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "15",
+    "evidenceId": "final12-9",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d857/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "17",
+    "evidenceId": "final12-10",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d857/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "18",
+    "evidenceId": "final12-11",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d859/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "20",
+    "evidenceId": "final12-12",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d859/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "21",
+    "evidenceId": "final12-13",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d85b/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "23",
+    "evidenceId": "final12-14",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d85b/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "24",
+    "evidenceId": "final12-15",
+    "requestLine": "PUT http://host.docker.internal:4021/api/orders/6ad22cd2efe761f652a1d85b/pay HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "25",
+    "evidenceId": "final12-16",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 201 Created"
+  },
+  {
+    "zapHistoryId": "26",
+    "evidenceId": "final12-17",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 201 Created"
+  },
+  {
+    "zapHistoryId": "27",
+    "evidenceId": "final12-18",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "28",
+    "evidenceId": "final12-19",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "29",
+    "evidenceId": "final12-20",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "30",
+    "evidenceId": "final12-21",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "31",
+    "evidenceId": "final12-22",
+    "requestLine": "GET http://host.docker.internal:4021/api/prescriptions/6ad22cd2efe761f652a1d863 HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "33",
+    "evidenceId": "final12-23",
+    "requestLine": "GET http://host.docker.internal:4021/api/prescriptions HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "34",
+    "evidenceId": "final12-24",
+    "requestLine": "GET http://host.docker.internal:4021/api/prescriptions/6ad22cd2efe761f652a1d863 HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "35",
+    "evidenceId": "final12-25",
+    "requestLine": "PUT http://host.docker.internal:4021/api/prescriptions/6ad22cd2efe761f652a1d863 HTTP/1.1",
+    "statusLine": "HTTP/1.1 403 Forbidden"
+  },
+  {
+    "zapHistoryId": "36",
+    "evidenceId": "final12-26",
+    "requestLine": "PUT http://host.docker.internal:4021/api/prescriptions/6ad22cd2efe761f652a1d863 HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "37",
+    "evidenceId": "final12-27",
+    "requestLine": "GET http://host.docker.internal:4021/api/tickets/6ad22cd2efe761f652a1d865 HTTP/1.1",
+    "statusLine": "HTTP/1.1 404 Not Found"
+  },
+  {
+    "zapHistoryId": "39",
+    "evidenceId": "final12-28",
+    "requestLine": "POST http://host.docker.internal:4021/api/tickets/6ad22cd2efe761f652a1d865/responses HTTP/1.1",
+    "statusLine": "HTTP/1.1 404 Not Found"
+  },
+  {
+    "zapHistoryId": "41",
+    "evidenceId": "final12-29",
+    "requestLine": "POST http://host.docker.internal:4021/api/tickets/6ad22cd2efe761f652a1d865/responses HTTP/1.1",
+    "statusLine": "HTTP/1.1 201 Created"
+  },
+  {
+    "zapHistoryId": "42",
+    "evidenceId": "final12-30",
+    "requestLine": "POST http://host.docker.internal:4021/api/tickets/6ad22cd2efe761f652a1d865/responses HTTP/1.1",
+    "statusLine": "HTTP/1.1 201 Created"
+  },
+  {
+    "zapHistoryId": "43",
+    "evidenceId": "final12-31",
+    "requestLine": "GET http://host.docker.internal:4021/api/card-details HTTP/1.1",
+    "statusLine": "HTTP/1.1 404 Not Found"
+  },
+  {
+    "zapHistoryId": "44",
+    "evidenceId": "final12-32",
+    "requestLine": "POST http://host.docker.internal:4021/api/card-details HTTP/1.1",
+    "statusLine": "HTTP/1.1 404 Not Found"
+  },
+  {
+    "zapHistoryId": "45",
+    "evidenceId": "final12-33",
+    "requestLine": "POST http://host.docker.internal:4021/api/orders HTTP/1.1",
+    "statusLine": "HTTP/1.1 201 Created"
+  },
+  {
+    "zapHistoryId": "46",
+    "evidenceId": "final12-34",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/reset-password HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "48",
+    "evidenceId": "final12-35",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/reset-password HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "49",
+    "evidenceId": "final12-36",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/signin HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "50",
+    "evidenceId": "final12-37",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/signin HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "51",
+    "evidenceId": "final12-38",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/mine HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "52",
+    "evidenceId": "final12-39",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/mine HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "53",
+    "evidenceId": "final12-40",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/mine HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "54",
+    "evidenceId": "final12-41",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/mine HTTP/1.1",
+    "statusLine": "HTTP/1.1 401 Unauthorized"
+  },
+  {
+    "zapHistoryId": "55",
+    "evidenceId": "final12-42",
+    "requestLine": "GET http://host.docker.internal:4021/api/orders/mine HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "56",
+    "evidenceId": "final12-43",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/signup HTTP/1.1",
+    "statusLine": "HTTP/1.1 400 Bad Request"
+  },
+  {
+    "zapHistoryId": "57",
+    "evidenceId": "final12-44",
+    "requestLine": "POST http://host.docker.internal:4021/api/users/signup HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "58",
+    "evidenceId": "final12-45",
+    "requestLine": "GET http://host.docker.internal:4021/ HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "59",
+    "evidenceId": "final12-46",
+    "requestLine": "GET http://host.docker.internal:4021/signin HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "60",
+    "evidenceId": "final12-47",
+    "requestLine": "GET http://host.docker.internal:4021/signup HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "61",
+    "evidenceId": "final12-48",
+    "requestLine": "GET http://host.docker.internal:4021/static/css/main.16b9ff7d.css HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "64",
+    "evidenceId": "final12-49",
+    "requestLine": "GET http://host.docker.internal:4021/static/js/main.ba8f17b4.js HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "66",
+    "evidenceId": "final12-50",
+    "requestLine": "GET http://host.docker.internal:4021/static/js/239.fcaddd2b.chunk.js HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "67",
+    "evidenceId": "final12-51",
+    "requestLine": "GET http://host.docker.internal:4021/static/js/213.aa9f6aad.chunk.js HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "68",
+    "evidenceId": "final12-52",
+    "requestLine": "GET http://host.docker.internal:4021/static/js/732.be0d18e9.chunk.js HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  },
+  {
+    "zapHistoryId": "69",
+    "evidenceId": "final12-53",
+    "requestLine": "GET http://host.docker.internal:4021/static/js/488.6340bad8.chunk.js HTTP/1.1",
+    "statusLine": "HTTP/1.1 200 OK"
+  }
+]

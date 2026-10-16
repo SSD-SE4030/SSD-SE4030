@@ -1,0 +1,27 @@
+{
+  "head": "d7e93299cde0a19bf9aa495fbc592d2fec13b938",
+  "original": "5b5b25869d92a662b1e5180eb1b4f22bcf3a7830",
+  "hardening": "0b57ca91c60576b4309d72108839591d32370b50",
+  "dirtyStatus": "M ICare/backend/.env.example\n M ICare/frontend/package-lock.json\n M ICare/frontend/package.json\n M ICare/frontend/src/screens/PaymentListScreen.js\n?? ICare/backend/testFixtures/\n?? ICare/backend/v03.test.js\n?? ICare/frontend/src/screens/PaymentListScreen.test.js\n?? V03_PAYMENT_DEMO.md\n?? output/ICare_After_Fix_Evidence/\n?? output/ICare_After_Fix_Security_Assessment.pdf\n?? output/ICare_Security_Test_Results.csv\n?? output/ICare_ZAP_After_Fix_Report.html\n?? output/ICare_ZAP_After_Fix_Report.pdf",
+  "sourceHashes": {
+    "ICare/backend/server.js": "72e8450348d623ba2d8f860af35879e5e33ba3f99b0687587ec400091c4ec34a",
+    "ICare/backend/routes/orderRoutes.js": "9ea8ad974d73ecc30b8f51630a7b88c4dfd7f08192f5c46925f20d285cec80c1",
+    "ICare/backend/orderPricing.js": "8af321fd51f72050267919bc101869cf97abb76c5e03006f79b9efac3ae20daf",
+    "ICare/backend/utils.js": "20973b80edb5b5565491e6b7e15075986b9662040c7537bd39fe985cebad8ee4",
+    "ICare/backend/routes/userRoutes.js": "9c411901cede1affe8281fc6c65378adfb85906ca67bbc0d65bfd8f625e00668",
+    "ICare/backend/routes/prescriptionRoutes.js": "166e3488362ac1dfe436a1b222db7ef98b94d1fd5288cea013d90d1bc48fd745",
+    "ICare/backend/routes/uploadRoutes.js": "8b38f53e91c3a6eef4cbd997e9cfe99ab2e7e97a228b718802771e1cf9c659ab",
+    "ICare/backend/routes/ticketRoutes.js": "5a329aa26aba538e721714e260655d8cb128a079a30179665691825faa7ee785",
+    "ICare/backend/models/orderModel.js": "ccbe917eb55c064976cfa900e32f925e3360f124551b8bdcf0212450fbb9bed6",
+    "ICare/frontend/src/screens/PaymentListScreen.js": "d2379a2728195aa8e98a46b76ad0a0daf7c810183298dcfd71cc4d616fcca356",
+    "ICare/backend/security.test.js": "cca078112faf9efc89615abe7a82e01d1ec41ce86e55c4950814f2775df0f7f4",
+    "ICare/backend/v03.test.js": "a0088720c79c2aaba4a086164e521c4fdf922f5d31cf63123ecbc6d9ce767b3c",
+    "ICare/frontend/src/screens/PaymentListScreen.test.js": "cfacb38600e6f498cbfad85602925dd1dad899b3583de16ecd79572ac074cc5b"
+  },
+  "inputs": {
+    "optical-store-zap-report.pdf": "49abedccee96e9aa2765686c219bb0991852e76175ccb21ba70efaf3f2f264fb",
+    "SSD_Assignment_GroupID -113.pdf": "79b1a9703ae71217289bc52f55a750067186d71524154145ab286cfc4b754849"
+  },
+  "node": "v24.14.0",
+  "assessmentUTC": "2026-10-16T11:12:37.670537+00:00"
+}

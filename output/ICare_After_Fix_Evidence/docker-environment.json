@@ -1,0 +1,11 @@
+﻿{
+    "engine":  "29.3.0",
+    "mongoImage":  "[\"mongo@sha256:7abfba0d07c9330373f8173981ea4d09cd8a82cdf0e86ccaf7008848d1d24f62\"]",
+    "mongoVersion":  "8.2.7",
+    "mongoPorts":  "{\"27017/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"27028\"}]}",
+    "mongoTmpfs":  "{\"/data/db\":\"\"}",
+    "sharedDataMounted":  false,
+    "note":  "New container with its own anonymous configdb volume; no existing host database data mounted.",
+    "zapImage":  "[\"ghcr.io/zaproxy/zaproxy@sha256:0cbc40e0fa1562d5170a18a247eca579c4d155ad869f8944c3b8526d4a58c64c\"]",
+    "zapPorts":  "{\"8080/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"8091\"}]}"
+}

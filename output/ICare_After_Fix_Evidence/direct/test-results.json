@@ -1,0 +1,533 @@
+[
+  {
+    "id": "V01",
+    "name": "seed route removed",
+    "expected": "404; database counts unchanged",
+    "status": "PASS",
+    "http": 404,
+    "before": [
+      4,
+      1
+    ],
+    "after": [
+      4,
+      1
+    ],
+    "pass": true
+  },
+  {
+    "id": "V02",
+    "name": "owner reads owner order",
+    "expected": "200",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V02",
+    "name": "other reads owner order",
+    "expected": "404",
+    "status": "PASS",
+    "http": 404,
+    "pass": true
+  },
+  {
+    "id": "V02",
+    "name": "admin reads owner order",
+    "expected": "200",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "anonymous pay",
+    "expected": "401; record unchanged",
+    "status": "PASS",
+    "http": 401,
+    "before": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "after": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "customer pay",
+    "expected": "403; record unchanged",
+    "status": "PASS",
+    "http": 403,
+    "before": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "after": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "customer delivery",
+    "expected": "403; record unchanged",
+    "status": "PASS",
+    "http": 403,
+    "before": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "after": {
+      "isPaid": false,
+      "isDelivered": false
+    },
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "admin confirms canonical COD",
+    "expected": "200; persisted paid timestamp/status",
+    "status": "PASS",
+    "http": 200,
+    "before": {
+      "isPaid": false
+    },
+    "after": {
+      "isPaid": true,
+      "paidAt": "2026-10-16T11:00:49.275Z",
+      "paymentResult": {
+        "status": "Paid"
+      }
+    },
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "already paid",
+    "expected": "400; no mutation",
+    "status": "PASS",
+    "http": 400,
+    "message": "Order cannot be marked paid",
+    "paymentMethod": "Cash On Delivery",
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "non-COD",
+    "expected": "400; no mutation",
+    "status": "PASS",
+    "http": 400,
+    "message": "Order cannot be marked paid",
+    "paymentMethod": "PayPal",
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "Demo label mismatch",
+    "expected": "400; no mutation",
+    "status": "PASS",
+    "http": 400,
+    "message": "Order cannot be marked paid",
+    "paymentMethod": "Demo - Cash on Delivery",
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "missing order",
+    "expected": "404",
+    "status": "PASS",
+    "http": 404,
+    "pass": true
+  },
+  {
+    "id": "V03",
+    "name": "admin delivery",
+    "expected": "200; delivered stored",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "catalog price defeats tampering",
+    "expected": "201; items=400 tax=60 shipping=0 total=460",
+    "status": "PASS",
+    "http": 201,
+    "after": {
+      "price": 200,
+      "items": 400,
+      "tax": 60,
+      "shipping": 0,
+      "total": 460
+    },
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "excess stock",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "fractional quantity",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "zero quantity",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "duplicate",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "unknown product",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "invalid product",
+    "expected": "400; no order created",
+    "status": "PASS",
+    "http": 400,
+    "before": 4,
+    "after": 4,
+    "pass": true
+  },
+  {
+    "id": "V04",
+    "name": "shipping threshold arithmetic",
+    "expected": "201; items=100 tax=15 shipping=10 total=125",
+    "status": "PASS",
+    "http": 201,
+    "after": {
+      "items": 100,
+      "tax": 15,
+      "shipping": 10,
+      "total": 125
+    },
+    "pass": true
+  },
+  {
+    "id": "V05",
+    "name": "removed card API GET",
+    "expected": "404",
+    "status": "PASS",
+    "http": 404,
+    "pass": true
+  },
+  {
+    "id": "V05",
+    "name": "removed card API POST",
+    "expected": "404",
+    "status": "PASS",
+    "http": 404,
+    "pass": true
+  },
+  {
+    "id": "V05",
+    "name": "synthetic order ignores card-shaped fields",
+    "expected": "201; no card fields stored/returned",
+    "status": "PASS",
+    "http": 201,
+    "pass": true
+  },
+  {
+    "id": "V06",
+    "name": "customer list",
+    "expected": "403; prescription unchanged",
+    "status": "PASS",
+    "http": 403,
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V06",
+    "name": "customer detail",
+    "expected": "403; prescription unchanged",
+    "status": "PASS",
+    "http": 403,
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V06",
+    "name": "customer edit",
+    "expected": "403; prescription unchanged",
+    "status": "PASS",
+    "http": 403,
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V06",
+    "name": "customer create",
+    "expected": "403; prescription unchanged",
+    "status": "PASS",
+    "http": 403,
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V06",
+    "name": "admin prescription read",
+    "expected": "200",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V07",
+    "name": "demoted administrator old token",
+    "expected": "403 after database demotion",
+    "status": "PASS",
+    "http": 403,
+    "pass": true
+  },
+  {
+    "id": "V07",
+    "name": "deleted account old token",
+    "expected": "401",
+    "status": "PASS",
+    "http": 401,
+    "pass": true
+  },
+  {
+    "id": "V08",
+    "name": "admin list",
+    "expected": "200; sensitive keys absent",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V08",
+    "name": "admin detail",
+    "expected": "200; sensitive keys absent",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V08",
+    "name": "admin update",
+    "expected": "200; sensitive keys absent",
+    "status": "PASS",
+    "http": 200,
+    "pass": true
+  },
+  {
+    "id": "V09",
+    "name": "expired token",
+    "expected": "400; password unchanged",
+    "status": "PASS",
+    "http": 400,
+    "pass": true
+  },
+  {
+    "id": "V09",
+    "name": "single-use reset token",
+    "expected": "200 then 400; cleared hash/expiry; no token in logs",
+    "status": "PASS",
+    "http": [
+      200,
+      400
+    ],
+    "tokenLogged": false,
+    "pass": true
+  },
+  {
+    "id": "V09",
+    "name": "known/unknown email generic response, mail disabled",
+    "expected": "same 200 response",
+    "status": "PASS",
+    "http": [
+      200,
+      200
+    ],
+    "message": "If the account exists, a reset link has been sent.",
+    "pass": true
+  },
+  {
+    "id": "V09",
+    "name": "opaque reset token rejected as API bearer",
+    "expected": "401",
+    "status": "PASS",
+    "http": 401,
+    "pass": true
+  },
+  {
+    "id": "V09",
+    "name": "legacy reset-shaped JWT accepted as access token",
+    "expected": "401 desired; defense-in-depth check",
+    "status": "FAIL",
+    "http": 200,
+    "pass": false,
+    "detail": "New reset flow issues opaque tokens, not JWTs. Shared-secret legacy reset-shaped JWTs still satisfy isAuth; no issuer/audience/purpose enforcement."
+  },
+  {
+    "id": "V10",
+    "name": "MIME spoof",
+    "expected": "400; no external upload",
+    "status": "PASS",
+    "http": 400,
+    "pass": true
+  },
+  {
+    "id": "V10",
+    "name": "disallowed type",
+    "expected": "400; no external upload",
+    "status": "PASS",
+    "http": 400,
+    "pass": true
+  },
+  {
+    "id": "V10",
+    "name": "oversized image",
+    "expected": "413; no external upload",
+    "status": "PASS",
+    "http": 413,
+    "pass": true
+  },
+  {
+    "id": "V10",
+    "name": "allowed JPEG PNG WebP signatures (unit only)",
+    "expected": "recognized; external upload excluded",
+    "status": "PASS",
+    "pass": true,
+    "detail": "Signature recognition only; not full image decoding or end-to-end Cloudinary upload."
+  },
+  {
+    "id": "V11",
+    "name": "other customer cannot respond",
+    "expected": "404; responses unchanged",
+    "status": "PASS",
+    "http": 404,
+    "unchanged": true,
+    "pass": true
+  },
+  {
+    "id": "V11",
+    "name": "owner can respond",
+    "expected": "201",
+    "status": "PASS",
+    "http": 201,
+    "pass": true
+  },
+  {
+    "id": "V12",
+    "name": "malformed order identifier",
+    "expected": "400 generic; no stack/cast details",
+    "status": "PASS",
+    "http": 400,
+    "message": "Invalid request",
+    "pass": true
+  },
+  {
+    "id": "V12",
+    "name": "internal prescription validation error",
+    "expected": "generic error without implementation details",
+    "status": "FAIL",
+    "http": 500,
+    "pass": false,
+    "detail": "Route-local catch may expose Mongoose validation details even though global middleware is generic."
+  },
+  {
+    "id": "EXTRA-PASSWORD",
+    "name": "single-character signup rejected",
+    "expected": "400; no account created",
+    "status": "PASS",
+    "http": 400,
+    "pass": true
+  },
+  {
+    "id": "HEADERS",
+    "name": "HTML headers and SRI /",
+    "expected": "security headers and external stylesheet integrity",
+    "status": "FAIL",
+    "http": 200,
+    "pass": false,
+    "headers": {
+      "csp": null,
+      "xFrameOptions": null,
+      "nosniff": null,
+      "xPoweredBy": null
+    },
+    "externalStylesheetWithoutIntegrity": true
+  },
+  {
+    "id": "HEADERS",
+    "name": "HTML headers and SRI /signin",
+    "expected": "security headers and external stylesheet integrity",
+    "status": "FAIL",
+    "http": 200,
+    "pass": false,
+    "headers": {
+      "csp": null,
+      "xFrameOptions": null,
+      "nosniff": null,
+      "xPoweredBy": null
+    },
+    "externalStylesheetWithoutIntegrity": true
+  },
+  {
+    "id": "HEADERS",
+    "name": "HTML headers and SRI /signup",
+    "expected": "security headers and external stylesheet integrity",
+    "status": "FAIL",
+    "http": 200,
+    "pass": false,
+    "headers": {
+      "csp": null,
+      "xFrameOptions": null,
+      "nosniff": null,
+      "xPoweredBy": null
+    },
+    "externalStylesheetWithoutIntegrity": true
+  },
+  {
+    "id": "V12",
+    "name": "malformed JSON global internal handler",
+    "expected": "generic 500 without stack",
+    "status": "PASS",
+    "http": 500,
+    "message": "Internal server error",
+    "pass": true,
+    "detail": "Generic response verified; malformed JSON should preferably return 400."
+  }
+]

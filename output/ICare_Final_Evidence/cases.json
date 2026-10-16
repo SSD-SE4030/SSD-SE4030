@@ -1,0 +1,1630 @@
+[
+  {
+    "id": "VIVA-01",
+    "name": "Cross-user order disclosure",
+    "original": "Alice retrieved Bob order and shipping details (academic p4, viva-0005).",
+    "expected": "Alice 404; Bob/admin 200; anonymous 401; read-only state unchanged",
+    "startedUTC": "2026-10-16T13:55:30.049Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Read requests do not mutate order",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d853",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d854"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d853",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d854"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "1a57159e90e886ab674ea521a56c3b1aeb422abcea37eef10122d80001d39ddf",
+        "afterSHA256": "1a57159e90e886ab674ea521a56c3b1aeb422abcea37eef10122d80001d39ddf",
+        "unchanged": true,
+        "unchangedExpected": true
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-1",
+          "status": 404
+        },
+        {
+          "evidenceId": "final12-2",
+          "status": 200
+        },
+        {
+          "evidenceId": "final12-3",
+          "status": 200
+        },
+        {
+          "evidenceId": "final12-4",
+          "status": 401
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:30.322Z",
+    "evidence": [
+      "final12-1",
+      "final12-2",
+      "final12-3",
+      "final12-4"
+    ]
+  },
+  {
+    "id": "VIVA-02",
+    "name": "Unauthorized delivery update",
+    "original": "Ordinary customer changed Bob isDelivered false to true (academic p6, viva-0006).",
+    "expected": "Customer 403; anonymous 401; unchanged denied state; admin 200",
+    "startedUTC": "2026-10-16T13:55:30.322Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Cross-user rejection",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "4eb5659be1a03a1b8e85df9b7de1eff4fb8b9469ab52f1688dbce6f4b42693b8",
+        "afterSHA256": "4eb5659be1a03a1b8e85df9b7de1eff4fb8b9469ab52f1688dbce6f4b42693b8",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Owner/anonymous rejection",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "4eb5659be1a03a1b8e85df9b7de1eff4fb8b9469ab52f1688dbce6f4b42693b8",
+        "afterSHA256": "4eb5659be1a03a1b8e85df9b7de1eff4fb8b9469ab52f1688dbce6f4b42693b8",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Admin legitimate transition",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d855",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d856"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": true,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.472Z",
+          "__v": 0,
+          "deliveredAt": "2026-10-16T13:55:30.463Z"
+        },
+        "beforeSHA256": "4eb5659be1a03a1b8e85df9b7de1eff4fb8b9469ab52f1688dbce6f4b42693b8",
+        "afterSHA256": "e1ca21c92689342cf551f706542125cae3ec85136a75d0f7d68f36cec8e02398",
+        "unchanged": false,
+        "unchangedExpected": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-5",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-6",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-7",
+          "status": 401
+        },
+        {
+          "evidenceId": "final12-8",
+          "status": 200
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:30.507Z",
+    "evidence": [
+      "final12-5",
+      "final12-6",
+      "final12-7",
+      "final12-8"
+    ]
+  },
+  {
+    "id": "VIVA-03",
+    "name": "Paid without provider verification",
+    "original": "Empty request marked unpaid PayPal order paid (academic p9, viva-0009).",
+    "expected": "Unsupported PayPal 400 with unchanged state; supported synthetic COD admin control 200",
+    "startedUTC": "2026-10-16T13:55:30.507Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Empty proof rejected",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d857",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d858"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "PayPal",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d857",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d858"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "PayPal",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "a44404e421220417267e537b05530ce4890e94388ce1feda99eaf378f6dfdd77",
+        "afterSHA256": "a44404e421220417267e537b05530ce4890e94388ce1feda99eaf378f6dfdd77",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Fabricated proof rejected",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d857",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d858"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "PayPal",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d857",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d858"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "PayPal",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "a44404e421220417267e537b05530ce4890e94388ce1feda99eaf378f6dfdd77",
+        "afterSHA256": "a44404e421220417267e537b05530ce4890e94388ce1feda99eaf378f6dfdd77",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Canonical COD control persisted",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d859",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85a"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d859",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85a"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": true,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.631Z",
+          "__v": 0,
+          "paidAt": "2026-10-16T13:55:30.626Z",
+          "paymentResult": {
+            "status": "Paid"
+          }
+        },
+        "beforeSHA256": "feb14cf9df031f3dda69391281cda77d69f74a6bba5ec6a449f03790c6ed891c",
+        "afterSHA256": "fc308ad741957d35b4efc4a633de86b443250af460916cbf3b46a76f7167c6d8",
+        "unchanged": false,
+        "unchangedExpected": false
+      },
+      {
+        "label": "Repeated confirmation unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d859",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85a"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": true,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.631Z",
+          "__v": 0,
+          "paidAt": "2026-10-16T13:55:30.626Z",
+          "paymentResult": {
+            "status": "Paid"
+          }
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d859",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85a"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": true,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.631Z",
+          "__v": 0,
+          "paidAt": "2026-10-16T13:55:30.626Z",
+          "paymentResult": {
+            "status": "Paid"
+          }
+        },
+        "beforeSHA256": "fc308ad741957d35b4efc4a633de86b443250af460916cbf3b46a76f7167c6d8",
+        "afterSHA256": "fc308ad741957d35b4efc4a633de86b443250af460916cbf3b46a76f7167c6d8",
+        "unchanged": true,
+        "unchangedExpected": true
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-9",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-10",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-11",
+          "status": 200
+        },
+        {
+          "evidenceId": "final12-12",
+          "status": 400
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:30.713Z",
+    "evidence": [
+      "final12-9",
+      "final12-10",
+      "final12-11",
+      "final12-12"
+    ]
+  },
+  {
+    "id": "VIVA-04",
+    "name": "Cross-user payment modification",
+    "original": "Alice marked Bob separate order paid (academic p5, viva-0010).",
+    "expected": "Customer 403; financial state unchanged; administrator COD control 200",
+    "startedUTC": "2026-10-16T13:55:30.713Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Cross-user denial unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "b12305408895e5e0347c35b7ca576a287ee1f4e1f95b1809291b303171182c1e",
+        "afterSHA256": "b12305408895e5e0347c35b7ca576a287ee1f4e1f95b1809291b303171182c1e",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Owner denial unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "beforeSHA256": "b12305408895e5e0347c35b7ca576a287ee1f4e1f95b1809291b303171182c1e",
+        "afterSHA256": "b12305408895e5e0347c35b7ca576a287ee1f4e1f95b1809291b303171182c1e",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Admin payment stored",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": false,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.019Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d85b",
+          "orderItems": [
+            {
+              "slug": "synthetic-frames",
+              "name": "Synthetic baseline-price frames",
+              "quantity": 1,
+              "image": "/synthetic.png",
+              "price": 100,
+              "product": "6ad22cd1efe761f652a1d851",
+              "_id": "6ad22cd2efe761f652a1d85c"
+            }
+          ],
+          "shippingAddress": {
+            "fullName": "Bob Synthetic",
+            "address": "Test address",
+            "city": "Test city",
+            "postalCode": "00000",
+            "country": "Test"
+          },
+          "paymentMethod": "Cash On Delivery",
+          "itemsPrice": 100,
+          "shippingPrice": 10,
+          "taxPrice": 15,
+          "totalPrice": 125,
+          "user": "6ad22cd1efe761f652a1d84c",
+          "isPaid": true,
+          "isDelivered": false,
+          "createdAt": "2026-10-16T13:55:30.019Z",
+          "updatedAt": "2026-10-16T13:55:30.840Z",
+          "__v": 0,
+          "paidAt": "2026-10-16T13:55:30.837Z",
+          "paymentResult": {
+            "status": "Paid"
+          }
+        },
+        "beforeSHA256": "b12305408895e5e0347c35b7ca576a287ee1f4e1f95b1809291b303171182c1e",
+        "afterSHA256": "2b9f1003267bee4fe3608f9fc19279b4f474450b440eb6af5fccd881719b6020",
+        "unchanged": false,
+        "unchangedExpected": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-13",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-14",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-15",
+          "status": 200
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:30.881Z",
+    "evidence": [
+      "final12-13",
+      "final12-14",
+      "final12-15"
+    ]
+  },
+  {
+    "id": "VIVA-05",
+    "name": "Client-controlled order pricing",
+    "original": "Catalog 100 accepted submitted price/total 0.01 (academic p7, viva-0011).",
+    "expected": "Saved catalog price 100; shipping 10, tax 15, total 125; bad quantities rejected",
+    "startedUTC": "2026-10-16T13:55:30.881Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Forged order saved at trusted catalog price",
+        "before": {
+          "catalogPrice": 100,
+          "orderCount": 5
+        },
+        "after": {
+          "orderCount": 6,
+          "savedOrder": {
+            "_id": "6ad22cd26da81c9f97ce93af",
+            "orderItems": [
+              {
+                "slug": "synthetic-frames",
+                "name": "Synthetic baseline-price frames",
+                "quantity": 1,
+                "image": "/synthetic.png",
+                "price": 100,
+                "product": "6ad22cd1efe761f652a1d851",
+                "_id": "6ad22cd26da81c9f97ce93b0"
+              }
+            ],
+            "shippingAddress": {
+              "fullName": "Bob Synthetic",
+              "address": "Test address",
+              "city": "Test city",
+              "postalCode": "00000",
+              "country": "Test"
+            },
+            "paymentMethod": "Cash On Delivery",
+            "itemsPrice": 100,
+            "shippingPrice": 10,
+            "taxPrice": 15,
+            "totalPrice": 125,
+            "user": "6ad22cd1efe761f652a1d84c",
+            "isPaid": false,
+            "isDelivered": false,
+            "createdAt": "2026-10-16T13:55:30.925Z",
+            "updatedAt": "2026-10-16T13:55:30.925Z",
+            "__v": 0
+          }
+        },
+        "unchangedExpected": false
+      },
+      {
+        "label": "Quantity -1 creates no order",
+        "before": {
+          "orderCount": 7
+        },
+        "after": {
+          "orderCount": 7
+        },
+        "beforeSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "afterSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Quantity 0 creates no order",
+        "before": {
+          "orderCount": 7
+        },
+        "after": {
+          "orderCount": 7
+        },
+        "beforeSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "afterSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Quantity 1.5 creates no order",
+        "before": {
+          "orderCount": 7
+        },
+        "after": {
+          "orderCount": 7
+        },
+        "beforeSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "afterSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Quantity 6 creates no order",
+        "before": {
+          "orderCount": 7
+        },
+        "after": {
+          "orderCount": 7
+        },
+        "beforeSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "afterSHA256": "e958545860e4d45aa24c32a796c359ff28ed6c3cd8db0d4735a31696ff2deaab",
+        "unchanged": true,
+        "unchangedExpected": true
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-16",
+          "status": 201
+        },
+        {
+          "evidenceId": "final12-17",
+          "status": 201
+        },
+        {
+          "evidenceId": "final12-18",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-19",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-20",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-21",
+          "status": 400
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:31.246Z",
+    "evidence": [
+      "final12-16",
+      "final12-17",
+      "final12-18",
+      "final12-19",
+      "final12-20",
+      "final12-21"
+    ]
+  },
+  {
+    "id": "VIVA-06",
+    "name": "Prescription disclosure",
+    "original": "Alice read unrelated patient prescription (academic p13, viva-0012).",
+    "expected": "Alice detail/list 403; admin read 200; no record mutation",
+    "startedUTC": "2026-10-16T13:55:31.247Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Prescription reads unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Original synthetic prescription",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:30.039Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Original synthetic prescription",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:30.039Z",
+          "__v": 0
+        },
+        "beforeSHA256": "25628bab9f3a9a319f157a8966fcbaffa4052239d71ba7667d78ac130c2c4daf",
+        "afterSHA256": "25628bab9f3a9a319f157a8966fcbaffa4052239d71ba7667d78ac130c2c4daf",
+        "unchanged": true,
+        "unchangedExpected": true
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-22",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-23",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-24",
+          "status": 200
+        }
+      ],
+      "policy": "Current application permits prescription management to administrators, not patients/customers."
+    },
+    "finishedUTC": "2026-10-16T13:55:31.375Z",
+    "evidence": [
+      "final12-22",
+      "final12-23",
+      "final12-24"
+    ]
+  },
+  {
+    "id": "VIVA-07",
+    "name": "Unauthorized prescription modification",
+    "original": "Alice edited unrelated patient prescription (academic p14, viva-0013).",
+    "expected": "Alice 403 and document unchanged; authorized administrator update 200",
+    "startedUTC": "2026-10-16T13:55:31.376Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Denied prescription edit unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Original synthetic prescription",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:30.039Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Original synthetic prescription",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:30.039Z",
+          "__v": 0
+        },
+        "beforeSHA256": "25628bab9f3a9a319f157a8966fcbaffa4052239d71ba7667d78ac130c2c4daf",
+        "afterSHA256": "25628bab9f3a9a319f157a8966fcbaffa4052239d71ba7667d78ac130c2c4daf",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Admin prescription correction",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Original synthetic prescription",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:30.039Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d863",
+          "patientName": "Bob Synthetic Patient",
+          "optometrist": "6ad22cd2efe761f652a1d862",
+          "prescriptionDetails": "Authorized synthetic correction",
+          "dateIssued": "2026-10-16T13:55:30.038Z",
+          "createdAt": "2026-10-16T13:55:30.039Z",
+          "updatedAt": "2026-10-16T13:55:31.430Z",
+          "__v": 0
+        },
+        "beforeSHA256": "25628bab9f3a9a319f157a8966fcbaffa4052239d71ba7667d78ac130c2c4daf",
+        "afterSHA256": "fb5b87140fb44199bb02c8849bd3a8c96ce2d4243decd5760682546d2fa8141e",
+        "unchanged": false,
+        "unchangedExpected": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-25",
+          "status": 403
+        },
+        {
+          "evidenceId": "final12-26",
+          "status": 200
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:31.459Z",
+    "evidence": [
+      "final12-25",
+      "final12-26"
+    ]
+  },
+  {
+    "id": "VIVA-08",
+    "name": "Cross-user support-ticket response",
+    "original": "Alice could not read Bob ticket (404) but inserted reply (201) (academic p15, viva-0015).",
+    "expected": "Alice 404; ticket unchanged; Bob/admin replies 201 with server authorship",
+    "startedUTC": "2026-10-16T13:55:31.459Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Denied reply unchanged",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d865",
+          "subject": "Bob synthetic ticket",
+          "description": "Isolated fixture",
+          "status": "Open",
+          "priority": "Medium",
+          "user": "6ad22cd1efe761f652a1d84c",
+          "responses": [],
+          "createdAt": "2026-10-16T13:55:30.045Z",
+          "updatedAt": "2026-10-16T13:55:30.045Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d865",
+          "subject": "Bob synthetic ticket",
+          "description": "Isolated fixture",
+          "status": "Open",
+          "priority": "Medium",
+          "user": "6ad22cd1efe761f652a1d84c",
+          "responses": [],
+          "createdAt": "2026-10-16T13:55:30.045Z",
+          "updatedAt": "2026-10-16T13:55:30.045Z",
+          "__v": 0
+        },
+        "beforeSHA256": "d4a69480a4848a194cbeeb982b6b12ca3391fc2dc543e4a8d28002d680ed40b0",
+        "afterSHA256": "d4a69480a4848a194cbeeb982b6b12ca3391fc2dc543e4a8d28002d680ed40b0",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Authorized replies stored",
+        "before": {
+          "_id": "6ad22cd2efe761f652a1d865",
+          "subject": "Bob synthetic ticket",
+          "description": "Isolated fixture",
+          "status": "Open",
+          "priority": "Medium",
+          "user": "6ad22cd1efe761f652a1d84c",
+          "responses": [],
+          "createdAt": "2026-10-16T13:55:30.045Z",
+          "updatedAt": "2026-10-16T13:55:30.045Z",
+          "__v": 0
+        },
+        "after": {
+          "_id": "6ad22cd2efe761f652a1d865",
+          "subject": "Bob synthetic ticket",
+          "description": "Isolated fixture",
+          "status": "Open",
+          "priority": "Medium",
+          "user": "6ad22cd1efe761f652a1d84c",
+          "responses": [
+            {
+              "responder": "Bob Synthetic",
+              "message": "Authorized owner reply",
+              "_id": "6ad22cd36da81c9f97ce93cf",
+              "createdAt": "2026-10-16T13:55:31.585Z"
+            },
+            {
+              "responder": "Administrator Synthetic",
+              "message": "Authorized staff reply",
+              "_id": "6ad22cd36da81c9f97ce93d4",
+              "createdAt": "2026-10-16T13:55:31.661Z"
+            }
+          ],
+          "createdAt": "2026-10-16T13:55:30.045Z",
+          "updatedAt": "2026-10-16T13:55:31.663Z",
+          "__v": 2
+        },
+        "beforeSHA256": "d4a69480a4848a194cbeeb982b6b12ca3391fc2dc543e4a8d28002d680ed40b0",
+        "afterSHA256": "2e593aab2b1352e6ac29a9769238d8cdd515f78e3fa525f6ce272245bd1303e3",
+        "unchanged": false,
+        "unchangedExpected": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-27",
+          "status": 404
+        },
+        {
+          "evidenceId": "final12-28",
+          "status": 404
+        },
+        {
+          "evidenceId": "final12-29",
+          "status": 201
+        },
+        {
+          "evidenceId": "final12-30",
+          "status": 201
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:31.695Z",
+    "evidence": [
+      "final12-27",
+      "final12-28",
+      "final12-29",
+      "final12-30"
+    ]
+  },
+  {
+    "id": "VIVA-09",
+    "name": "Stored card number and CVV",
+    "original": "Full synthetic PAN/CVV persisted and returned by card API (academic p8, viva-0018).",
+    "expected": "Retired GET/POST 404; card-shaped placeholders ignored; no new sensitive storage",
+    "startedUTC": "2026-10-16T13:55:31.695Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Retired card requests persist nothing",
+        "before": {
+          "cards": 0,
+          "orders": 7
+        },
+        "after": {
+          "cards": 0,
+          "orders": 7
+        },
+        "beforeSHA256": "97504d96e8992c06b8c01675b3f681824b544725fa1ea26ece5c343ab9f63e1e",
+        "afterSHA256": "97504d96e8992c06b8c01675b3f681824b544725fa1ea26ece5c343ab9f63e1e",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "New COD order has no card fields",
+        "before": {
+          "cards": 0,
+          "orders": 7
+        },
+        "after": {
+          "cards": 0,
+          "orders": 8,
+          "newOrder": {
+            "_id": "6ad22cd36da81c9f97ce93d8",
+            "orderItems": [
+              {
+                "slug": "synthetic-frames",
+                "name": "Synthetic baseline-price frames",
+                "quantity": 1,
+                "image": "/synthetic.png",
+                "price": 100,
+                "product": "6ad22cd1efe761f652a1d851",
+                "_id": "6ad22cd36da81c9f97ce93d9"
+              }
+            ],
+            "shippingAddress": {
+              "fullName": "Bob Synthetic",
+              "address": "Test address",
+              "city": "Test city",
+              "postalCode": "00000",
+              "country": "Test"
+            },
+            "paymentMethod": "Cash On Delivery",
+            "itemsPrice": 100,
+            "shippingPrice": 10,
+            "taxPrice": 15,
+            "totalPrice": 125,
+            "user": "6ad22cd1efe761f652a1d84c",
+            "isPaid": false,
+            "isDelivered": false,
+            "createdAt": "2026-10-16T13:55:31.798Z",
+            "updatedAt": "2026-10-16T13:55:31.798Z",
+            "__v": 0
+          }
+        },
+        "containsSensitiveFields": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-31",
+          "status": 404
+        },
+        {
+          "evidenceId": "final12-32",
+          "status": 404
+        },
+        {
+          "evidenceId": "final12-33",
+          "status": 201
+        }
+      ],
+      "historicalData": "Existing/shared databases and backups deliberately not inspected or purged."
+    },
+    "finishedUTC": "2026-10-16T13:55:31.855Z",
+    "evidence": [
+      "final12-31",
+      "final12-32",
+      "final12-33"
+    ]
+  },
+  {
+    "id": "VIVA-10",
+    "name": "Password-reset token reuse",
+    "original": "One reset token changed password twice; login proved second change (academic p10, viva-0020).",
+    "expected": "First reset 200; reuse 400; first password still valid; reset material consumed; old session revoked",
+    "startedUTC": "2026-10-16T13:55:31.855Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Reset consumption and password state",
+        "before": {
+          "resetTokenPresent": true,
+          "resetExpiryPresent": true,
+          "tokenVersion": 0,
+          "firstPasswordMatches": false,
+          "secondPasswordMatches": false
+        },
+        "afterFirst": {
+          "resetTokenPresent": false,
+          "resetExpiryPresent": false,
+          "tokenVersion": 1,
+          "firstPasswordMatches": true,
+          "secondPasswordMatches": false
+        },
+        "afterReuse": {
+          "resetTokenPresent": false,
+          "resetExpiryPresent": false,
+          "tokenVersion": 1,
+          "firstPasswordMatches": true,
+          "secondPasswordMatches": false
+        },
+        "reuseDocumentUnchanged": true,
+        "tokenFoundInApplicationLogs": false
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-34",
+          "status": 200
+        },
+        {
+          "evidenceId": "final12-35",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-36",
+          "status": 200
+        },
+        {
+          "evidenceId": "final12-37",
+          "status": 401
+        },
+        {
+          "evidenceId": "final12-38",
+          "status": 401
+        },
+        {
+          "evidenceId": "final12-39",
+          "status": 200
+        }
+      ],
+      "limitation": "Reset token fixture inserted directly; no email or concurrent reset race executed."
+    },
+    "finishedUTC": "2026-10-16T13:55:39.283Z",
+    "evidence": [
+      "final12-34",
+      "final12-35",
+      "final12-36",
+      "final12-37",
+      "final12-38",
+      "final12-39"
+    ]
+  },
+  {
+    "id": "VIVA-11",
+    "name": "Reset JWT accepted for API access",
+    "original": "Reset-shaped JWT authenticated on card endpoint (academic p11, viva-0022).",
+    "expected": "Reset-shaped token 401 on active protected API; valid Bob access token 200",
+    "startedUTC": "2026-10-16T13:55:39.283Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Token checks do not mutate data",
+        "before": {
+          "orderCount": 8,
+          "tokenVersion": 0
+        },
+        "after": {
+          "orderCount": 8,
+          "tokenVersion": 0
+        },
+        "beforeSHA256": "de450f34ab5586895fa410afbd0b7d877ad021a7254619456c778443d8ba9252",
+        "afterSHA256": "de450f34ab5586895fa410afbd0b7d877ad021a7254619456c778443d8ba9252",
+        "unchanged": true,
+        "unchangedExpected": true
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-40",
+          "status": 401
+        },
+        {
+          "evidenceId": "final12-41",
+          "status": 401
+        },
+        {
+          "evidenceId": "final12-42",
+          "status": 200
+        }
+      ],
+      "adaptation": "Original card route is removed. An active protected order endpoint is tested so removal cannot mask token-validation failure."
+    },
+    "finishedUTC": "2026-10-16T13:55:39.401Z",
+    "evidence": [
+      "final12-40",
+      "final12-41",
+      "final12-42"
+    ]
+  },
+  {
+    "id": "VIVA-12",
+    "name": "Single-character registration password",
+    "original": "Direct signup accepted password a and issued token (academic p12, viva-0023).",
+    "expected": "Weak signup 400 with no account/token; legitimate strong signup 200",
+    "startedUTC": "2026-10-16T13:55:39.402Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": "PASS",
+    "dbChecks": [
+      {
+        "label": "Weak signup creates no account",
+        "before": {
+          "users": 3,
+          "weakExists": false
+        },
+        "after": {
+          "users": 3,
+          "weakExists": false
+        },
+        "beforeSHA256": "ec3a422e69fb76e04fdf956a1ff5b91e180587bf5efe39858ad5dee7bbd1f00c",
+        "afterSHA256": "ec3a422e69fb76e04fdf956a1ff5b91e180587bf5efe39858ad5dee7bbd1f00c",
+        "unchanged": true,
+        "unchangedExpected": true
+      },
+      {
+        "label": "Legitimate registration stored safely",
+        "before": {
+          "users": 3
+        },
+        "after": {
+          "users": 4,
+          "strongExists": true,
+          "isAdmin": false,
+          "passwordHashedAndMatches": true
+        }
+      }
+    ],
+    "details": {
+      "pass": true,
+      "http": [
+        {
+          "evidenceId": "final12-43",
+          "status": 400
+        },
+        {
+          "evidenceId": "final12-44",
+          "status": 200
+        }
+      ]
+    },
+    "finishedUTC": "2026-10-16T13:55:41.605Z",
+    "evidence": [
+      "final12-43",
+      "final12-44"
+    ]
+  }
+]

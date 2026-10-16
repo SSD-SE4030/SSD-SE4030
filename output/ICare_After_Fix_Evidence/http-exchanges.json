@@ -1,0 +1,1234 @@
+[
+  {
+    "index": 1,
+    "method": "GET",
+    "url": "/api/seed",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    },
+    "zapHistoryId": "25"
+  },
+  {
+    "index": 2,
+    "method": "GET",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad2054fb576e6fe1ae979f2",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 200,
+          "product": "6ad2054fb576e6fe1ae979f0",
+          "_id": "6ad2054fb576e6fe1ae979f3"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 200,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 230,
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T11:06:55.368Z",
+      "updatedAt": "2026-10-16T11:06:55.368Z",
+      "__v": 0
+    },
+    "zapHistoryId": "28"
+  },
+  {
+    "index": 3,
+    "method": "GET",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Order Not Found"
+    },
+    "zapHistoryId": "30"
+  },
+  {
+    "index": 4,
+    "method": "GET",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad2054fb576e6fe1ae979f2",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 200,
+          "product": "6ad2054fb576e6fe1ae979f0",
+          "_id": "6ad2054fb576e6fe1ae979f3"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 200,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 230,
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T11:06:55.368Z",
+      "updatedAt": "2026-10-16T11:06:55.368Z",
+      "__v": 0
+    },
+    "zapHistoryId": "31"
+  },
+  {
+    "index": 5,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/pay",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Authentication required"
+    },
+    "zapHistoryId": "32"
+  },
+  {
+    "index": 6,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/pay",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "34"
+  },
+  {
+    "index": 7,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/deliver",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "35"
+  },
+  {
+    "index": 8,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/pay",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Paid Status Updated",
+      "order": {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad2054fb576e6fe1ae979f2",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad2054fb576e6fe1ae979f3"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:55.368Z",
+        "updatedAt": "2026-10-16T11:06:55.832Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T11:06:55.820Z"
+      }
+    },
+    "zapHistoryId": "36"
+  },
+  {
+    "index": 9,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "37"
+  },
+  {
+    "index": 10,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f5/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "38"
+  },
+  {
+    "index": 11,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f8/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "40"
+  },
+  {
+    "index": 12,
+    "method": "PUT",
+    "url": "/api/orders/6ad20550b576e6fe1ae97a11/pay",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Order Not Found"
+    },
+    "zapHistoryId": "42"
+  },
+  {
+    "index": 13,
+    "method": "PUT",
+    "url": "/api/orders/6ad2054fb576e6fe1ae979f2/deliver",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Delivered"
+    },
+    "zapHistoryId": "44"
+  },
+  {
+    "index": 14,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 2,
+          "price": 0.01
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c34487"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 400,
+        "shippingPrice": 0,
+        "taxPrice": 60,
+        "totalPrice": 460,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad20550dc4580a008c34486",
+        "createdAt": "2026-10-16T11:06:56.167Z",
+        "updatedAt": "2026-10-16T11:06:56.167Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "45"
+  },
+  {
+    "index": 15,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 6
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "46"
+  },
+  {
+    "index": 16,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 1.5
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "47"
+  },
+  {
+    "index": 17,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 0
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "48"
+  },
+  {
+    "index": 18,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 1
+        },
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "49"
+  },
+  {
+    "index": 19,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad20550b576e6fe1ae97a15",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "50"
+  },
+  {
+    "index": 20,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "bad-id",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid request"
+    },
+    "zapHistoryId": "51"
+  },
+  {
+    "index": 21,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c34497"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad20550dc4580a008c34496",
+        "createdAt": "2026-10-16T11:06:56.541Z",
+        "updatedAt": "2026-10-16T11:06:56.541Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "52"
+  },
+  {
+    "index": 22,
+    "method": "GET",
+    "url": "/api/card-details",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    },
+    "zapHistoryId": "53"
+  },
+  {
+    "index": 23,
+    "method": "POST",
+    "url": "/api/card-details",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    },
+    "zapHistoryId": "54"
+  },
+  {
+    "index": 24,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad2054fb576e6fe1ae979e8",
+      "orderItems": [
+        {
+          "_id": "6ad2054fb576e6fe1ae979f0",
+          "quantity": 2,
+          "price": 0.01
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01,
+      "cardDetails": {
+        "cardNumber": "SYNTHETIC-NOT-A-CARD",
+        "cvv": "NOT-A-CVV"
+      }
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c3449c"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad20550dc4580a008c3449b",
+        "createdAt": "2026-10-16T11:06:56.617Z",
+        "updatedAt": "2026-10-16T11:06:56.617Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "55"
+  },
+  {
+    "index": 25,
+    "method": "GET",
+    "url": "/api/prescriptions",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "56"
+  },
+  {
+    "index": 26,
+    "method": "GET",
+    "url": "/api/prescriptions/6ad2054fb576e6fe1ae979fc",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "57"
+  },
+  {
+    "index": 27,
+    "method": "PUT",
+    "url": "/api/prescriptions/6ad2054fb576e6fe1ae979fc",
+    "status": 403,
+    "request": {
+      "prescriptionDetails": "tamper"
+    },
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "59"
+  },
+  {
+    "index": 28,
+    "method": "POST",
+    "url": "/api/prescriptions",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "60"
+  },
+  {
+    "index": 29,
+    "method": "GET",
+    "url": "/api/prescriptions/6ad2054fb576e6fe1ae979fc",
+    "status": 200,
+    "request": {},
+    "response": {
+      "_id": "6ad2054fb576e6fe1ae979fc",
+      "patientName": "Synthetic Patient",
+      "optometrist": null,
+      "prescriptionDetails": "Synthetic private details",
+      "dateIssued": "2026-10-16T11:06:55.392Z",
+      "createdAt": "2026-10-16T11:06:55.393Z",
+      "updatedAt": "2026-10-16T11:06:55.393Z",
+      "__v": 0
+    },
+    "zapHistoryId": "61"
+  },
+  {
+    "index": 30,
+    "method": "GET",
+    "url": "/api/orders",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "62"
+  },
+  {
+    "index": 31,
+    "method": "GET",
+    "url": "/api/orders",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    },
+    "zapHistoryId": "63"
+  },
+  {
+    "index": 32,
+    "method": "GET",
+    "url": "/api/users",
+    "status": 200,
+    "request": {},
+    "response": [
+      {
+        "_id": "6ad2054fb576e6fe1ae979e8",
+        "name": "Synthetic owner",
+        "email": "owner@example.invalid",
+        "isAdmin": false,
+        "createdAt": "2026-10-16T11:06:55.306Z",
+        "updatedAt": "2026-10-16T11:06:56.911Z",
+        "__v": 0
+      },
+      {
+        "_id": "6ad2054fb576e6fe1ae979ea",
+        "name": "Synthetic other",
+        "email": "other@example.invalid",
+        "isAdmin": false,
+        "createdAt": "2026-10-16T11:06:55.322Z",
+        "updatedAt": "2026-10-16T11:06:55.322Z",
+        "__v": 0
+      },
+      {
+        "_id": "6ad2054fb576e6fe1ae979ec",
+        "name": "Synthetic admin",
+        "email": "admin@example.invalid",
+        "isAdmin": true,
+        "createdAt": "2026-10-16T11:06:55.333Z",
+        "updatedAt": "2026-10-16T11:06:55.333Z",
+        "__v": 0
+      }
+    ],
+    "zapHistoryId": "64"
+  },
+  {
+    "index": 33,
+    "method": "GET",
+    "url": "/api/users/6ad2054fb576e6fe1ae979e8",
+    "status": 200,
+    "request": {},
+    "response": {
+      "_id": "6ad2054fb576e6fe1ae979e8",
+      "name": "Synthetic owner",
+      "email": "owner@example.invalid",
+      "isAdmin": false,
+      "createdAt": "2026-10-16T11:06:55.306Z",
+      "updatedAt": "2026-10-16T11:06:56.911Z",
+      "__v": 0
+    },
+    "zapHistoryId": "65"
+  },
+  {
+    "index": 34,
+    "method": "PUT",
+    "url": "/api/users/6ad2054fb576e6fe1ae979e8",
+    "status": 200,
+    "request": {
+      "name": "Synthetic owner updated",
+      "isAdmin": false
+    },
+    "response": {
+      "message": "User Updated",
+      "user": {
+        "_id": "6ad2054fb576e6fe1ae979e8",
+        "name": "Synthetic owner updated",
+        "email": "owner@example.invalid",
+        "isAdmin": false
+      }
+    },
+    "zapHistoryId": "67"
+  },
+  {
+    "index": 35,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 400,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid or expired reset link"
+    },
+    "zapHistoryId": "68"
+  },
+  {
+    "index": 36,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 200,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Password reset successfully"
+    },
+    "zapHistoryId": "69"
+  },
+  {
+    "index": 37,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 400,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid or expired reset link"
+    },
+    "zapHistoryId": "70"
+  },
+  {
+    "index": 38,
+    "method": "POST",
+    "url": "/api/users/forget-password",
+    "status": 200,
+    "request": {
+      "email": "owner@example.invalid"
+    },
+    "response": {
+      "message": "If the account exists, a reset link has been sent."
+    },
+    "zapHistoryId": "71"
+  },
+  {
+    "index": 39,
+    "method": "POST",
+    "url": "/api/users/forget-password",
+    "status": 200,
+    "request": {
+      "email": "absent@example.invalid"
+    },
+    "response": {
+      "message": "If the account exists, a reset link has been sent."
+    },
+    "zapHistoryId": "72"
+  },
+  {
+    "index": 40,
+    "method": "GET",
+    "url": "/api/orders/mine",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    },
+    "zapHistoryId": "73"
+  },
+  {
+    "index": 41,
+    "method": "GET",
+    "url": "/api/orders/mine",
+    "status": 200,
+    "request": {},
+    "response": [
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad2054fb576e6fe1ae979f2",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad2054fb576e6fe1ae979f3"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": true,
+        "isDelivered": true,
+        "createdAt": "2026-10-16T11:06:55.368Z",
+        "updatedAt": "2026-10-16T11:06:56.097Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T11:06:55.820Z",
+        "deliveredAt": "2026-10-16T11:06:56.094Z"
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad2054fb576e6fe1ae979f5",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad2054fb576e6fe1ae979f6"
+          }
+        ],
+        "paymentMethod": "PayPal",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:55.377Z",
+        "updatedAt": "2026-10-16T11:06:55.377Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad2054fb576e6fe1ae979f8",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad2054fb576e6fe1ae979f9"
+          }
+        ],
+        "paymentMethod": "Demo - Cash on Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:55.385Z",
+        "updatedAt": "2026-10-16T11:06:55.385Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad20550dc4580a008c34486",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c34487"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 400,
+        "shippingPrice": 0,
+        "taxPrice": 60,
+        "totalPrice": 460,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:56.167Z",
+        "updatedAt": "2026-10-16T11:06:56.167Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad20550dc4580a008c34496",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c34497"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:56.541Z",
+        "updatedAt": "2026-10-16T11:06:56.541Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad20550dc4580a008c3449b",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad2054fb576e6fe1ae979f0",
+            "_id": "6ad20550dc4580a008c3449c"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad2054fb576e6fe1ae979e8",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:06:56.617Z",
+        "updatedAt": "2026-10-16T11:06:56.617Z",
+        "__v": 0
+      }
+    ],
+    "zapHistoryId": "74"
+  },
+  {
+    "index": 42,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 400,
+    "request": "synthetic multipart 165 bytes",
+    "response": {
+      "message": "A JPEG, PNG or WebP image is required"
+    },
+    "zapHistoryId": "75"
+  },
+  {
+    "index": 43,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 400,
+    "request": "synthetic multipart 166 bytes",
+    "response": {
+      "message": "A JPEG, PNG or WebP image is required"
+    },
+    "zapHistoryId": "76"
+  },
+  {
+    "index": 44,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 413,
+    "request": "synthetic multipart 5243033 bytes",
+    "response": {
+      "message": "Invalid upload"
+    },
+    "zapHistoryId": "77"
+  },
+  {
+    "index": 45,
+    "method": "POST",
+    "url": "/api/tickets/6ad2054fb576e6fe1ae979fe/responses",
+    "status": 404,
+    "request": {
+      "message": "Synthetic unauthorized"
+    },
+    "response": {
+      "message": "Ticket Not Found"
+    },
+    "zapHistoryId": "78"
+  },
+  {
+    "index": 46,
+    "method": "POST",
+    "url": "/api/tickets/6ad2054fb576e6fe1ae979fe/responses",
+    "status": 201,
+    "request": {
+      "message": "Synthetic owner response"
+    },
+    "response": {
+      "message": "Response added."
+    },
+    "zapHistoryId": "81"
+  },
+  {
+    "index": 47,
+    "method": "GET",
+    "url": "/api/orders/not-a-valid-object-id",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Invalid request"
+    },
+    "zapHistoryId": "82"
+  },
+  {
+    "index": 48,
+    "method": "PUT",
+    "url": "/api/prescriptions/6ad2054fb576e6fe1ae979fc",
+    "status": 500,
+    "request": {
+      "patientName": {
+        "synthetic": "invalid object"
+      }
+    },
+    "response": {
+      "message": "Error updating prescription",
+      "error": "Prescription validation failed: patientName: Cast to string failed for value \"{ synthetic: 'invalid object' }\" (type Object) at path \"patientName\""
+    },
+    "zapHistoryId": "83"
+  },
+  {
+    "index": 49,
+    "method": "POST",
+    "url": "/api/users/signup",
+    "status": 400,
+    "request": {
+      "name": "Synthetic weak",
+      "email": "weak@example.invalid",
+      "password": "[REDACTED]",
+      "nic": "TEST",
+      "address": "Test",
+      "phone": "000"
+    },
+    "response": {
+      "message": "Password must be at least 12 characters"
+    },
+    "zapHistoryId": "84"
+  },
+  {
+    "index": 50,
+    "method": "GET",
+    "url": "/",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app",
+    "zapHistoryId": "85"
+  },
+  {
+    "index": 51,
+    "method": "GET",
+    "url": "/signin",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app",
+    "zapHistoryId": "86"
+  },
+  {
+    "index": 52,
+    "method": "GET",
+    "url": "/signup",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app",
+    "zapHistoryId": "87"
+  },
+  {
+    "index": 53,
+    "method": "POST",
+    "url": "/api/users/signin",
+    "status": 500,
+    "request": "synthetic multipart 10 bytes",
+    "response": {
+      "message": "Internal server error"
+    },
+    "zapHistoryId": "88"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "ICare_Final_12_Vulnerabilities_ZAP_Report.pdf": {
+    "pages": 21,
+    "readableTextCharacters": 46689,
+    "outOfPageText": [],
+    "unredactedJWTs": 0
+  },
+  "ICare_Final_ZAP_Native_Report.pdf": {
+    "pages": 14,
+    "readableTextCharacters": 23919,
+    "outOfPageText": [],
+    "unredactedJWTs": 0,
+    "targetOnly": true
+  },
+  "csvRows": 12,
+  "secretMatches": []
+}

@@ -5,3 +5,5 @@
 !**/.env.example
 tmp/
 output/*.zip
+**/__pycache__/
+*.pyc

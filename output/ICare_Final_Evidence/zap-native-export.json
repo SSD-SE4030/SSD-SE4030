@@ -1,0 +1,9 @@
+{
+  "timestampUTC": "2026-10-16T13:58:36.647Z",
+  "html": {
+    "generate": "/home/zap/icare-reports/ICare_Final_ZAP_Native_Report_HTML.html"
+  },
+  "pdf": {
+    "generate": "/home/zap/icare-reports/ICare_Final_ZAP_Native_Report.pdf"
+  }
+}

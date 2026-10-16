@@ -1,0 +1,84 @@
+{
+  "timestampUTC": "2026-10-16T13:30:37.026Z",
+  "version": {
+    "version": "2.17.0"
+  },
+  "contextId": "1",
+  "context": {
+    "context": {
+      "excludeRegexs": "[]",
+      "loggedInPattern": "",
+      "urlParameterParserClass": "org.zaproxy.zap.model.StandardParameterParser",
+      "description": "",
+      "includeRegexs": "[\"http://host\\\\.docker\\\\.internal:4021/.*\"]",
+      "checkingStrategy": "EACH_RESP",
+      "inScope": "true",
+      "authenticationDetectionMethodId": "0",
+      "loggedOutPattern": "",
+      "postParameterParserConfig": "{\"kvps\":\"&\",\"kvs\":\"=\",\"struct\":[]}",
+      "excludedTechnologies": [],
+      "name": "ICare isolated after-fix",
+      "includedTechnologies": [
+        "Db",
+        "Db.CouchDB",
+        "Db.Firebird",
+        "Db.HypersonicSQL",
+        "Db.IBM DB2",
+        "Db.MariaDB",
+        "Db.Microsoft Access",
+        "Db.Microsoft SQL Server",
+        "Db.MongoDB",
+        "Db.MySQL",
+        "Db.Oracle",
+        "Db.PostgreSQL",
+        "Db.SAP MaxDB",
+        "Db.SQLite",
+        "Db.Sybase",
+        "Framework",
+        "Framework.Next.js",
+        "Framework.React",
+        "Language",
+        "Language.ASP",
+        "Language.C",
+        "Language.JSP/Servlet",
+        "Language.Java",
+        "Language.Java.Spring",
+        "Language.JavaScript",
+        "Language.PHP",
+        "Language.Python",
+        "Language.Ruby",
+        "Language.XML",
+        "OS",
+        "OS.Linux",
+        "OS.MacOS",
+        "OS.Windows",
+        "SCM",
+        "SCM.Git",
+        "SCM.SVN",
+        "WS",
+        "WS.Apache",
+        "WS.IIS",
+        "WS.Tomcat"
+      ],
+      "urlParameterParserConfig": "{\"kvps\":\"&\",\"kvs\":\"=\",\"struct\":[]}",
+      "id": "1",
+      "authType": "Manual Authentication",
+      "postParameterParserClass": "org.zaproxy.zap.model.StandardParameterParser"
+    }
+  },
+  "mode": {
+    "mode": "protect"
+  },
+  "passiveOnlyInScope": {
+    "scanOnlyInScope": "true"
+  },
+  "activeScans": {
+    "scans": []
+  },
+  "spiders": {
+    "scans": []
+  },
+  "target": "http://host.docker.internal:4021",
+  "proxy": "127.0.0.1:8091",
+  "externalDomainsRequested": false
+}

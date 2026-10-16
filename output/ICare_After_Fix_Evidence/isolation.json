@@ -1,0 +1,18 @@
+{
+  "database": "icare_afterfix_1e4ac2f3a353",
+  "mongo": "127.0.0.1:27028",
+  "backend": "127.0.0.1:4021",
+  "zapTarget": "http://host.docker.internal:4021",
+  "zapProxy": "127.0.0.1:8091",
+  "initialCollections": 0,
+  "syntheticOnly": true,
+  "externalIntegrations": "disabled; no valid external-provider requests attempted",
+  "counts": {
+    "users": 3,
+    "orders": 6,
+    "products": 1,
+    "prescriptions": 1,
+    "tickets": 1
+  },
+  "assessmentTime": "2026-10-16T11:07:04.017Z"
+}

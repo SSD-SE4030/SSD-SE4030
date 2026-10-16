@@ -1,0 +1,116 @@
+{
+  "timestampUTC": "2026-10-16T13:33:08.852Z",
+  "timeColombo": "Friday, 16 October 2026 at 19:03:08 GMT+5:30",
+  "head": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+  "workingTree": "M ICare/backend/.env.example\n M ICare/frontend/package-lock.json\n M ICare/frontend/package.json\n M ICare/frontend/src/screens/PaymentListScreen.js\n?? ICare/backend/testFixtures/\n?? ICare/backend/v03.test.js\n?? ICare/frontend/src/screens/PaymentListScreen.test.js\n?? V03_PAYMENT_DEMO.md\n?? output/ICare_After_Fix_Evidence/\n?? output/ICare_After_Fix_Security_Assessment.pdf\n?? output/ICare_Security_Test_Results.csv\n?? output/ICare_ZAP_After_Fix_Report.html\n?? output/ICare_ZAP_After_Fix_Report.pdf\n?? output/zap-fresh-2aa4b8f-20261016/",
+  "sourceHashes": {
+    "ICare/backend/server.js": "6e84c09f0f6dc23bed12ae32869557330b8b20025444eab5689fe69fcbb5656f",
+    "ICare/backend/security.js": "4c13a5195e07d2c9f78d6630bd13b7575c2548dcf73060b1f9d9c9f0309d2f37",
+    "ICare/backend/utils.js": "65101d09150357fe947c2aabf37c4431e41d5d726e938f7be5fe8a6fbdd2f542",
+    "ICare/backend/routes/orderRoutes.js": "9ea8ad974d73ecc30b8f51630a7b88c4dfd7f08192f5c46925f20d285cec80c1",
+    "ICare/backend/routes/userRoutes.js": "26b56c51344ddb033e6e4a555b3a476b07ff64b106add6b59c2e60622147c130",
+    "ICare/backend/routes/prescriptionRoutes.js": "87cf09eb692bc8c05cdf4c8e0f28ed7ac33e0e4332669f5f3d88c6ff8697fe4d",
+    "ICare/frontend/build/asset-manifest.json": "8d41d14ef3fcb11029fc2edfd7afccac5651fa457b2bacecf36dfcd6e3272ed5",
+    "ICare/frontend/src/screens/PaymentListScreen.js": "d2379a2728195aa8e98a46b76ad0a0daf7c810183298dcfd71cc4d616fcca356"
+  },
+  "zapVersion": {
+    "version": "2.17.0"
+  },
+  "methodology": "Actual ZAP proxy; scoped passive scan of rebuilt HTML/JS/CSS and targeted authenticated requests to dedicated backend/disposable MongoDB. No spider or active scan; external integrations disabled.",
+  "isolation": {
+    "database": "icare_afterfix_cc8190d664bd",
+    "mongo": "127.0.0.1:27028",
+    "backend": "127.0.0.1:4021",
+    "zapTarget": "http://host.docker.internal:4021",
+    "zapProxy": "127.0.0.1:8091",
+    "initialCollections": 0,
+    "syntheticOnly": true,
+    "externalIntegrations": "disabled; no valid external-provider requests attempted",
+    "counts": {
+      "users": 3,
+      "orders": 6,
+      "products": 1,
+      "prescriptions": 1,
+      "tickets": 1
+    },
+    "assessmentTime": "2026-10-16T13:30:51.750Z"
+  },
+  "targetedTests": {
+    "passed": 52,
+    "failed": 0,
+    "total": 52
+  },
+  "backendSecuritySuite": "node --test security.test.js: 11 passed; full npm test including older local V03 test file not run in this assessment.",
+  "frontendBuild": "Passed with existing warnings",
+  "riskTypes": {
+    "High": 1,
+    "Medium": 3,
+    "Low": 1,
+    "Informational": 1
+  },
+  "alertInstances": 39,
+  "alertTypes": [
+    {
+      "plugin": "10055",
+      "risk": "Medium",
+      "name": "CSP: Wildcard Directive",
+      "instances": 3
+    },
+    {
+      "plugin": "10055",
+      "risk": "Medium",
+      "name": "CSP: style-src unsafe-inline",
+      "instances": 3
+    },
+    {
+      "plugin": "10109",
+      "risk": "Informational",
+      "name": "Modern Web Application",
+      "instances": 3
+    },
+    {
+      "plugin": "10003",
+      "risk": "Medium",
+      "name": "Vulnerable JS Library",
+      "instances": 1
+    },
+    {
+      "plugin": "10003",
+      "risk": "High",
+      "name": "Vulnerable JS Library",
+      "instances": 1
+    },
+    {
+      "plugin": "10096",
+      "risk": "Low",
+      "name": "Timestamp Disclosure - Unix",
+      "instances": 28
+    }
+  ],
+  "targetExchanges": 60,
+  "triage": [
+    {
+      "finding": "Axios 1.7.7, High; DOMPurify 2.5.6, Medium",
+      "classification": "Scanner version-based library alerts; application-specific exploitability and every listed advisory were not independently tested. Some Axios advisories may concern Node.js use rather than this browser bundle."
+    },
+    {
+      "finding": "CSP wildcard and style-src unsafe-inline, Medium",
+      "classification": "Policy is present but remains permissive. Existing UI requirements are not a proof that the policy is sufficiently strong."
+    },
+    {
+      "finding": "Unix timestamp disclosure, Low",
+      "classification": "Numbers matched in JS bundles; review for genuine sensitive timestamps versus code/constants before treating as confirmed leakage."
+    },
+    {
+      "finding": "Modern Web Application, Informational",
+      "classification": "SPA identification; no remediation claim required."
+    }
+  ],
+  "limitations": [
+    "Current source snapshot contains preserved local UI edits; HEAD alone does not identify all evaluated bytes.",
+    "No external OAuth, real mail, Cloudinary upload or payment-provider interaction.",
+    "No historical database/card cleanup or existing demo-order migration.",
+    "Only negative file-upload HTTP cases and signature unit checks; full allowed-image external upload excluded.",
+    "No business-logic tests were inserted as manually fabricated ZAP alerts. Native PDF/HTML are direct ZAP reports; this JSON/README are independently authored notes."
+  ]
+}

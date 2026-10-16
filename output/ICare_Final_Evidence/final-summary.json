@@ -1,0 +1,36 @@
+{
+  "dateColombo": "2026-10-16T19:36:21.798603+05:30",
+  "head": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+  "manualCases": 12,
+  "counts": {
+    "PASS": 12,
+    "FAIL": 0,
+    "NOT VERIFIED": 0
+  },
+  "answer": "YES",
+  "actualHTTPRequests": 53,
+  "manualHTTPRequests": 44,
+  "passiveCoverageRequests": 9,
+  "nativeAlertTypes": {
+    "Informational": 3,
+    "Medium": 3,
+    "High": 1,
+    "Low": 1
+  },
+  "nativeAlertInstances": 42,
+  "sourceUnchanged": true,
+  "cleanup": {
+    "timestampUTC": "2026-10-16T14:02:02.9746682Z",
+    "containersRemoved": [
+      "icare-final12-zap",
+      "icare-final12-mongo"
+    ],
+    "ephemeralDatabaseDataRemoved": true,
+    "assessmentPortsClosed": true,
+    "sharedDatabaseTouched": false,
+    "existingOrdersPaymentsModified": false,
+    "productionCodeModified": false,
+    "existingEnvOverwritten": false,
+    "downloadedImagesRetained": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "database": "icare_afterfix_direct_523c5341750a",
+  "mongo": "127.0.0.1:27028",
+  "backend": "127.0.0.1:4021",
+  "zapTarget": "NOT USED",
+  "zapProxy": "NOT USED - independent direct tests",
+  "initialCollections": 0,
+  "syntheticOnly": true,
+  "externalIntegrations": "disabled; no valid external-provider requests attempted",
+  "counts": {
+    "users": 3,
+    "orders": 6,
+    "products": 1,
+    "prescriptions": 1,
+    "tickets": 1
+  },
+  "assessmentTime": "2026-10-16T11:00:54.805Z"
+}

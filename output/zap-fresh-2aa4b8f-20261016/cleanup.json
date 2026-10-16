@@ -1,0 +1,11 @@
+﻿{
+    "timestampUTC":  "2026-10-16T13:34:10.2616915Z",
+    "containersRemoved":  [
+                              "icare-fresh-zap-2aa4b8f",
+                              "icare-fresh-mongo-2aa4b8f"
+                          ],
+    "temporaryDataRemoved":  true,
+    "sharedDatabaseChanged":  false,
+    "existingDemoOrderChanged":  false,
+    "sourceCodeModified":  false
+}

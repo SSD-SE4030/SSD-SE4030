@@ -1,0 +1,10 @@
+{
+  "status": "resolved",
+  "issue": "Initial strict History mapping encountered unsent status-0 site-tree placeholders that inherit evidence headers.",
+  "resolution": "Excluded unsent placeholder nodes, then matched every actual request by unique X-ICare-Evidence marker, method, endpoint and returned HTTP status.",
+  "placeholderCount": 16,
+  "verifiedActualRequests": 53,
+  "applicationRequestsReplayed": false,
+  "databaseMutatedByRecovery": false,
+  "timestampUTC": "2026-10-16T13:57:36.682Z"
+}

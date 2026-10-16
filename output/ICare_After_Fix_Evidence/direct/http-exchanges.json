@@ -1,0 +1,1181 @@
+[
+  {
+    "index": 1,
+    "method": "GET",
+    "url": "/api/seed",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    }
+  },
+  {
+    "index": 2,
+    "method": "GET",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad203e062ebd82b9f1f2e67",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 200,
+          "product": "6ad203e062ebd82b9f1f2e65",
+          "_id": "6ad203e062ebd82b9f1f2e68"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 200,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 230,
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T11:00:48.859Z",
+      "updatedAt": "2026-10-16T11:00:48.859Z",
+      "__v": 0
+    }
+  },
+  {
+    "index": 3,
+    "method": "GET",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Order Not Found"
+    }
+  },
+  {
+    "index": 4,
+    "method": "GET",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad203e062ebd82b9f1f2e67",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 200,
+          "product": "6ad203e062ebd82b9f1f2e65",
+          "_id": "6ad203e062ebd82b9f1f2e68"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 200,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 230,
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T11:00:48.859Z",
+      "updatedAt": "2026-10-16T11:00:48.859Z",
+      "__v": 0
+    }
+  },
+  {
+    "index": 5,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/pay",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Authentication required"
+    }
+  },
+  {
+    "index": 6,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/pay",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 7,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/deliver",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 8,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/pay",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Paid Status Updated",
+      "order": {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad203e062ebd82b9f1f2e67",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e062ebd82b9f1f2e68"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:48.859Z",
+        "updatedAt": "2026-10-16T11:00:49.287Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T11:00:49.275Z"
+      }
+    }
+  },
+  {
+    "index": 9,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    }
+  },
+  {
+    "index": 10,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e6a/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    }
+  },
+  {
+    "index": 11,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e6d/pay",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    }
+  },
+  {
+    "index": 12,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e162ebd82b9f1f2e86/pay",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Order Not Found"
+    }
+  },
+  {
+    "index": 13,
+    "method": "PUT",
+    "url": "/api/orders/6ad203e062ebd82b9f1f2e67/deliver",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Delivered"
+    }
+  },
+  {
+    "index": 14,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 2,
+          "price": 0.01
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c1953068"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 400,
+        "shippingPrice": 0,
+        "taxPrice": 60,
+        "totalPrice": 460,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad203e17a537ee0c1953067",
+        "createdAt": "2026-10-16T11:00:49.497Z",
+        "updatedAt": "2026-10-16T11:00:49.497Z",
+        "__v": 0
+      }
+    }
+  },
+  {
+    "index": 15,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 6
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    }
+  },
+  {
+    "index": 16,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 1.5
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    }
+  },
+  {
+    "index": 17,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 0
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    }
+  },
+  {
+    "index": 18,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 1
+        },
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    }
+  },
+  {
+    "index": 19,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e162ebd82b9f1f2e8a",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid order items"
+    }
+  },
+  {
+    "index": 20,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 400,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "bad-id",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "Invalid request"
+    }
+  },
+  {
+    "index": 21,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c1953078"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad203e17a537ee0c1953077",
+        "createdAt": "2026-10-16T11:00:49.694Z",
+        "updatedAt": "2026-10-16T11:00:49.694Z",
+        "__v": 0
+      }
+    }
+  },
+  {
+    "index": 22,
+    "method": "GET",
+    "url": "/api/card-details",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    }
+  },
+  {
+    "index": 23,
+    "method": "POST",
+    "url": "/api/card-details",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    }
+  },
+  {
+    "index": 24,
+    "method": "POST",
+    "url": "/api/orders",
+    "status": 201,
+    "request": {
+      "user": "6ad203e062ebd82b9f1f2e5d",
+      "orderItems": [
+        {
+          "_id": "6ad203e062ebd82b9f1f2e65",
+          "quantity": 2,
+          "price": 0.01
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Synthetic Owner",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 30,
+      "totalPrice": 0.01,
+      "cardDetails": {
+        "cardNumber": "SYNTHETIC-NOT-A-CARD",
+        "cvv": "NOT-A-CVV"
+      }
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c195307d"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad203e17a537ee0c195307c",
+        "createdAt": "2026-10-16T11:00:49.740Z",
+        "updatedAt": "2026-10-16T11:00:49.740Z",
+        "__v": 0
+      }
+    }
+  },
+  {
+    "index": 25,
+    "method": "GET",
+    "url": "/api/prescriptions",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 26,
+    "method": "GET",
+    "url": "/api/prescriptions/6ad203e062ebd82b9f1f2e71",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 27,
+    "method": "PUT",
+    "url": "/api/prescriptions/6ad203e062ebd82b9f1f2e71",
+    "status": 403,
+    "request": {
+      "prescriptionDetails": "tamper"
+    },
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 28,
+    "method": "POST",
+    "url": "/api/prescriptions",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 29,
+    "method": "GET",
+    "url": "/api/prescriptions/6ad203e062ebd82b9f1f2e71",
+    "status": 200,
+    "request": {},
+    "response": {
+      "_id": "6ad203e062ebd82b9f1f2e71",
+      "patientName": "Synthetic Patient",
+      "optometrist": null,
+      "prescriptionDetails": "Synthetic private details",
+      "dateIssued": "2026-10-16T11:00:48.886Z",
+      "createdAt": "2026-10-16T11:00:48.887Z",
+      "updatedAt": "2026-10-16T11:00:48.887Z",
+      "__v": 0
+    }
+  },
+  {
+    "index": 30,
+    "method": "GET",
+    "url": "/api/orders",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    }
+  },
+  {
+    "index": 31,
+    "method": "GET",
+    "url": "/api/orders",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    }
+  },
+  {
+    "index": 32,
+    "method": "GET",
+    "url": "/api/users",
+    "status": 200,
+    "request": {},
+    "response": [
+      {
+        "_id": "6ad203e062ebd82b9f1f2e5d",
+        "name": "Synthetic owner",
+        "email": "owner@example.invalid",
+        "isAdmin": false,
+        "createdAt": "2026-10-16T11:00:48.781Z",
+        "updatedAt": "2026-10-16T11:00:49.904Z",
+        "__v": 0
+      },
+      {
+        "_id": "6ad203e062ebd82b9f1f2e5f",
+        "name": "Synthetic other",
+        "email": "other@example.invalid",
+        "isAdmin": false,
+        "createdAt": "2026-10-16T11:00:48.804Z",
+        "updatedAt": "2026-10-16T11:00:48.804Z",
+        "__v": 0
+      },
+      {
+        "_id": "6ad203e062ebd82b9f1f2e61",
+        "name": "Synthetic admin",
+        "email": "admin@example.invalid",
+        "isAdmin": true,
+        "createdAt": "2026-10-16T11:00:48.816Z",
+        "updatedAt": "2026-10-16T11:00:48.816Z",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "index": 33,
+    "method": "GET",
+    "url": "/api/users/6ad203e062ebd82b9f1f2e5d",
+    "status": 200,
+    "request": {},
+    "response": {
+      "_id": "6ad203e062ebd82b9f1f2e5d",
+      "name": "Synthetic owner",
+      "email": "owner@example.invalid",
+      "isAdmin": false,
+      "createdAt": "2026-10-16T11:00:48.781Z",
+      "updatedAt": "2026-10-16T11:00:49.904Z",
+      "__v": 0
+    }
+  },
+  {
+    "index": 34,
+    "method": "PUT",
+    "url": "/api/users/6ad203e062ebd82b9f1f2e5d",
+    "status": 200,
+    "request": {
+      "name": "Synthetic owner updated",
+      "isAdmin": false
+    },
+    "response": {
+      "message": "User Updated",
+      "user": {
+        "_id": "6ad203e062ebd82b9f1f2e5d",
+        "name": "Synthetic owner updated",
+        "email": "owner@example.invalid",
+        "isAdmin": false
+      }
+    }
+  },
+  {
+    "index": 35,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 400,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid or expired reset link"
+    }
+  },
+  {
+    "index": 36,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 200,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Password reset successfully"
+    }
+  },
+  {
+    "index": 37,
+    "method": "POST",
+    "url": "/api/users/reset-password",
+    "status": 400,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid or expired reset link"
+    }
+  },
+  {
+    "index": 38,
+    "method": "POST",
+    "url": "/api/users/forget-password",
+    "status": 200,
+    "request": {
+      "email": "owner@example.invalid"
+    },
+    "response": {
+      "message": "If the account exists, a reset link has been sent."
+    }
+  },
+  {
+    "index": 39,
+    "method": "POST",
+    "url": "/api/users/forget-password",
+    "status": 200,
+    "request": {
+      "email": "absent@example.invalid"
+    },
+    "response": {
+      "message": "If the account exists, a reset link has been sent."
+    }
+  },
+  {
+    "index": 40,
+    "method": "GET",
+    "url": "/api/orders/mine",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    }
+  },
+  {
+    "index": 41,
+    "method": "GET",
+    "url": "/api/orders/mine",
+    "status": 200,
+    "request": {},
+    "response": [
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad203e062ebd82b9f1f2e67",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e062ebd82b9f1f2e68"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": true,
+        "isDelivered": true,
+        "createdAt": "2026-10-16T11:00:48.859Z",
+        "updatedAt": "2026-10-16T11:00:49.448Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T11:00:49.275Z",
+        "deliveredAt": "2026-10-16T11:00:49.445Z"
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad203e062ebd82b9f1f2e6a",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e062ebd82b9f1f2e6b"
+          }
+        ],
+        "paymentMethod": "PayPal",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:48.868Z",
+        "updatedAt": "2026-10-16T11:00:48.868Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad203e062ebd82b9f1f2e6d",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e062ebd82b9f1f2e6e"
+          }
+        ],
+        "paymentMethod": "Demo - Cash on Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:48.879Z",
+        "updatedAt": "2026-10-16T11:00:48.879Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad203e17a537ee0c1953067",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 200,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c1953068"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 400,
+        "shippingPrice": 0,
+        "taxPrice": 60,
+        "totalPrice": 460,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:49.497Z",
+        "updatedAt": "2026-10-16T11:00:49.497Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad203e17a537ee0c1953077",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c1953078"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:49.694Z",
+        "updatedAt": "2026-10-16T11:00:49.694Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Synthetic Owner",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad203e17a537ee0c195307c",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic frames",
+            "quantity": 2,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad203e062ebd82b9f1f2e65",
+            "_id": "6ad203e17a537ee0c195307d"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 200,
+        "shippingPrice": 0,
+        "taxPrice": 30,
+        "totalPrice": 230,
+        "user": "6ad203e062ebd82b9f1f2e5d",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T11:00:49.740Z",
+        "updatedAt": "2026-10-16T11:00:49.740Z",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "index": 42,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 400,
+    "request": "synthetic multipart 165 bytes",
+    "response": {
+      "message": "A JPEG, PNG or WebP image is required"
+    }
+  },
+  {
+    "index": 43,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 400,
+    "request": "synthetic multipart 166 bytes",
+    "response": {
+      "message": "A JPEG, PNG or WebP image is required"
+    }
+  },
+  {
+    "index": 44,
+    "method": "POST",
+    "url": "/api/upload",
+    "status": 413,
+    "request": "synthetic multipart 5243033 bytes",
+    "response": {
+      "message": "Invalid upload"
+    }
+  },
+  {
+    "index": 45,
+    "method": "POST",
+    "url": "/api/tickets/6ad203e062ebd82b9f1f2e73/responses",
+    "status": 404,
+    "request": {
+      "message": "Synthetic unauthorized"
+    },
+    "response": {
+      "message": "Ticket Not Found"
+    }
+  },
+  {
+    "index": 46,
+    "method": "POST",
+    "url": "/api/tickets/6ad203e062ebd82b9f1f2e73/responses",
+    "status": 201,
+    "request": {
+      "message": "Synthetic owner response"
+    },
+    "response": {
+      "message": "Response added."
+    }
+  },
+  {
+    "index": 47,
+    "method": "GET",
+    "url": "/api/orders/not-a-valid-object-id",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Invalid request"
+    }
+  },
+  {
+    "index": 48,
+    "method": "PUT",
+    "url": "/api/prescriptions/6ad203e062ebd82b9f1f2e71",
+    "status": 500,
+    "request": {
+      "patientName": {
+        "synthetic": "invalid object"
+      }
+    },
+    "response": {
+      "message": "Error updating prescription",
+      "error": "Prescription validation failed: patientName: Cast to string failed for value \"{ synthetic: 'invalid object' }\" (type Object) at path \"patientName\""
+    }
+  },
+  {
+    "index": 49,
+    "method": "POST",
+    "url": "/api/users/signup",
+    "status": 400,
+    "request": {
+      "name": "Synthetic weak",
+      "email": "weak@example.invalid",
+      "password": "[REDACTED]",
+      "nic": "TEST",
+      "address": "Test",
+      "phone": "000"
+    },
+    "response": {
+      "message": "Password must be at least 12 characters"
+    }
+  },
+  {
+    "index": 50,
+    "method": "GET",
+    "url": "/",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app"
+  },
+  {
+    "index": 51,
+    "method": "GET",
+    "url": "/signin",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app"
+  },
+  {
+    "index": 52,
+    "method": "GET",
+    "url": "/signup",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"app"
+  },
+  {
+    "index": 53,
+    "method": "POST",
+    "url": "/api/users/signin",
+    "status": 500,
+    "request": "synthetic multipart 10 bytes",
+    "response": {
+      "message": "Internal server error"
+    }
+  }
+]

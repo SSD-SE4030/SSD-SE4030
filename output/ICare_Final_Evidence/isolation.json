@@ -1,0 +1,21 @@
+{
+  "database": "icare_final12_51e88a6008b013c3",
+  "mongoHost": "127.0.0.1:27028",
+  "backend": "127.0.0.1:4021",
+  "zapProxy": "127.0.0.1:8091",
+  "target": "http://host.docker.internal:4021",
+  "initialCollectionCount": 0,
+  "initialCheckEvidence": "verify-final12.mjs checked empty collection list before importing models or creating fixtures; tests cannot start otherwise.",
+  "syntheticOnly": true,
+  "existingEnvFilesRead": false,
+  "externalIntegrations": "disabled; no external requests attempted",
+  "fixtureCounts": {
+    "users": 4,
+    "orders": 8,
+    "products": 1,
+    "prescriptions": 1,
+    "tickets": 1,
+    "cards": 0
+  },
+  "zapVersion": "2.17.0"
+}

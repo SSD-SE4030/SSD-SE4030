@@ -1,0 +1,12 @@
+{
+  "timestampUTC": "2026-10-16T13:31:10.826Z",
+  "queue": {
+    "recordsToScan": "0"
+  },
+  "activeScans": {
+    "scans": []
+  },
+  "spiders": {
+    "scans": []
+  }
+}

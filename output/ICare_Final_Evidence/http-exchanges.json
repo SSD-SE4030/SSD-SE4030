@@ -1,0 +1,1515 @@
+[
+  {
+    "evidenceId": "final12-1",
+    "caseId": "VIVA-01",
+    "label": "Original cross-user read",
+    "method": "GET",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d853",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:30.063Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Order Not Found"
+    },
+    "zapHistoryId": "1"
+  },
+  {
+    "evidenceId": "final12-2",
+    "caseId": "VIVA-01",
+    "label": "Owner control",
+    "method": "GET",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d853",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:30.225Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad22cd2efe761f652a1d853",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic baseline-price frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 100,
+          "product": "6ad22cd1efe761f652a1d851",
+          "_id": "6ad22cd2efe761f652a1d854"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 100,
+      "shippingPrice": 10,
+      "taxPrice": 15,
+      "totalPrice": 125,
+      "user": "6ad22cd1efe761f652a1d84c",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T13:55:30.019Z",
+      "updatedAt": "2026-10-16T13:55:30.019Z",
+      "__v": 0
+    },
+    "zapHistoryId": "3"
+  },
+  {
+    "evidenceId": "final12-3",
+    "caseId": "VIVA-01",
+    "label": "Admin control",
+    "method": "GET",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d853",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.258Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "_id": "6ad22cd2efe761f652a1d853",
+      "orderItems": [
+        {
+          "slug": "synthetic-frames",
+          "name": "Synthetic baseline-price frames",
+          "quantity": 1,
+          "image": "/synthetic.png",
+          "price": 100,
+          "product": "6ad22cd1efe761f652a1d851",
+          "_id": "6ad22cd2efe761f652a1d854"
+        }
+      ],
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 100,
+      "shippingPrice": 10,
+      "taxPrice": 15,
+      "totalPrice": 125,
+      "user": "6ad22cd1efe761f652a1d84c",
+      "isPaid": false,
+      "isDelivered": false,
+      "createdAt": "2026-10-16T13:55:30.019Z",
+      "updatedAt": "2026-10-16T13:55:30.019Z",
+      "__v": 0
+    },
+    "zapHistoryId": "8"
+  },
+  {
+    "evidenceId": "final12-4",
+    "caseId": "VIVA-01",
+    "label": "Anonymous control",
+    "method": "GET",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d853",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:30.295Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Authentication required"
+    },
+    "zapHistoryId": "9"
+  },
+  {
+    "evidenceId": "final12-5",
+    "caseId": "VIVA-02",
+    "label": "Cross-user delivery attack",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d855/deliver",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:30.328Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "10"
+  },
+  {
+    "evidenceId": "final12-6",
+    "caseId": "VIVA-02",
+    "label": "Owner also cannot deliver",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d855/deliver",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:30.385Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "12"
+  },
+  {
+    "evidenceId": "final12-7",
+    "caseId": "VIVA-02",
+    "label": "Anonymous control",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d855/deliver",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:30.407Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Authentication required"
+    },
+    "zapHistoryId": "13"
+  },
+  {
+    "evidenceId": "final12-8",
+    "caseId": "VIVA-02",
+    "label": "Admin delivery control",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d855/deliver",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.443Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Delivered"
+    },
+    "zapHistoryId": "14"
+  },
+  {
+    "evidenceId": "final12-9",
+    "caseId": "VIVA-03",
+    "label": "Empty payment proof attack (authorized admin)",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d857/pay",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.512Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "15"
+  },
+  {
+    "evidenceId": "final12-10",
+    "caseId": "VIVA-03",
+    "label": "Fabricated provider proof attack",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d857/pay",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.562Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "paymentResult": {
+        "id": "SYNTHETIC-NOT-PROVIDER-PROOF",
+        "status": "Paid",
+        "amount": 0.01
+      }
+    },
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "17"
+  },
+  {
+    "evidenceId": "final12-11",
+    "caseId": "VIVA-03",
+    "label": "Admin acknowledges synthetic COD collection",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d859/pay",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.610Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Paid Status Updated",
+      "order": {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad22cd2efe761f652a1d859",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d85a"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.631Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T13:55:30.626Z"
+      }
+    },
+    "zapHistoryId": "18"
+  },
+  {
+    "evidenceId": "final12-12",
+    "caseId": "VIVA-03",
+    "label": "Repeated confirmation rejected",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d859/pay",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.666Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {},
+    "response": {
+      "message": "Order cannot be marked paid"
+    },
+    "zapHistoryId": "20"
+  },
+  {
+    "evidenceId": "final12-13",
+    "caseId": "VIVA-04",
+    "label": "Alice changes Bob payment",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d85b/pay",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:30.721Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "21"
+  },
+  {
+    "evidenceId": "final12-14",
+    "caseId": "VIVA-04",
+    "label": "Owner cannot self-confirm payment",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d85b/pay",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:30.764Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "23"
+  },
+  {
+    "evidenceId": "final12-15",
+    "caseId": "VIVA-04",
+    "label": "Administrator collection control",
+    "method": "PUT",
+    "endpoint": "/api/orders/6ad22cd2efe761f652a1d85b/pay",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:30.813Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "message": "Order Paid Status Updated",
+      "order": {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad22cd2efe761f652a1d85b",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d85c"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.840Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T13:55:30.837Z"
+      }
+    },
+    "zapHistoryId": "24"
+  },
+  {
+    "evidenceId": "final12-16",
+    "caseId": "VIVA-05",
+    "label": "Price/total 0.01 attack",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:30.894Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 201,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 1,
+          "price": 0.01
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 0.01,
+      "shippingPrice": 0,
+      "taxPrice": 0,
+      "totalPrice": 0.01
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd26da81c9f97ce93b0"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad22cd26da81c9f97ce93af",
+        "createdAt": "2026-10-16T13:55:30.925Z",
+        "updatedAt": "2026-10-16T13:55:30.925Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "25"
+  },
+  {
+    "evidenceId": "final12-17",
+    "caseId": "VIVA-05",
+    "label": "Legitimate order control",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:30.968Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 201,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "itemsPrice": 100,
+      "shippingPrice": 10,
+      "taxPrice": 15,
+      "totalPrice": 125
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd26da81c9f97ce93b5"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad22cd26da81c9f97ce93b4",
+        "createdAt": "2026-10-16T13:55:30.985Z",
+        "updatedAt": "2026-10-16T13:55:30.985Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "26"
+  },
+  {
+    "evidenceId": "final12-18",
+    "caseId": "VIVA-05",
+    "label": "Invalid quantity -1",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.021Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": -1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery"
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "27"
+  },
+  {
+    "evidenceId": "final12-19",
+    "caseId": "VIVA-05",
+    "label": "Invalid quantity 0",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.064Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 0
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery"
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "28"
+  },
+  {
+    "evidenceId": "final12-20",
+    "caseId": "VIVA-05",
+    "label": "Invalid quantity 1.5",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.110Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 1.5
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery"
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "29"
+  },
+  {
+    "evidenceId": "final12-21",
+    "caseId": "VIVA-05",
+    "label": "Invalid quantity 6",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.159Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 6
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery"
+    },
+    "response": {
+      "message": "Invalid order items"
+    },
+    "zapHistoryId": "30"
+  },
+  {
+    "evidenceId": "final12-22",
+    "caseId": "VIVA-06",
+    "label": "Unrelated prescription read",
+    "method": "GET",
+    "endpoint": "/api/prescriptions/6ad22cd2efe761f652a1d863",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.253Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "31"
+  },
+  {
+    "evidenceId": "final12-23",
+    "caseId": "VIVA-06",
+    "label": "Indirect list control",
+    "method": "GET",
+    "endpoint": "/api/prescriptions",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.284Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {},
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "33"
+  },
+  {
+    "evidenceId": "final12-24",
+    "caseId": "VIVA-06",
+    "label": "Admin read control",
+    "method": "GET",
+    "endpoint": "/api/prescriptions/6ad22cd2efe761f652a1d863",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:31.310Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": {
+      "_id": "6ad22cd2efe761f652a1d863",
+      "patientName": "Bob Synthetic Patient",
+      "optometrist": null,
+      "prescriptionDetails": "Original synthetic prescription",
+      "dateIssued": "2026-10-16T13:55:30.038Z",
+      "createdAt": "2026-10-16T13:55:30.039Z",
+      "updatedAt": "2026-10-16T13:55:30.039Z",
+      "__v": 0
+    },
+    "zapHistoryId": "34"
+  },
+  {
+    "evidenceId": "final12-25",
+    "caseId": "VIVA-07",
+    "label": "Unrelated prescription edit",
+    "method": "PUT",
+    "endpoint": "/api/prescriptions/6ad22cd2efe761f652a1d863",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.381Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 403,
+    "request": {
+      "prescriptionDetails": "Unauthorized synthetic edit"
+    },
+    "response": {
+      "message": "Administrator access required"
+    },
+    "zapHistoryId": "35"
+  },
+  {
+    "evidenceId": "final12-26",
+    "caseId": "VIVA-07",
+    "label": "Admin edit control",
+    "method": "PUT",
+    "endpoint": "/api/prescriptions/6ad22cd2efe761f652a1d863",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:31.416Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {
+      "prescriptionDetails": "Authorized synthetic correction"
+    },
+    "response": {
+      "message": "Prescription Updated",
+      "prescription": {
+        "_id": "6ad22cd2efe761f652a1d863",
+        "patientName": "Bob Synthetic Patient",
+        "optometrist": "6ad22cd2efe761f652a1d862",
+        "prescriptionDetails": "Authorized synthetic correction",
+        "dateIssued": "2026-10-16T13:55:30.038Z",
+        "createdAt": "2026-10-16T13:55:30.039Z",
+        "updatedAt": "2026-10-16T13:55:31.430Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "36"
+  },
+  {
+    "evidenceId": "final12-27",
+    "caseId": "VIVA-08",
+    "label": "Baseline read control",
+    "method": "GET",
+    "endpoint": "/api/tickets/6ad22cd2efe761f652a1d865",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.466Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "Ticket Not Found"
+    },
+    "zapHistoryId": "37"
+  },
+  {
+    "evidenceId": "final12-28",
+    "caseId": "VIVA-08",
+    "label": "Cross-user response injection",
+    "method": "POST",
+    "endpoint": "/api/tickets/6ad22cd2efe761f652a1d865/responses",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.515Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 404,
+    "request": {
+      "message": "Unauthorized synthetic reply",
+      "responder": "Administrator"
+    },
+    "response": {
+      "message": "Ticket Not Found"
+    },
+    "zapHistoryId": "39"
+  },
+  {
+    "evidenceId": "final12-29",
+    "caseId": "VIVA-08",
+    "label": "Owner reply control",
+    "method": "POST",
+    "endpoint": "/api/tickets/6ad22cd2efe761f652a1d865/responses",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.559Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 201,
+    "request": {
+      "message": "Authorized owner reply",
+      "responder": "Fake client author"
+    },
+    "response": {
+      "message": "Response added."
+    },
+    "zapHistoryId": "41"
+  },
+  {
+    "evidenceId": "final12-30",
+    "caseId": "VIVA-08",
+    "label": "Admin reply control",
+    "method": "POST",
+    "endpoint": "/api/tickets/6ad22cd2efe761f652a1d865/responses",
+    "role": "Administrator",
+    "timestampUTC": "2026-10-16T13:55:31.641Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 201,
+    "request": {
+      "message": "Authorized staff reply"
+    },
+    "response": {
+      "message": "Response added."
+    },
+    "zapHistoryId": "42"
+  },
+  {
+    "evidenceId": "final12-31",
+    "caseId": "VIVA-09",
+    "label": "Retired card read",
+    "method": "GET",
+    "endpoint": "/api/card-details",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.709Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 404,
+    "request": {},
+    "response": {
+      "message": "API route not found"
+    },
+    "zapHistoryId": "43"
+  },
+  {
+    "evidenceId": "final12-32",
+    "caseId": "VIVA-09",
+    "label": "Retired card write with harmless placeholders",
+    "method": "POST",
+    "endpoint": "/api/card-details",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:31.735Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 404,
+    "request": {
+      "cardHolderName": "Synthetic",
+      "cardNumber": "SYNTHETIC-NOT-PAN",
+      "cvv": "SYNTHETIC-NOT-CVV",
+      "expiryDate": "TEST"
+    },
+    "response": {
+      "message": "API route not found"
+    },
+    "zapHistoryId": "44"
+  },
+  {
+    "evidenceId": "final12-33",
+    "caseId": "VIVA-09",
+    "label": "COD ignores card-shaped request fields",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:31.775Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 201,
+    "request": {
+      "orderItems": [
+        {
+          "_id": "6ad22cd1efe761f652a1d851",
+          "quantity": 1
+        }
+      ],
+      "shippingAddress": {
+        "fullName": "Bob Synthetic",
+        "address": "Test address",
+        "city": "Test city",
+        "postalCode": "00000",
+        "country": "Test"
+      },
+      "paymentMethod": "Cash On Delivery",
+      "cardDetails": {
+        "cardNumber": "SYNTHETIC-NOT-PAN",
+        "cvv": "SYNTHETIC-NOT-CVV"
+      }
+    },
+    "response": {
+      "message": "New Order Created",
+      "order": {
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd36da81c9f97ce93d9"
+          }
+        ],
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "_id": "6ad22cd36da81c9f97ce93d8",
+        "createdAt": "2026-10-16T13:55:31.798Z",
+        "updatedAt": "2026-10-16T13:55:31.798Z",
+        "__v": 0
+      }
+    },
+    "zapHistoryId": "45"
+  },
+  {
+    "evidenceId": "final12-34",
+    "caseId": "VIVA-10",
+    "label": "First valid reset",
+    "method": "POST",
+    "endpoint": "/api/users/reset-password",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:31.891Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Password reset successfully"
+    },
+    "zapHistoryId": "46"
+  },
+  {
+    "evidenceId": "final12-35",
+    "caseId": "VIVA-10",
+    "label": "Same token reused with a different password",
+    "method": "POST",
+    "endpoint": "/api/users/reset-password",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:32.642Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "token": "[REDACTED]",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid or expired reset link"
+    },
+    "zapHistoryId": "48"
+  },
+  {
+    "evidenceId": "final12-36",
+    "caseId": "VIVA-10",
+    "label": "Login with first reset password",
+    "method": "POST",
+    "endpoint": "/api/users/signin",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:33.373Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {
+      "email": "alice@example.invalid",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "_id": "6ad22cd1efe761f652a1d84b",
+      "name": "Alice Synthetic",
+      "email": "alice@example.invalid",
+      "isAdmin": false,
+      "token": "[REDACTED]"
+    },
+    "zapHistoryId": "49"
+  },
+  {
+    "evidenceId": "final12-37",
+    "caseId": "VIVA-10",
+    "label": "Second rejected password must not work",
+    "method": "POST",
+    "endpoint": "/api/users/signin",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:34.115Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {
+      "email": "alice@example.invalid",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Invalid email or password"
+    },
+    "zapHistoryId": "50"
+  },
+  {
+    "evidenceId": "final12-38",
+    "caseId": "VIVA-10",
+    "label": "Old access session invalidated",
+    "method": "GET",
+    "endpoint": "/api/orders/mine",
+    "role": "Alice customer",
+    "timestampUTC": "2026-10-16T13:55:34.857Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    },
+    "zapHistoryId": "51"
+  },
+  {
+    "evidenceId": "final12-39",
+    "caseId": "VIVA-10",
+    "label": "New access token still works",
+    "method": "GET",
+    "endpoint": "/api/orders/mine",
+    "role": "Alice new session",
+    "timestampUTC": "2026-10-16T13:55:34.880Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": [],
+    "zapHistoryId": "52"
+  },
+  {
+    "evidenceId": "final12-40",
+    "caseId": "VIVA-11",
+    "label": "Original reset-shaped signed JWT against active route",
+    "method": "GET",
+    "endpoint": "/api/orders/mine",
+    "role": "Reset-shaped bearer (isolated secret)",
+    "timestampUTC": "2026-10-16T13:55:39.300Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    },
+    "zapHistoryId": "53"
+  },
+  {
+    "evidenceId": "final12-41",
+    "caseId": "VIVA-11",
+    "label": "Correct issuer/audience but wrong reset purpose",
+    "method": "GET",
+    "endpoint": "/api/orders/mine",
+    "role": "Reset-purpose bearer (isolated secret)",
+    "timestampUTC": "2026-10-16T13:55:39.328Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 401,
+    "request": {},
+    "response": {
+      "message": "Invalid token"
+    },
+    "zapHistoryId": "54"
+  },
+  {
+    "evidenceId": "final12-42",
+    "caseId": "VIVA-11",
+    "label": "Valid access-token control",
+    "method": "GET",
+    "endpoint": "/api/orders/mine",
+    "role": "Bob owner",
+    "timestampUTC": "2026-10-16T13:55:39.348Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": [
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd2efe761f652a1d857",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d858"
+          }
+        ],
+        "paymentMethod": "PayPal",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.019Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd2efe761f652a1d855",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d856"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": true,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.472Z",
+        "__v": 0,
+        "deliveredAt": "2026-10-16T13:55:30.463Z"
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd2efe761f652a1d853",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d854"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.019Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad22cd2efe761f652a1d859",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d85a"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.631Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T13:55:30.626Z"
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "paymentResult": {
+          "status": "Paid"
+        },
+        "_id": "6ad22cd2efe761f652a1d85b",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd2efe761f652a1d85c"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": true,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.019Z",
+        "updatedAt": "2026-10-16T13:55:30.840Z",
+        "__v": 0,
+        "paidAt": "2026-10-16T13:55:30.837Z"
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd26da81c9f97ce93af",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd26da81c9f97ce93b0"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.925Z",
+        "updatedAt": "2026-10-16T13:55:30.925Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd26da81c9f97ce93b4",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd26da81c9f97ce93b5"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:30.985Z",
+        "updatedAt": "2026-10-16T13:55:30.985Z",
+        "__v": 0
+      },
+      {
+        "shippingAddress": {
+          "fullName": "Bob Synthetic",
+          "address": "Test address",
+          "city": "Test city",
+          "postalCode": "00000",
+          "country": "Test"
+        },
+        "_id": "6ad22cd36da81c9f97ce93d8",
+        "orderItems": [
+          {
+            "slug": "synthetic-frames",
+            "name": "Synthetic baseline-price frames",
+            "quantity": 1,
+            "image": "/synthetic.png",
+            "price": 100,
+            "product": "6ad22cd1efe761f652a1d851",
+            "_id": "6ad22cd36da81c9f97ce93d9"
+          }
+        ],
+        "paymentMethod": "Cash On Delivery",
+        "itemsPrice": 100,
+        "shippingPrice": 10,
+        "taxPrice": 15,
+        "totalPrice": 125,
+        "user": "6ad22cd1efe761f652a1d84c",
+        "isPaid": false,
+        "isDelivered": false,
+        "createdAt": "2026-10-16T13:55:31.798Z",
+        "updatedAt": "2026-10-16T13:55:31.798Z",
+        "__v": 0
+      }
+    ],
+    "zapHistoryId": "55"
+  },
+  {
+    "evidenceId": "final12-43",
+    "caseId": "VIVA-12",
+    "label": "Original one-character signup attack",
+    "method": "POST",
+    "endpoint": "/api/users/signup",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:39.408Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 400,
+    "request": {
+      "name": "Synthetic registration",
+      "nic": "SYNTHETIC",
+      "address": "Test address",
+      "phone": "0000000000",
+      "email": "weak@example.invalid",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "message": "Password must be at least 12 characters"
+    },
+    "zapHistoryId": "56"
+  },
+  {
+    "evidenceId": "final12-44",
+    "caseId": "VIVA-12",
+    "label": "Legitimate strong-password signup",
+    "method": "POST",
+    "endpoint": "/api/users/signup",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:39.441Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {
+      "name": "Synthetic registration",
+      "nic": "SYNTHETIC",
+      "address": "Test address",
+      "phone": "0000000000",
+      "email": "strong@example.invalid",
+      "password": "[REDACTED]"
+    },
+    "response": {
+      "_id": "6ad22cdc6da81c9f97ce93ec",
+      "name": "Synthetic registration",
+      "email": "strong@example.invalid",
+      "nic": "SYNTHETIC",
+      "phone": "0000000000",
+      "address": "Test address",
+      "isAdmin": false,
+      "token": "[REDACTED]"
+    },
+    "zapHistoryId": "57"
+  },
+  {
+    "evidenceId": "final12-45",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Frontend HTML (not a manual case)",
+    "method": "GET",
+    "endpoint": "/",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.605Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"apple-touch-icon\" href=\"/logo192.png\"/><link rel=\"manifest\" href=\"/manifest.json\"/><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css\" integrit",
+    "zapHistoryId": "58"
+  },
+  {
+    "evidenceId": "final12-46",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Frontend HTML (not a manual case)",
+    "method": "GET",
+    "endpoint": "/signin",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.629Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"apple-touch-icon\" href=\"/logo192.png\"/><link rel=\"manifest\" href=\"/manifest.json\"/><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css\" integrit",
+    "zapHistoryId": "59"
+  },
+  {
+    "evidenceId": "final12-47",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Frontend HTML (not a manual case)",
+    "method": "GET",
+    "endpoint": "/signup",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.648Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><link rel=\"icon\" href=\"/favicon.ico\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"theme-color\" content=\"#000000\"/><meta name=\"description\" content=\"Web site created using create-react-app\"/><link rel=\"apple-touch-icon\" href=\"/logo192.png\"/><link rel=\"manifest\" href=\"/manifest.json\"/><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css\" integrit",
+    "zapHistoryId": "60"
+  },
+  {
+    "evidenceId": "final12-48",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/css/main.16b9ff7d.css",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.669Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "@charset \"UTF-8\";/*!\n * Bootstrap  v5.2.3 (https://getbootstrap.com/)\n * Copyright 2011-2022 The Bootstrap Authors\n * Copyright 2011-2022 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)\n */:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--",
+    "zapHistoryId": "61"
+  },
+  {
+    "evidenceId": "final12-49",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/js/main.ba8f17b4.js",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.729Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "/*! For license information please see main.ba8f17b4.js.LICENSE.txt */\n(()=>{var e={387:(e,t,n)=>{\"use strict\";function r(){return r=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},r.apply(this,arguments)}var o;n.d(t,{AO:()=>f,B6:()=>T,Gh:()=>B,HS:()=>U,Pq:()=>W,Rr:()=>p,TM:()=>l,V1:()=>c,V2:()=>Y,_p:()=>Z,aE:()=>se,o1:()=>R,pX:()=>Q,pb:()=>O,rc:()=>o,sC:()=>a,sd:",
+    "zapHistoryId": "64"
+  },
+  {
+    "evidenceId": "final12-50",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/js/239.fcaddd2b.chunk.js",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:41.941Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "/*! For license information please see 239.fcaddd2b.chunk.js.LICENSE.txt */\n(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[239],{239:function(A){A.exports=function(){\"use strict\";var A=function(e,t){return A=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(A,e){A.__proto__=e}||function(A,e){for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&(A[t]=e[t])},A(e,t)};function e(e,t){if(\"function\"!==typeof t&&null!==t)throw new TypeError(\"Class extends value \"+St",
+    "zapHistoryId": "66"
+  },
+  {
+    "evidenceId": "final12-51",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/js/213.aa9f6aad.chunk.js",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:42.001Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "/*! For license information please see 213.aa9f6aad.chunk.js.LICENSE.txt */\n(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[213],{213:function(e){e.exports=function(){\"use strict\";function e(t){return e=\"function\"==typeof Symbol&&\"symbol\"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&\"function\"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?\"symbol\":typeof e},e(t)}function t(e,n){return t=Object.setPrototypeOf||function(e,t){return e.__",
+    "zapHistoryId": "67"
+  },
+  {
+    "evidenceId": "final12-52",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/js/732.be0d18e9.chunk.js",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:42.025Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[732],{588:function(t){(function(){var e,r,i,n,s,a;\"undefined\"!==typeof performance&&null!==performance&&performance.now?t.exports=function(){return performance.now()}:\"undefined\"!==typeof process&&null!==process&&process.hrtime?(t.exports=function(){return(e()-s)/1e6},r=process.hrtime,n=(e=function(){var t;return 1e9*(t=r())[0]+t[1]})(),a=1e9*process.uptime(),s=n-a):Date.now?(t.exports=function(){return Date.now()-i},i=Date.now()):",
+    "zapHistoryId": "68"
+  },
+  {
+    "evidenceId": "final12-53",
+    "caseId": "PASSIVE-COVERAGE",
+    "label": "Built JS/CSS (not a manual case)",
+    "method": "GET",
+    "endpoint": "/static/js/488.6340bad8.chunk.js",
+    "role": "Anonymous",
+    "timestampUTC": "2026-10-16T13:55:42.063Z",
+    "sourceHead": "2aa4b8f4a0a923c6e54ac092fe6ad20ec48556d7",
+    "status": 200,
+    "request": {},
+    "response": "\"use strict\";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[488],{488:(e,n,t)=>{t.r(n),t.d(n,{getCLS:()=>S,getFCP:()=>w,getFID:()=>D,getINP:()=>J,getLCP:()=>Q,getTTFB:()=>V,onCLS:()=>S,onFCP:()=>w,onFID:()=>D,onINP:()=>J,onLCP:()=>Q,onTTFB:()=>V});var r,i,a,o,c,u=-1,f=function(e){addEventListener(\"pageshow\",(function(n){n.persisted&&(u=n.timeStamp,e(n))}),!0)},s=function(){return window.performance&&performance.getEntriesByType&&performance.getEntriesByType(\"navigation\")[0]},d=",
+    "zapHistoryId": "69"
+  }
+]

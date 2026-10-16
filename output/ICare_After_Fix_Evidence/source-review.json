@@ -1,0 +1,18 @@
+{
+  "absentCardFiles": [
+    {
+      "path": "ICare/backend/routes/cardRoutes.js",
+      "exists": false
+    },
+    {
+      "path": "ICare/backend/models/cardModel.js",
+      "exists": false
+    },
+    {
+      "path": "ICare/frontend/src/screens/CardDetailsScreen.js",
+      "exists": false
+    }
+  ],
+  "serverSeedMount": false,
+  "localStorageSession": true
+}

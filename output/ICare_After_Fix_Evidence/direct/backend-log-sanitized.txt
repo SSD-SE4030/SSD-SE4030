@@ -1,0 +1,18 @@
+Server is running at http://localhost:4021
+Connected to the database
+SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\varan\OneDrive\Desktop\ssd project\SSD-SE4030\ICare\backend\node_modules\body-parser\lib\types\json.js:89:19)
+    at C:\Users\varan\OneDrive\Desktop\ssd project\SSD-SE4030\ICare\backend\node_modules\body-parser\lib\read.js:121:18
+    at invokeCallback (C:\Users\varan\OneDrive\Desktop\ssd project\SSD-SE4030\ICare\backend\node_modules\raw-body\index.js:224:16)
+    at done (C:\Users\varan\OneDrive\Desktop\ssd project\SSD-SE4030\ICare\backend\node_modules\raw-body\index.js:213:7)
+    at IncomingMessage.onEnd (C:\Users\varan\OneDrive\Desktop\ssd project\SSD-SE4030\ICare\backend\node_modules\raw-body\index.js:273:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  expose: true,
+  statusCode: 400,
+  status: 400,
+  body: '{malformed',
+  type: 'entity.parse.failed'
+}
